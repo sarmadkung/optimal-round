@@ -35,18 +35,29 @@
  */
 
 function sortedSquares(nums) {
-  // use extra array, because it's really complicated to produce square of sorted array and sort it as well
-  // we will calculate and square using 1st array and store results to 2nd, if we store results in 1st it's square which can distort the results
-   let result = new Array(nums.length)
+  // We use an extra array because we need to preserve the original
+  // sorted array while calculating squares.
+  // The largest square must come from either the left or right end.
+  // We place the larger square at the current position from the end.
+  let result = new Array(nums.length)
   let right=nums.length-1;
+  let position = nums.length-1;
   let left = 0;
+    while(left<=right){
+      let rightSquare = nums[right] ** 2;
+      let leftSquare = nums[left] ** 2;
 
-    while(left<right){
-      let rightNum = nums[right] ** 2;
-      let leftNum = nums[left] ** 2;
+
+      if( rightSquare > leftSquare ){
+         result[position] =  rightSquare;
+         right--;
+      } else{
+        result[position] = leftSquare;
+        left++;
+      }
+      position--;
 
     }
-
   return result;
 
 
