@@ -96,6 +96,14 @@ Array `[2, -5, -2, 0, -3, 4]`:
 
 At step 2 the `20` came from `lo`, not `hi`. Tracking only the max would have missed it.
 
+## Loop shape
+
+**Use `for`, starting at index 1.** Every element is visited once, and "extend or restart" is a
+decision about `cur`, not about where to go next. The index just walks forward.
+
+Start at 1 because `cur = best = nums[0]` has already used the first value. Starting at 0 counts
+`nums[0]` twice. The product variant has the same shape, with `hi` and `lo` in place of `cur`.
+
 ## How to recognise it
 
 - "Contiguous subarray" plus "maximum" or "minimum" of a sum or product.

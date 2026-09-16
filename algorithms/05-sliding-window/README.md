@@ -79,6 +79,22 @@ value in the window, and phrase validity in terms of those counts and the window
 shrink only when the count-based test fails. The loop shape is exactly the same as above; only the
 summary and the test change.
 
+## Loop shape
+
+**Use a `for` with a `while` inside.** This is the shape worth memorising:
+
+- **`for` over `r`.** The right edge grows by exactly one on every iteration, no matter what.
+- **`while` over `l`.** The left edge moves **zero or more** times, and only while the window is
+  invalid. The data decides how many times, so it is a `while`.
+
+Declare `l` **outside** the `for`. It keeps its value from one iteration to the next.
+
+It looks like nested loops, but it is O(n). `l` only moves forward and never resets, so across the
+whole run the inner `while` does at most n steps in total.
+
+**Fixed-size windows** need no inner loop. The window drops exactly one element per step, so it is
+`if (r >= k)`, remove element `r − k`.
+
 ## How to recognise it
 
 - "Longest / shortest **substring** or **subarray**" (contiguous) that satisfies a rule.

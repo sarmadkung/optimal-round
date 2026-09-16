@@ -96,6 +96,19 @@ and hare catch that without storing any of those numbers.
 The same pair of speeds also finds the **middle** of a list: when fast reaches the end, slow is
 halfway.
 
+## Loop shape
+
+**Use `while`.** Nothing here is "for each element". The loop runs until `fast` falls off the end
+or the pointers meet, and you cannot know in advance how many steps that takes.
+
+- Put the **safety check in the header**: `while (fast && fast.next)`. Inside the body, move both
+  pointers first, **then** compare them.
+- **Finding the cycle start** is a second `while (a !== b)` that moves both pointers one step.
+- **Number chains (160)** have no "end of list", but both pointers start on the same value. Either
+  take one step before the loop or use `do … while`. Otherwise the "they met" test is true before
+  anyone has moved.
+- **Middle of a list** is the same `while (fast && fast.next)` loop with no meeting test.
+
 ## How to recognise it
 
 - "Does it loop?", "does it ever repeat?", "detect a cycle".

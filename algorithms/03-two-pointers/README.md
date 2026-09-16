@@ -81,6 +81,26 @@ Two pointers can also move the **same** way. A fast **read** pointer scans every
 worth keeping, copy it to the write slot and advance the write pointer. This removes duplicates or
 filters an array in place, in O(n) time and O(1) space.
 
+## Loop shape: `while` or `for`?
+
+Ask one question: **does one pointer move on every single iteration, no matter what?**
+
+- **No, the comparison decides which pointer moves.** Use `while`. This is the converging version:
+  `while (l < r)`, and each branch moves `l` or `r`. Moving the pointers *is* the algorithm, so no
+  `for` header can describe it.
+- **Yes.** Make that pointer the `for` variable and keep the other one as a plain variable that
+  moves inside the body. This is the read/write version: the read pointer visits every element,
+  and the write pointer moves only when something is kept.
+
+| Problem | Loop | Why |
+|:--------|:-----|:----|
+| 055 Two Sum II | `while (l < r)` | The sum decides which side moves |
+| 009 Container With Most Water | `while (l < r)` | The shorter wall moves |
+| 007 Valid Palindrome | `while (l < r)`, with inner `while`s to skip non-letters | Each side skips a different number of characters |
+| 172 Squares of a Sorted Array | `for` over the output slot from the back, or `while (l <= r)` | The slot fills on every step; `l` and `r` still move by comparison. `<=` because the last element must be placed too |
+| 054 Remove Duplicates, 102 Move Zeroes | `for` over the read pointer | Read moves every time, write only sometimes |
+| 173 Is Subsequence | `for` over the long string | Its pointer moves every time; the short string's pointer moves only on a match |
+
 ## How to recognise it
 
 - The input is **sorted**, or sorting it does not break the question.
@@ -91,7 +111,12 @@ filters an array in place, in O(n) time and O(1) space.
 
 ## Common mistakes
 
-- **Using `l <= r`.** A pair needs two different elements, so stop when they meet.
+- **Using `l <= r` for a pair.** A pair needs two different elements, so stop when they meet. (Use
+  `l <= r` only when every element must be handled once, as in 172.)
+- **Putting a converging pointer in a `for` header.** `for (l = 0; l < n; l++)` moves `l` on every
+  iteration, even when the comparison says `r` should move. Add an `r--` in the body and both
+  pointers now move together, so the comparison no longer chooses anything. Use `while (l < r)` and
+  move exactly one pointer per branch.
 - **Moving the wrong pointer.** Say out loud why the value you drop can never be in a better pair.
 - **Forgetting the output format.** Some problems want 1-based indices, not 0-based.
 - **Using it on unsorted data** for a sum. The "too big, so drop the right one" argument needs order.

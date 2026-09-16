@@ -89,6 +89,15 @@ The indices only reach `3`, so XOR in `4` as well: `6 ^ 4 = 2`. Missing: **2**. 
 (The sum formula `n(n+1)/2 − sum` works too. XOR has the small advantage of never overflowing
 in languages with fixed-size integers.)
 
+## Loop shape
+
+**Use `for`.** Every value is XORed in exactly once. For the missing number, one `for` over the
+indices XORs in both `i` and `nums[i]`, and `n` is added after the loop.
+
+Bit problems that work on **one number** are the exception. Clearing the lowest set bit until
+nothing is left, `while (x !== 0) { x &= x − 1; }`, runs once per set bit, and you don't know how
+many there are. That makes it a `while`.
+
 ## How to recognise it
 
 - "Every element appears **twice** except one."

@@ -88,6 +88,15 @@ each with its own counter:
 Then verify every candidate with a counting pass. For `n/3` this means **two** candidates, which
 is exactly 167.
 
+## Loop shape
+
+**Use `for`.** Every value is looked at exactly once, in order, and nothing is ever skipped or
+revisited. The loop variable is just "the next voter". The candidate and the count are state you
+update inside the body; they never decide where the loop goes next.
+
+The n/k version is the same shape, followed by a **second, separate `for`** that counts each
+candidate. Keep the two passes apart: the candidates are not final until the first pass ends.
+
 ## How to recognise it
 
 - The words "more than n/2" or "more than n/3".

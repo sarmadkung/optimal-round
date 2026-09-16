@@ -112,6 +112,23 @@ the largest pile, 10.
 
 `lo = hi = 5`, so the slowest speed is **5**. ✓ Three checks instead of up to ten.
 
+## Loop shape
+
+**Use `while`.** Each iteration moves `lo` **or** `hi`, never both, and never by a fixed step. The
+header condition comes from your bound style (see the table above), not from the array length:
+
+- Closed `[lo, hi]`: `while (lo <= hi)`. You may return from inside the loop.
+- Half-open, or "first yes": `while (lo < hi)`. The answer is `lo` after the loop ends.
+
+**Binary search on the answer** has two loops, and they do different jobs:
+
+- The outer **`while`** halves the range of possible answers.
+- The yes/no check is a **`for`** over the input ("how many hours at speed `mid`?" visits every
+  pile once).
+
+If your outer loop is a `for`, or your check function is a `while` that moves a pointer, stop and
+re-read the problem.
+
 ## How to recognise it
 
 - The input is **sorted**, or the problem demands **O(log n)**.

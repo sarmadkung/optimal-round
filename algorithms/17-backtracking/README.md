@@ -105,6 +105,17 @@ That is why these problems have tiny limits like n ≤ 10 or n ≤ 6. When a bra
 to lead nowhere (a sum is already too big, a queen is attacked), **prune** it: return early and
 skip that whole subtree.
 
+## Loop shape
+
+**Use recursion with a `for` over the choices.** The recursion is the "keep going deeper" loop, and
+the `for` inside each call tries every choice at that level. There is no `while`.
+
+- **Subsets:** `for (i = start; i < n; i++)`, then recurse with `i + 1`.
+- **Permutations:** `for (i = 0; i < n; i++)`, skipping every `i` already used.
+
+The classic slip is recursing with `start + 1` instead of `i + 1`. That lets the next level reuse
+elements the current `for` has already moved past, and you get duplicates.
+
 ## How to recognise it
 
 - "Return **all** subsets / permutations / combinations / partitions / placements".

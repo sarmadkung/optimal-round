@@ -78,6 +78,16 @@ Prime p crosses out about n / p numbers. The total work is n × (1/2 + 1/3 + 1/5
 primes up to √n, and that sum of prime reciprocals grows like log log n. It is so slow-growing
 that in practice the sieve behaves almost linearly. The price is memory: one flag per number.
 
+## Loop shape
+
+**Use two nested `for` loops.** Both have a fixed step decided up front:
+
+- **Outer:** `for (p = 2; p * p < n; p++)`.
+- **Inner:** `for (m = p * p; m < n; m += p)`.
+
+A step other than 1 is still a `for`. What matters is that the step is fixed, not decided by the
+data. Counting the primes at the end is one more `for`.
+
 ## How to recognise it
 
 - "Count the primes less than n", "list all primes up to n".

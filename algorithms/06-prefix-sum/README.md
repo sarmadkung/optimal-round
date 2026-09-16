@@ -82,6 +82,21 @@ the earlier prefix where one of them began.
 
 This version is O(n) time and O(n) space.
 
+## Loop shape
+
+**Use `for`, every time.** No pointer ever moves conditionally here.
+
+- **Build:** one `for` over the elements, writing `P[i + 1] = P[i] + nums[i]`.
+- **Query:** no loop at all; it is one subtraction.
+- **Two-pass problems (156):** a first `for` gets the total, and a second `for` walks the running
+  left sum.
+- **Counting with a hash map (053):** one `for`. Inside the body the order matters: look up
+  `pre − k` **before** you record `pre`.
+
+If you find yourself reaching for a `while` that moves a left edge, you are writing a sliding window
+instead. Check the "Sliding window vs prefix sum" section of the [guide](../../GUIDE.md) to see
+which one the problem allows.
+
 ## How to recognise it
 
 - "Sum of a range", "sum of a subarray", many range queries on an array that does not change.

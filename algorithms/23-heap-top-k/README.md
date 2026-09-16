@@ -88,6 +88,13 @@ Python has `heapq` and Java has `PriorityQueue`; JavaScript has neither. In an i
   [19 Quickselect](../19-quickselect/README.md).
 - **Sorting** is fine when k is close to n.
 
+## Loop shape
+
+- **Driver: `for` over the items.** Each one is offered to the heap once.
+- **Inside the heap: `while`.** Sift-up and sift-down move an item until it is in place, and the
+  number of levels it moves depends on the values.
+- **Draining the answer:** `while (heap.size > 0)`.
+
 ## How to recognise it
 
 - "k most frequent", "k closest", "k largest / smallest", "top k".

@@ -248,6 +248,38 @@ Both handle contiguous subarrays.
 - Heap of size k: O(n log k). Best when **k ≪ n** or data arrives as a **stream**.
 - Quickselect: O(n) on average. Best for a **single** k-th element when you can reorder the array.
 
+### `for` vs `while`: which loop?
+Once you know the technique, the loop shape follows from it. Ask one question: **does something
+advance by a fixed step on every single iteration?**
+- **Yes:** that thing is the `for` variable. Every other pointer is a plain variable that moves in
+  the body.
+- **No:** a comparison picks which pointer moves, or the loop stops on a condition you can't count
+  in advance. Use **`while`**.
+
+Almost every problem in this repo uses one of these six shapes:
+
+| Shape | Looks like | Use it when | Techniques |
+|:------|:-----------|:------------|:-----------|
+| Plain `for` | `for (i …)` | Every element is visited once, in order | Kadane, Boyer-Moore, prefix sum, XOR, interval merge, heap top-k |
+| `for` + a lagging pointer | `for (read …) { if (keep) write++ }` | One pointer always moves, the other only sometimes | Read/write two pointers (054, 102), 173, Lomuto partition |
+| `for` + inner `while` | `for (r …) { while (bad) l++ }` | One side always grows, the other catches up zero or more times | Sliding window, monotonic stack |
+| `while` | `while (l < r)`, `while (lo <= hi)`, `while (queue.length)` | A comparison decides the move, or the end is a condition | Converging two pointers, binary search, Dutch flag, cyclic sort, fast & slow, BFS, Dijkstra, union-find `find` |
+| `for` over rounds | `for (round < k) { for (edge …) }` | A whole pass repeats a known number of times | Bellman-Ford, sieve |
+| Recursion + `for` | `explore() { for (choice …) explore() }` | Try every choice at every depth | Backtracking, recursive DFS |
+
+Quick checks:
+- **Some branch must not move the index** (Dutch flag's high case, cyclic sort's swap)? Use
+  `while`. A `for` would move the index anyway.
+- **"Scan until you find"** (the next permutation pivot, skipping non-letters in a palindrome)? That's a
+  `while` on the condition.
+- **Nested doesn't always mean O(n²).** If the inner `while` only pushes a pointer forward and it
+  never resets, the total work is O(n).
+- **The loop condition must match what the pointers mean.** Before writing `l < r` or `l <= r`,
+  `lo < hi` or `lo <= hi`, say in one sentence what the bounds mean.
+
+Every [algorithm explainer](algorithms/README.md) has a **Loop shape** section with the details
+for that technique.
+
 ---
 
 ## Part 5: When no technique jumps out
@@ -328,6 +360,7 @@ Copy this into the top of your solution file for your first 20 problems:
 // 5. Brute force + complexity:
 //    Repeated work to remove:
 // 6. Edge cases: empty/single, all same, negatives, no answer
+// 7. Loop shape: for | for + lagging ptr | for + inner while | while | rounds | recursion
 ```
 
 Once the routine becomes automatic, you'll find you recognise most problems by step 4.

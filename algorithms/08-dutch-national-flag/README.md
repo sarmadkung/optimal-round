@@ -84,6 +84,17 @@ lands in the middle zone and never needs to be sorted again.
 With only **two** groups you need just one boundary, which is the simpler "move all zeros" or
 "evens before odds" partition.
 
+## Loop shape
+
+**Use `while (mid <= high)`.** Rule 3 moves `high` but deliberately **leaves `mid` where it is**,
+so `mid` does not advance on every iteration. A `for (mid …)` header would add 1 anyway and skip
+the unknown value that was just swapped in.
+
+This is a general rule: **if any branch must leave the index where it is, use `while`.**
+
+The two-group partition (102 Move Zeroes) is different. The read pointer moves on every step and
+only the write pointer waits, so it is a `for` over the read pointer.
+
 ## How to recognise it
 
 - Values fall into **exactly three** categories, and the order of categories is fixed.

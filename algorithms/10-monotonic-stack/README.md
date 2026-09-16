@@ -103,6 +103,19 @@ So the moment a bar is popped, its full width is known. Bars still on the stack 
 right wall, so they stretch to the array's end. A common way to flush them is to process one extra
 bar of height 0 after the last real one.
 
+## Loop shape
+
+**Use a `for` with a `while` inside**, the same shape as [Sliding Window](../05-sliding-window/README.md):
+
+- **`for` over `i`.** Every index is pushed exactly once.
+- **`while` to pop.** One new value may settle zero, one or many waiting indices.
+
+It is O(n) despite the nesting: each index is popped at most once over the whole run.
+
+- **Right-to-left variants:** `for (i = n − 1; i >= 0; i--)`.
+- **Histogram flush:** run the `for` to `i <= n` and treat `i == n` as a bar of height 0, so no
+  second loop is needed for the bars left on the stack.
+
 ## How to recognise it
 
 - "Next greater", "next warmer", "next smaller", "how many days until".

@@ -101,6 +101,14 @@ is the first moment the graph stops being a forest.
 That makes Union-Find the natural tool for "which edge makes this a cycle", and it is the heart of
 **Kruskal's minimum spanning tree**: sort edges by weight, and keep each edge only if it merges.
 
+## Loop shape
+
+- **`find`: use `while (parent[x] !== x)`.** You walk up until you reach the root, and the depth is
+  unknown. Path compression is a second `while` over the same path (or write `find` recursively).
+- **`union`:** no loop. It is two `find` calls and one comparison.
+- **Setup and driving:** a `for` to set `parent[i] = i`, then a `for` over the edges that calls
+  `union`.
+
 ## How to recognise it
 
 - "Number of connected components / provinces / groups", especially when edges are given as a list.

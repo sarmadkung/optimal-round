@@ -95,6 +95,18 @@ at most the n values 1..n, and if they do, the answer is n + 1. So zeros, negati
 above n can be treated as junk and left wherever they land. That is what makes the technique work
 on arbitrary integers, not just on permutations.
 
+## Loop shape
+
+**Placement: use `while (i < n)`.** The swap branch deliberately does not move `i`, for the same
+reason as [Dutch National Flag](../08-dutch-national-flag/README.md). Writing `for` and then `i--`
+after a swap also works, but it hides the intent.
+
+An equally correct form is a `for` over `i` with an **inner `while`** that keeps swapping until slot
+`i` holds a value that is home, out of range, or a duplicate. Both are O(n), because every swap puts
+one value home for good. Pick one form and don't mix them.
+
+**Sign marking and the final scan: use `for`.** Each visits every slot exactly once.
+
 ## How to recognise it
 
 - Values are promised to be in **1..n** or **0..n**, or only such values matter.

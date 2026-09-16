@@ -88,6 +88,14 @@ Trace: intervals `[[1,2], [4,5], [7,9], [12,14]]`, new interval `[3,8]`.
 
 Result: `[[1,2], [3,9], [12,14]]`. ✓ One pass, O(n).
 
+## Loop shape
+
+- **Merge: `for` over the sorted intervals.** Each one is looked at once and compared with the last
+  interval in the output.
+- **Insert: one index `i`, declared once, and three `while` loops in a row** (before, overlap,
+  after). Each phase uses up an unknown number of intervals, and the next phase carries on from
+  where the last one stopped. A `for` per phase would restart the index.
+
 ## How to recognise it
 
 - Input is a list of `[start, end]` pairs and the words "overlapping", "merge", "cover", "union".

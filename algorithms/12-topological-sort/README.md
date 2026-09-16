@@ -99,6 +99,18 @@ to a node on the current path) from a harmless diamond (arrow to a node finished
 branch). Kahn's is often easier to get right. DFS is natural when you are already writing a
 recursive search.
 
+## Loop shape
+
+**Kahn's:** `for` loops to set things up, then a `while` to run it.
+
+- **Build the graph:** `for` over the dependencies.
+- **Seed the queue:** `for` over every task.
+- **Main loop:** `while (queue is not empty)`, with a **`for` over the outgoing arrows** of the task
+  you just took out.
+
+**DFS version:** a `for` over every node that starts a DFS on each white one. Inside the DFS, a
+`for` over the arrows, and recursion instead of a `while`.
+
 ## How to recognise it
 
 - "Prerequisites", "dependencies", "must come before", "build order", "task scheduling".

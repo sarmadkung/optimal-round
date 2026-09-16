@@ -91,6 +91,15 @@ exactly that. Edges `A→B (2)`, `A→C (3)`, `C→B (−2)`, `B→D (1)`, start
 Dijkstra reports B = 2 and D = 3. The real answers are 1 and 2. For negative weights use
 [Bellman-Ford](../15-bellman-ford/README.md) instead.
 
+## Loop shape
+
+**Use `while (heap is not empty)` with a `for` over the edges inside.** The stale-entry check is a
+`continue` at the top of the body.
+
+It is not a `for` over the nodes. With lazy deletion a node can pop several times, and nodes that
+can't be reached never pop at all, so the number of iterations isn't known in advance. If you only
+need one target, `break` when it pops.
+
 ## How to recognise it
 
 - A weighted graph (or grid) and the word "shortest", "minimum time", "cheapest".

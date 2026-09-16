@@ -94,6 +94,18 @@ Both are greedy, both produce an MST, and both rely on the cut property. They gr
 On the trace above, Kruskal's sorts all 10 pair distances and takes 4, 4, 4, then 5, reaching the
 same total of 17.
 
+## Loop shape
+
+The two versions from step 2 use different outer loops, and the difference is instructive:
+
+- **Array version: `for` V times.** Every iteration adds exactly one node, so you know the count.
+  Inside it are two `for`s over all nodes: one to find the minimum, one to update `best`.
+- **Heap version: `while (added < V)`.** A stale pop adds nothing, so the number of iterations isn't
+  known. Inside it is a `for` over the new node's edges.
+
+Rule: **if every iteration makes guaranteed progress, count with `for`. If some iterations can be
+wasted, loop with `while` on the progress itself.**
+
 ## How to recognise it
 
 - "Connect all", "minimum total cost", "exactly one path between any two", "no cycles".

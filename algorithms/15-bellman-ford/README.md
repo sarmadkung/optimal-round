@@ -104,6 +104,17 @@ Edges `0→1 (4)`, `1→2 (−3)`, `2→1 (1)`, source 0, V = 3. The loop `1→2
 After the `V − 1 = 2` required rounds the costs should be final. Round 3 still lowers them, so a
 negative cycle exists. Without a cycle, that extra round could never improve anything.
 
+## Loop shape
+
+**Use two nested `for` loops.** This is one of the rare graph algorithms without a `while`:
+
+- **Outer: `for (round = 0; round < V − 1; round++)`.** The number of rounds is fixed in advance,
+  which is exactly what `for` is for. With the edge limit, it runs `L` rounds. "At most k stops"
+  means k + 1 edges, so 150 runs `k + 1` rounds.
+- **Inner: `for` over every edge.**
+
+To stop early, keep a `changed` flag and `break` from the outer loop when a round changes nothing.
+
 ## How to recognise it
 
 - Negative edge weights, or "detect an arbitrage / negative cycle".

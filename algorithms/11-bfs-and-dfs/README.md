@@ -119,6 +119,24 @@ source" were joined to all of them.
 | Detect a cycle, explore all paths, backtrack | **DFS**       | The current path is exactly the stack      |
 | Very large grid, deep recursion             | BFS or iterative DFS | Recursive DFS can overflow the call stack |
 
+## Loop shape
+
+| Part | Loop | Why |
+|:-----|:-----|:----|
+| BFS traversal | `while (queue is not empty)` | You can't know how many nodes are reachable |
+| One BFS level | `for` over `size`, saved **before** the loop | The queue grows while you process the level |
+| Iterative DFS | `while (stack is not empty)` | Same reason as BFS |
+| Recursive DFS | no loop; the recursion replaces the `while` | The call stack is the container |
+| Neighbours | `for` over the list of directions | Always exactly 4 (or 8) |
+| Counting groups | nested `for` over rows and columns | Every cell is checked once as a possible start |
+
+In JavaScript, `queue.shift()` is O(n). Keep a `head` index instead and loop with
+`while (head < queue.length)`.
+
+Level-by-level BFS is the one place people break: `for (k = 0; k < queue.length; k++)` re-reads
+the length while you add to the queue. Nodes from the next level get pulled into this one, and the
+step count comes out wrong. Save the size first.
+
 ## How to recognise it
 
 - A grid of cells with "connected 4-directionally" or "adjacent".

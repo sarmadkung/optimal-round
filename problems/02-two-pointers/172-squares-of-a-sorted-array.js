@@ -35,7 +35,21 @@
  */
 
 function sortedSquares(nums) {
-  // TODO: your solution here
+  // use extra array, because it's really complicated to produce square of sorted array and sort it as well
+  // we will calculate and square using 1st array and store results to 2nd, if we store results in 1st it's square which can distort the results
+   let result = new Array(nums.length)
+  let right=nums.length-1;
+  let left = 0;
+
+    while(left<right){
+      let rightNum = nums[right] ** 2;
+      let leftNum = nums[left] ** 2;
+
+    }
+
+  return result;
+
+
 }
 
 module.exports = { sortedSquares };

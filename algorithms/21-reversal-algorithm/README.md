@@ -87,6 +87,17 @@ O(n). Trace on `[1, 5, 4, 2]`:
 `[2, 1, 4, 5]` is the smallest arrangement that begins with `2`, and nothing beginning with `1`
 is bigger than `[1, 5, 4, 2]`. ✓
 
+## Loop shape
+
+- **Reverse primitive: `while (l < r)`**, or `for (l = a, r = b; l < r; l++, r--)`. Here both
+  pointers move on **every** step, so both forms are fine. That is the difference from converging
+  [Two Pointers](../03-two-pointers/README.md), where a comparison picks one pointer and only
+  `while` works.
+- **Rotate:** no loop of its own, just three calls to the reverse.
+- **Next permutation: "scan until you find" is a `while`.** Finding the pivot means stepping left
+  while the tail is still descending, and finding the swap partner means stepping left while the
+  value is not bigger. Each stops on a condition, not a count.
+
 ## How to recognise it
 
 - "Rotate", "shift by k", or "move the last k to the front", **in place**.

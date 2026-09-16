@@ -96,6 +96,16 @@ with a small value on the right. It does fewer swaps than Lomuto, but the pivot 
 necessarily end at the split index, so you recurse on `lo..split` or `split+1..hi` instead of
 checking "is the pivot at target". Lomuto is easier to get right; Hoare is faster in practice.
 
+## Loop shape
+
+- **Outer: `while (lo <= hi)`.** Like binary search, the range shrinks by an amount you can't
+  predict.
+- **Lomuto partition: `for (j = lo; j < hi; j++)`**, with the boundary `i` moving only inside the
+  body. This is the read/write shape from [Two Pointers](../03-two-pointers/README.md): `j` moves
+  on every step, `i` only on a swap.
+- **Hoare partition: `while`.** Two pointers move in from both ends and stop by comparison, like
+  converging two pointers.
+
 ## How to recognise it
 
 - "kth largest", "kth smallest", "median", "the k closest / k smallest" when order among them
