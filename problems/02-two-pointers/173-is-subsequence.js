@@ -37,7 +37,23 @@
  */
 
 function isSubsequence(s, t) {
-  // TODO: your solution here
+  if(s===""){
+    return true;
+  }
+  if(t===""){
+    return false;
+  }
+
+  let sIndex = 0;
+  let tIndex = 0;
+
+  while(sIndex<s.length && tIndex<t.length){
+    if(t[tIndex]===s[sIndex]){
+      sIndex++;
+    }
+    tIndex++;
+  }
+  return sIndex === s.length;
 }
 
 module.exports = { isSubsequence };
