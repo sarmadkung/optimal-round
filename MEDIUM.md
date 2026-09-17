@@ -1,6 +1,6 @@
 # Medium Problems
 
-6 of 112 solved.
+7 of 112 solved.
 
 The bulk of technical interviews live here. Each one asks you to RECOGNISE a
 pattern (sliding window, binary search on the answer, DP over subproblems,
@@ -68,7 +68,7 @@ topological sort) rather than invent something new.
 | ⬜ | 095 | [Implement Trie (Prefix Tree)](problems/14-tries/095-implement-trie.js) | Tries |
 | ⬜ | 096 | [Design Add and Search Words Data Structure](problems/14-tries/096-design-add-and-search-words-data-structure.js) | Tries |
 | ⬜ | 100 | [String to Integer (atoi)](problems/15-strings/100-string-to-integer-atoi.js) | Strings |
-| ⬜ | 103 | [Rotate Array](problems/01-arrays-hashing/103-rotate-array.js) | Arrays & Hashing |
+| ✅ | 103 | [Rotate Array](problems/01-arrays-hashing/103-rotate-array.js) | Arrays & Hashing |
 | ⬜ | 104 | [Decode String](problems/04-stack/104-decode-string.js) | Stack |
 | ⬜ | 105 | [Asteroid Collision](problems/04-stack/105-asteroid-collision.js) | Stack |
 | ⬜ | 106 | [Car Fleet](problems/04-stack/106-car-fleet.js) | Stack |

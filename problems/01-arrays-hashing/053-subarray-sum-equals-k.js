@@ -36,6 +36,7 @@
  */
 
 function subarraySum(nums, k) {
+  // It's Prefix Sum + HashMap pattern.
   // TODO: your solution here
 }
 

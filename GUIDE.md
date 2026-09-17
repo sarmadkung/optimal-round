@@ -344,6 +344,14 @@ technique. Try the routine yourself before reading.
 
 ---
 
+## Patterns to remember
+
+Add a line here whenever a problem's wording should point you straight at a technique.
+
+- "**rotate** an array" → **reversal algorithm** ([21](algorithms/21-reversal-algorithm/README.md)) — 103
+
+---
+
 ## The one-page checklist
 
 Copy this into the top of your solution file for your first 20 problems:

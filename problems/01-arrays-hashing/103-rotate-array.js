@@ -40,7 +40,27 @@
  */
 
 function rotate(nums, k) {
-  // TODO: your solution here
+  // array manipulation + reversal technique.
+  // Rotate Array → Reversal Algorithm
+   k = k % nums.length;
+
+  function reverse(left, right) {
+    while (left < right) {
+      [nums[left], nums[right]] = [nums[right], nums[left]];
+      left++;
+      right--;
+    }
+  }
+
+  // Reverse entire array
+  reverse(0, nums.length - 1);
+
+  // Reverse first k elements
+  reverse(0, k - 1);
+
+  // Reverse remaining elements
+  reverse(k, nums.length - 1);
+
 }
 
 module.exports = { rotate };
