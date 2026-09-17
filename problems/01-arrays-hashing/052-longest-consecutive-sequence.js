@@ -31,7 +31,25 @@
  */
 
 function longestConsecutive(nums) {
-  // TODO: your solution here
+  // HashSet Technique
+  // we convert array into set then check for each item in set wether it has onward sequence
+  // if has onward sequence then count them in case it has backward sequence we skip and move to next item
+  let uniqueNums = new Set(nums);
+  let longest = 0;
+  // loop through set, for of is best for our case
+  for (let item of uniqueNums){
+    // we will check if item don't has it's previous value then we will count onward
+    if(!uniqueNums.has(item-1)){
+      let length = 1;
+      let currentValue = item;
+      while(uniqueNums.has(currentValue+1)){
+        currentValue++
+        length++
+      }
+      longest = Math.max(longest,length)
+    }
+  } 
+  return longest
 }
 
 module.exports = { longestConsecutive };
