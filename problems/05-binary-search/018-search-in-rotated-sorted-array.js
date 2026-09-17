@@ -15,7 +15,10 @@
  * EXAMPLES
  *   search([4, 5, 6, 7, 0, 1, 2], 0)  ->  4
  *   search([4, 5, 6, 7, 0, 1, 2], 3)  ->  -1
- *   search([1], 0)                    ->  -1
+ *   search([1], 0)                    ->  -1  // single element, absent
+ *   search([4, 5, 6, 7, 0, 1, 2], 4)  ->  0   // first index
+ *   search([4, 5, 6, 7, 0, 1, 2], 2)  ->  6   // last index
+ *   search([1, 2, 3, 4, 5], 5)        ->  4   // zero rotation
  *
  * EDGE CASES
  *   - Rotation of zero — the array is plainly sorted.

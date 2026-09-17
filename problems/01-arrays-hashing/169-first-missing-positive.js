@@ -13,7 +13,10 @@
  * EXAMPLES
  *   firstMissingPositive([1, 2, 0])          ->  3
  *   firstMissingPositive([3, 4, -1, 1])      ->  2
- *   firstMissingPositive([7, 8, 9, 11, 12])  ->  1
+ *   firstMissingPositive([7, 8, 9, 11, 12])  ->  1   // no small positives at all
+ *   firstMissingPositive([1])                ->  2   // single element
+ *   firstMissingPositive([1, 2, 3])          ->  4   // 1..n all present, so the answer is n + 1
+ *   firstMissingPositive([2, 2, 1, 1])       ->  3   // duplicates do not fill the gap
  *
  * EDGE CASES
  *   - Duplicates and negatives are allowed (unlike 089 Missing Number, so sum/XOR tricks fail).

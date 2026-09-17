@@ -19,6 +19,9 @@
  *   rightSideView([1, 2, 3, null, 5, null, 4])  ->  [1, 3, 4]
  *   rightSideView([1, null, 3])                 ->  [1, 3]
  *   rightSideView(null)                         ->  []
+ *   rightSideView([1])                          ->  [1]   // a single node
+ *   rightSideView([1, 2, 3, 4, 5, 6, 7])        ->  [1, 3, 7]   // perfectly balanced
+ *   rightSideView([1, 2, null, 3, null, 4])     ->  [1, 2, 3, 4]  // a left-only tree shows all
  *
  * EDGE CASES
  *   - An empty tree returns an empty array.

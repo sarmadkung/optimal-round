@@ -11,9 +11,12 @@
  *   grid[i][j] is 0 or 1.
  *
  * EXAMPLES
- *   maxAreaOfIsland([[0,1],[1,0]])   ->  1   // diagonals do not connect
- *   maxAreaOfIsland([[1,1],[1,0]])   ->  3
- *   maxAreaOfIsland([[0,0],[0,0]])   ->  0
+ *   maxAreaOfIsland([[0,1],[1,0]])  ->  1   // diagonals do not connect
+ *   maxAreaOfIsland([[1,1],[1,0]])  ->  3
+ *   maxAreaOfIsland([[0,0],[0,0]])  ->  0
+ *   maxAreaOfIsland([[1]])          ->  1   // smallest grid, one land cell
+ *   maxAreaOfIsland([[0]])          ->  0   // smallest grid, no land
+ *   maxAreaOfIsland([[1,1],[1,1]])  ->  4   // the whole grid is one island
  *
  * EDGE CASES
  *   - A grid of all water returns 0.

@@ -11,9 +11,12 @@
  *   digits[i] is in the range '2'..'9'.
  *
  * EXAMPLES
- *   letterCombinations("23")  ->  ["ad","ae","af","bd","be","bf","cd","ce","cf"]
- *   letterCombinations("")    ->  []
- *   letterCombinations("2")   ->  ["a","b","c"]
+ *   letterCombinations("23")    ->  ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+ *   letterCombinations("")      ->  []
+ *   letterCombinations("2")     ->  ["a","b","c"]
+ *   letterCombinations("7")     ->  ["p","q","r","s"]   // 7 maps to four letters
+ *   letterCombinations("79")    ->  16 strings   // 4 * 4, any order
+ *   letterCombinations("2345")  ->  81 strings   // the longest allowed input
  *
  * EDGE CASES
  *   - The empty string returns an empty array, NOT [""].

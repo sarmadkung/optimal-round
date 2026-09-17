@@ -13,8 +13,12 @@
  *   Each input has exactly one closest sum.
  *
  * EXAMPLES
- *   threeSumClosest([-1, 2, 1, -4], 1)  ->  2   // -1 + 2 + 1
- *   threeSumClosest([0, 0, 0], 1)       ->  0
+ *   threeSumClosest([-1, 2, 1, -4], 1)                   ->  2   // -1 + 2 + 1
+ *   threeSumClosest([0, 0, 0], 1)                        ->  0
+ *   threeSumClosest([1, 1, 1], 0)                        ->  3   // smallest input; closest sum is above the target
+ *   threeSumClosest([-1, 2, 1, -4], 2)                   ->  2   // an exact match
+ *   threeSumClosest([-1000, -1000, -1000], 10000)        ->  -3000   // the only sum, far below the target
+ *   threeSumClosest([4, 0, 5, -5, 3, 3, 0, -4, -5], -2)  ->  -2   // exact match with duplicates around
  *
  * EDGE CASES
  *   - An exact match can stop the search early.

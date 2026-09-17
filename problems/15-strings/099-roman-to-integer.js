@@ -13,9 +13,12 @@
  *   The input is a valid roman numeral in the range [1, 3999].
  *
  * EXAMPLES
- *   romanToInt("III")      ->  3
- *   romanToInt("LVIII")    ->  58   // L=50, V=5, III=3
- *   romanToInt("MCMXCIV")  ->  1994 // M=1000, CM=900, XC=90, IV=4
+ *   romanToInt("III")        ->  3
+ *   romanToInt("I")          ->  1      // shortest possible input
+ *   romanToInt("XL")         ->  40     // a subtractive pair
+ *   romanToInt("LVIII")      ->  58     // L=50, V=5, III=3
+ *   romanToInt("MCMXCIV")    ->  1994   // M=1000, CM=900, XC=90, IV=4
+ *   romanToInt("MMMCMXCIX")  ->  3999   // the largest valid input
  *
  * EDGE CASES
  *   - Only six subtractive pairs exist: IV, IX, XL, XC, CD, CM.

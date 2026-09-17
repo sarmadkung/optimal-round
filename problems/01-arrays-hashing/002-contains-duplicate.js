@@ -11,9 +11,12 @@
  *   -10^9 <= nums[i] <= 10^9
  *
  * EXAMPLES
- *   containsDuplicate([1, 2, 3, 1])  ->  true
- *   containsDuplicate([1, 2, 3, 4])  ->  false
- *   containsDuplicate([1])           ->  false
+ *   containsDuplicate([1, 2, 3, 1])   ->  true
+ *   containsDuplicate([1, 2, 3, 4])   ->  false
+ *   containsDuplicate([1])            ->  false   // single element
+ *   containsDuplicate([1, 1])         ->  true   // smallest possible duplicate
+ *   containsDuplicate([5, 5, 5, 5])   ->  true   // all identical
+ *   containsDuplicate([-1, 0, 1, 2])  ->  false   // negatives and zero are distinct values
  *
  * EDGE CASES
  *   - Single-element array — always false.
@@ -30,9 +33,14 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Hash map used as a "seen" set
+// 1. Walk the array, remembering every value seen so far.
+// 2. If a value turns up again, there is a duplicate.
+// Time O(n), space O(n).
+// The counts stored in the map are never read — a Set would do the same job.
 function containsDuplicate(nums) {
   let store = new Map()
-  for (index= 0;index<nums.length;index++)
+  for (let index= 0;index<nums.length;index++)
   {
     const current = nums[index];
     if(store.has(current)){

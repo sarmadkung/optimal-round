@@ -12,9 +12,12 @@
  *   A majority element is guaranteed to exist.
  *
  * EXAMPLES
- *   majorityElement([3, 2, 3])           ->  3
- *   majorityElement([2, 2, 1, 1, 1, 2, 2]) ->  2
- *   majorityElement([1])                 ->  1
+ *   majorityElement([3, 2, 3])              ->  3
+ *   majorityElement([2, 2, 1, 1, 1, 2, 2])  ->  2
+ *   majorityElement([1])                    ->  1   // single element
+ *   majorityElement([6, 5, 5])              ->  5   // smallest non-trivial majority
+ *   majorityElement([-1, -1, 2])            ->  -1   // negatives are valid
+ *   majorityElement([2, 2, 1, 1, 2])        ->  2   // 3 of 5 is a majority
  *
  * EDGE CASES
  *   - A single element is trivially the majority.
@@ -32,6 +35,11 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Count in a hash map
+// 1. Count how many times each number appears.
+// 2. Return the number whose count is more than n / 2.
+// Time O(n), space O(n).
+// Boyer-Moore voting does the same in O(1) space: keep one candidate and a counter.
 function majorityElement(nums) {
   let majority = new Map();
   for (let i=0;i<nums.length;i++){

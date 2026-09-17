@@ -20,6 +20,9 @@
  *   addTwoNumbers(2 -> 4 -> 3, 5 -> 6 -> 4)  ->  7 -> 0 -> 8   // 342 + 465 = 807
  *   addTwoNumbers(0, 0)                      ->  0
  *   addTwoNumbers(9 -> 9, 1)                 ->  0 -> 0 -> 1   // 99 + 1 = 100
+ *   addTwoNumbers(5, 5)                      ->  0 -> 1   // 5 + 5 = 10, carry makes a new node
+ *   addTwoNumbers(1 -> 2 -> 3, 7)            ->  8 -> 2 -> 3   // 321 + 7 = 328
+ *   addTwoNumbers(0, 7 -> 3)                 ->  7 -> 3   // 0 + 37 = 37, different lengths
  *
  * EDGE CASES
  *   - Lists of different lengths.

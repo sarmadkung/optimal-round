@@ -19,7 +19,12 @@
  * EXAMPLES
  *   const it = new NestedIterator([[1, 1], 2, [1, 1]]);
  *     iterating gives  ->  [1, 1, 2, 1, 1]
- *   new NestedIterator([1, [4, [6]]])  ->  [1, 4, 6]
+ *   Below, the result is what draining the iterator with next() yields.
+ *   new NestedIterator([1, [4, [6]]])            ->  [1, 4, 6]
+ *   new NestedIterator([1, 2, 3])                ->  [1, 2, 3]   // already flat
+ *   new NestedIterator([[[[5]]]])                ->  [5]         // deeply nested
+ *   new NestedIterator([[]])                     ->  []          // hasNext() is false at once
+ *   new NestedIterator([[], [1], [], [2, [3]]])  ->  [1, 2, 3]   // empty lists are skipped
  *
  * EDGE CASES
  *   - Empty nested lists contribute nothing and must be skipped.

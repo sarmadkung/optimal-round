@@ -18,8 +18,15 @@
  *
  * EXAMPLES
  *   listA = 4 -> 1 -> 8 -> 4 -> 5, listB = 5 -> 6 -> 1 -> 8 -> 4 -> 5
- *     getIntersectionNode(listA, listB)  ->  the node holding 8
- *   Two entirely separate lists  ->  null
+ *     getIntersectionNode(listA, listB)     ->  the node holding 8
+ *   Two entirely separate lists             ->  null
+ *   listA = 1 -> 9 -> 1 -> 2 -> 4, listB = 3 -> 2 -> 4, sharing the 2 -> 4 tail
+ *     getIntersectionNode(listA, listB)     ->  the node holding 2
+ *   Both heads are the very same node 7     ->  that node  // a list may intersect at its head
+ *   listA = 1 -> 3, listB is listA's second node
+ *     getIntersectionNode(listA, listB)     ->  the node holding 3
+ *   listA = 1 -> 1 -> 1 -> 1, listB = 1 -> 1 -> 1, sharing only the last node
+ *     getIntersectionNode(listA, listB)     ->  that last node  // equal values prove nothing
  *
  * EDGE CASES
  *   - Lists of different lengths — the classic difficulty.

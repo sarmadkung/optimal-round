@@ -11,9 +11,12 @@
  *   -10^4 <= nums[i] <= 10^4
  *
  * EXAMPLES
- *   lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18])  ->  4  // [2,3,7,101]
+ *   lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18])  ->  4   // [2,3,7,101]
  *   lengthOfLIS([0, 1, 0, 3, 2, 3])            ->  4
- *   lengthOfLIS([7, 7, 7, 7])                  ->  1  // strictly increasing
+ *   lengthOfLIS([7, 7, 7, 7])                  ->  1   // strictly increasing
+ *   lengthOfLIS([5])                           ->  1   // single element
+ *   lengthOfLIS([5, 4, 3, 2, 1])               ->  1   // strictly decreasing
+ *   lengthOfLIS([-2, -1, 0])                   ->  3   // negatives are allowed
  *
  * EDGE CASES
  *   - All elements equal — the answer is 1.

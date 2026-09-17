@@ -13,9 +13,12 @@
  *   nums[i] != nums[i + 1] for all valid i.
  *
  * EXAMPLES
- *   findPeakElement([1, 2, 3, 1])        ->  2
+ *   findPeakElement([1, 2, 3, 1])          ->  2
  *   findPeakElement([1, 2, 1, 3, 5, 6, 4]) ->  1 or 5  // either is accepted
- *   findPeakElement([1])                 ->  0
+ *   findPeakElement([1])                   ->  0       // single element
+ *   findPeakElement([2, 1])                ->  0       // the first element can be a peak
+ *   findPeakElement([1, 2])                ->  1       // the last element can be a peak
+ *   findPeakElement([1, 3, 2, 4])          ->  1 or 3  // any peak index is accepted
  *
  * EDGE CASES
  *   - A single element is a peak.

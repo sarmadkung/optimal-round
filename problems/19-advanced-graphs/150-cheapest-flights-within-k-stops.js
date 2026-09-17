@@ -14,8 +14,11 @@
  *
  * EXAMPLES
  *   findCheapestPrice(4, [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], 0, 3, 1)  ->  700
- *   findCheapestPrice(3, [[0,1,100],[1,2,100],[0,2,500]], 0, 2, 1)  ->  200
- *   findCheapestPrice(3, [[0,1,100],[1,2,100],[0,2,500]], 0, 2, 0)  ->  500
+ *   findCheapestPrice(3, [[0,1,100],[1,2,100],[0,2,500]], 0, 2, 1)                      ->  200
+ *   findCheapestPrice(3, [[0,1,100],[1,2,100],[0,2,500]], 0, 2, 0)                      ->  500
+ *   findCheapestPrice(2, [[0, 1, 50]], 0, 1, 0)                                         ->  50   // direct flight
+ *   findCheapestPrice(2, [], 0, 1, 0)                                                   ->  -1   // no flights at all
+ *   findCheapestPrice(4, [[0,1,1],[1,2,1],[2,3,1]], 0, 3, 1)                            ->  -1   // needs 2 stops
  *
  * EDGE CASES
  *   - k counts STOPS, so k + 1 flights are allowed.

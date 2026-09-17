@@ -15,6 +15,9 @@
  *   numRescueBoats([1, 2], 3)        ->  1   // (1, 2)
  *   numRescueBoats([3, 2, 2, 1], 3)  ->  3   // (1, 2), (2), (3)
  *   numRescueBoats([3, 5, 3, 4], 5)  ->  4   // everyone alone
+ *   numRescueBoats([1], 3)           ->  1   // a single person
+ *   numRescueBoats([1, 1, 1, 1], 4)  ->  2   // all four fit by weight, but two per boat is the cap
+ *   numRescueBoats([5, 1, 4, 2], 6)  ->  2   // (1, 5), (2, 4)
  *
  * EDGE CASES
  *   - Someone weighing exactly `limit` always rides alone.

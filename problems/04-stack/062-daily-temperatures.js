@@ -15,6 +15,9 @@
  *   dailyTemperatures([73,74,75,71,69,72,76,73])  ->  [1,1,4,2,1,1,0,0]
  *   dailyTemperatures([30, 40, 50, 60])           ->  [1, 1, 1, 0]
  *   dailyTemperatures([30, 30, 30])               ->  [0, 0, 0]
+ *   dailyTemperatures([30])                       ->  [0]              // single day
+ *   dailyTemperatures([60, 50, 40, 30])           ->  [0, 0, 0, 0]     // strictly decreasing
+ *   dailyTemperatures([45, 45, 46, 44, 50])       ->  [2, 1, 2, 1, 0]  // equal days do not count
  *
  * EDGE CASES
  *   - Non-increasing input gives all zeros.

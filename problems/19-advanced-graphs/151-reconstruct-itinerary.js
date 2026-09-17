@@ -17,6 +17,14 @@
  *     ->  ["JFK","MUC","LHR","SFO","SJC"]
  *   findItinerary([["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]])
  *     ->  ["JFK","ATL","JFK","SFO","ATL","SFO"]
+ *   findItinerary([["JFK","ATL"]])
+ *     ->  ["JFK","ATL"]   // one ticket, the smallest possible input
+ *   findItinerary([["JFK","SFO"],["JFK","ATL"],["ATL","JFK"]])
+ *     ->  ["JFK","ATL","JFK","SFO"]   // ATL is taken first, being lexically smaller
+ *   findItinerary([["JFK","KUL"],["JFK","NRT"],["NRT","JFK"]])
+ *     ->  ["JFK","NRT","JFK","KUL"]   // taking KUL first would strand the trip
+ *   findItinerary([["JFK","ATL"],["JFK","ATL"],["ATL","JFK"]])
+ *     ->  ["JFK","ATL","JFK","ATL"]   // duplicate tickets, each used exactly once
  *
  * EDGE CASES
  *   - EVERY ticket must be used exactly once.

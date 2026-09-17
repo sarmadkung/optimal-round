@@ -16,9 +16,12 @@
  *   test runner builds a real tree from that array before calling your function.
  *
  * EXAMPLES
- *   maxPathSum([1, 2, 3])                  ->  6   // 2 + 1 + 3
+ *   maxPathSum([1, 2, 3])                        ->  6   // 2 + 1 + 3
  *   maxPathSum([-10, 9, 20, null, null, 15, 7])  ->  42  // 15 + 20 + 7
- *   maxPathSum([-3])                       ->  -3  // all-negative tree
+ *   maxPathSum([-3])                             ->  -3  // all-negative tree
+ *   maxPathSum([2, -1])                          ->  2   // the negative child is dropped
+ *   maxPathSum([-2, -1])                         ->  -1  // best is the single largest node
+ *   maxPathSum([1, -2, -3, 1, 3, -2, null, -1])  ->  3   // the best path avoids the root
  *
  * EDGE CASES
  *   - All values negative — the answer is the single largest node, never 0.

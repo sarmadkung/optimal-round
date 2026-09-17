@@ -18,8 +18,11 @@
  *
  * EXAMPLES
  *   cloneGraph(node1 of [[2,4],[1,3],[2,4],[1,3]])  ->  an identical, disjoint graph
+ *   cloneGraph(node1 of [[2],[1]])                  ->  a copy of the 2-node cycle
+ *   cloneGraph(node1 of [[2,3],[1,3],[1,2]])        ->  a copy of the triangle
  *   cloneGraph(a single node with no neighbors)     ->  a copy of it
- *   cloneGraph(null)                                 ->  null
+ *   cloneGraph(null)                                ->  null
+ *   cloneGraph(node).val === node.val               ->  true   // but cloneGraph(node) !== node
  *
  * EDGE CASES
  *   - Empty graph.

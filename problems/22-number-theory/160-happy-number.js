@@ -14,6 +14,9 @@
  *   isHappy(19)  ->  true   // 82, 68, 100, 1
  *   isHappy(2)   ->  false  // enters a cycle
  *   isHappy(1)   ->  true
+ *   isHappy(7)   ->  true   // 49, 97, 130, 10, 1
+ *   isHappy(4)   ->  false  // the 4, 16, 37, 58, 89, 145, 42, 20 cycle
+ *   isHappy(10)  ->  true   // straight to 1
  *
  * EDGE CASES
  *   - Unhappy numbers always fall into a CYCLE — you must detect it or loop forever.

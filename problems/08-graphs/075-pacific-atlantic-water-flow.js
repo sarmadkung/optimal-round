@@ -15,7 +15,11 @@
  * EXAMPLES
  *   pacificAtlantic([[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]])
  *     ->  [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
- *   pacificAtlantic([[1]])  ->  [[0, 0]]   // a single cell touches both
+ *   pacificAtlantic([[1]])                      ->  [[0,0]]   // a single cell touches both
+ *   pacificAtlantic([[1,1],[1,1]])              ->  [[0,0],[0,1],[1,0],[1,1]]
+ *   pacificAtlantic([[1,2],[4,3]])              ->  [[0,1],[1,0],[1,1]]
+ *   pacificAtlantic([[1,2,3]])                  ->  [[0,0],[0,1],[0,2]]   // a single row
+ *   pacificAtlantic([[1,2,3],[8,9,4],[7,6,5]])  ->  [[0,2],[1,0],[1,1],[1,2],[2,0],[2,1],[2,2]]
  *
  * EDGE CASES
  *   - A 1x1 grid reaches both oceans.

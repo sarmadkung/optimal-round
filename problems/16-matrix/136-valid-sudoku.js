@@ -12,9 +12,12 @@
  *   Each cell is a digit '1'-'9' or the character '.'.
  *
  * EXAMPLES
- *   A standard partially filled valid board  ->  true
- *   The same board with an extra 8 in the top-left box  ->  false
- *   An entirely empty board ('.' everywhere)  ->  true
+ *   A standard partially filled valid board                ->  true
+ *   The same board with an extra 8 in the top-left box     ->  false
+ *   An entirely empty board ('.' everywhere)               ->  true
+ *   A board with exactly one filled cell                   ->  true
+ *   Two 1s in the same row (or the same column)            ->  false
+ *   Two 1s in one 3x3 box, in different rows and columns   ->  false
  *
  * EDGE CASES
  *   - An empty board is valid.

@@ -10,9 +10,12 @@
  *   1 <= n <= 1690
  *
  * EXAMPLES
- *   nthUglyNumber(10)  ->  12  // 1,2,3,4,5,6,8,9,10,12
- *   nthUglyNumber(1)   ->  1
- *   nthUglyNumber(7)   ->  8
+ *   nthUglyNumber(10)    ->  12  // 1,2,3,4,5,6,8,9,10,12
+ *   nthUglyNumber(1)     ->  1   // 1 is the first ugly number
+ *   nthUglyNumber(7)     ->  8
+ *   nthUglyNumber(2)     ->  2
+ *   nthUglyNumber(11)    ->  15  // 14 is skipped — it has the factor 7
+ *   nthUglyNumber(1690)  ->  2123366400   // the largest n allowed
  *
  * EDGE CASES
  *   - 1 counts as the first ugly number.

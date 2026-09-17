@@ -15,7 +15,10 @@
  * EXAMPLES
  *   splitArray([7, 2, 5, 10, 8], 2)  ->  18  // [7,2,5] and [10,8]
  *   splitArray([1, 2, 3, 4, 5], 2)   ->  9   // [1,2,3,4] and [5]
- *   splitArray([1, 4, 4], 3)         ->  4
+ *   splitArray([1, 4, 4], 3)         ->  4   // k == length, so the answer is max(nums)
+ *   splitArray([10], 1)              ->  10  // smallest possible input
+ *   splitArray([1, 2, 3, 4, 5], 1)   ->  15  // k = 1, so the answer is the total sum
+ *   splitArray([1, 4, 4], 2)         ->  5   // [1,4] and [4]
  *
  * EDGE CASES
  *   - k equal to the array length makes the answer the maximum element.

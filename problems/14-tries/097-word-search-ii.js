@@ -14,9 +14,13 @@
  *   1 <= words[i].length <= 10
  *
  * EXAMPLES
- *   findWords([["o","a"],["e","t"]], ["oa", "oat", "ae"])  ->  ["oa", "ae"]
- *   findWords([["a"]], ["a"])   ->  ["a"]
- *   findWords([["a"]], ["b"])   ->  []
+ *   Results are order-agnostic — any permutation of the listed words is correct.
+ *   findWords([["o","a"],["e","t"]], ["oa", "oat", "ae"])  ->  ["oa", "oat"]  // "ae" not adjacent
+ *   findWords([["a"]], ["a"])                              ->  ["a"]
+ *   findWords([["a"]], ["b"])                              ->  []
+ *   findWords([["a"]], ["aa"])                             ->  []   // a cell is never reused
+ *   findWords([["a","b"]], ["ab", "ba"])                   ->  ["ab", "ba"]   // single row
+ *   findWords([["c"],["a"],["t"]], ["cat", "act"])         ->  ["cat"]        // single column
  *
  * EDGE CASES
  *   - The result must contain no duplicates even if a word is findable twice.

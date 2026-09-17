@@ -17,6 +17,9 @@
  *   combinationSum([2, 3, 6, 7], 7)  ->  [[2, 2, 3], [7]]
  *   combinationSum([2, 3, 5], 8)     ->  [[2,2,2,2], [2,3,3], [3,5]]
  *   combinationSum([2], 1)           ->  []
+ *   combinationSum([2, 3, 5], 3)     ->  [[3]]   // one candidate, used once
+ *   combinationSum([2], 6)           ->  [[2, 2, 2]]   // the only candidate, reused
+ *   combinationSum([2, 4], 7)        ->  []   // even candidates never sum to an odd target
  *
  * EDGE CASES
  *   - Candidates may repeat within one combination.

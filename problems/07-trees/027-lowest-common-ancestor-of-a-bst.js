@@ -19,6 +19,9 @@
  *   lowestCommonAncestor([6,2,8,0,4,7,9], 2, 8)  ->  6
  *   lowestCommonAncestor([6,2,8,0,4,7,9], 2, 4)  ->  2  // a node descends from itself
  *   lowestCommonAncestor([2,1], 2, 1)            ->  2
+ *   lowestCommonAncestor([6,2,8,0,4,7,9], 0, 9)  ->  6  // the split happens at the root
+ *   lowestCommonAncestor([6,2,8,0,4,7,9], 9, 7)  ->  8  // p > q, so do not assume an order
+ *   lowestCommonAncestor([2,null,3], 3, 2)       ->  2  // right-skewed two-node tree
  *
  * EDGE CASES
  *   - One node is the ancestor of the other.

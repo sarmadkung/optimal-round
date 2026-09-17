@@ -14,7 +14,10 @@
  * EXAMPLES
  *   search([-1, 0, 3, 5, 9, 12], 9)  ->  4
  *   search([-1, 0, 3, 5, 9, 12], 2)  ->  -1
- *   search([5], 5)                   ->  0
+ *   search([5], 5)                   ->  0   // single element
+ *   search([5], -5)                  ->  -1  // single element, absent
+ *   search([-1, 0, 3, 5, 9, 12], -1) ->  0   // first index
+ *   search([-1, 0, 3, 5, 9, 12], 12) ->  5   // last index
  *
  * EDGE CASES
  *   - Target smaller than every element, or larger than every element.

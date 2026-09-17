@@ -14,6 +14,9 @@
  *   multiply("2", "3")      ->  "6"
  *   multiply("123", "456")  ->  "56088"
  *   multiply("0", "999")    ->  "0"
+ *   multiply("0", "0")      ->  "0"
+ *   multiply("25", "4")     ->  "100"      // trailing zeros stay
+ *   multiply("999", "999")  ->  "998001"   // m + n digits exactly
  *
  * EDGE CASES
  *   - Either operand being "0" makes the product "0".

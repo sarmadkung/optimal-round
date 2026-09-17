@@ -12,9 +12,12 @@
  *   s contains English letters, digits and spaces, and has at least one word.
  *
  * EXAMPLES
- *   reverseWords("the sky is blue")     ->  "blue is sky the"
- *   reverseWords("  hello world  ")     ->  "hello world"
- *   reverseWords("a good   example")    ->  "a good example"
+ *   reverseWords("the sky is blue")   ->  "blue is sky the"
+ *   reverseWords("  hello world  ")   ->  "world hello"      // outer spaces stripped
+ *   reverseWords("a good   example")  ->  "example good a"   // space runs collapse
+ *   reverseWords("hello")             ->  "hello"            // a lone word is unchanged
+ *   reverseWords("   a   ")           ->  "a"
+ *   reverseWords("1 2 3")             ->  "3 2 1"
  *
  * EDGE CASES
  *   - Leading and trailing spaces must be stripped.

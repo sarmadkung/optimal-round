@@ -12,10 +12,12 @@
  *   s consists of letters, digits, ' ', '+', '-' and '.'.
  *
  * EXAMPLES
- *   myAtoi("42")            ->  42
- *   myAtoi("   -42")        ->  -42
- *   myAtoi("4193 with words") ->  4193
- *   myAtoi("words and 987") ->  0   // stops at the first non-digit
+ *   myAtoi("42")               ->  42
+ *   myAtoi("   -42")           ->  -42
+ *   myAtoi("4193 with words")  ->  4193
+ *   myAtoi("words and 987")    ->  0      // stops at the first non-digit
+ *   myAtoi("")                 ->  0      // no digits at all
+ *   myAtoi("-91283472332")     ->  -2147483648   // clamped to -2^31
  *
  * EDGE CASES
  *   - Only LEADING whitespace is skipped; whitespace after digits ends the number.

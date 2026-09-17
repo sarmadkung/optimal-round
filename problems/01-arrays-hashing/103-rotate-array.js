@@ -12,9 +12,12 @@
  *   0 <= k <= 10^5
  *
  * EXAMPLES
- *   rotate([1,2,3,4,5,6,7], k = 3)  ->  [5,6,7,1,2,3,4]
- *   rotate([-1, -100, 3, 99], k = 2) ->  [3, 99, -1, -100]
- *   rotate([1, 2], k = 3)            ->  [2, 1]  // k exceeds the length
+ *   rotate([1,2,3,4,5,6,7], k = 3)    ->  [5,6,7,1,2,3,4]
+ *   rotate([-1, -100, 3, 99], k = 2)  ->  [3, 99, -1, -100]
+ *   rotate([1, 2], k = 3)             ->  [2, 1]   // k exceeds the length
+ *   rotate([1], k = 0)                ->  [1]   // single element, no rotation
+ *   rotate([1, 2, 3, 4], k = 4)       ->  [1, 2, 3, 4]   // k === n is a full turn
+ *   rotate([1, 2, 3, 4, 5], k = 7)    ->  [4, 5, 1, 2, 3]   // 7 % 5 === 2
  *
  * EDGE CASES
  *   - k may be larger than the array length.

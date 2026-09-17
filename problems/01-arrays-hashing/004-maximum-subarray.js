@@ -12,8 +12,11 @@
  *
  * EXAMPLES
  *   maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])  ->  6   // [4,-1,2,1]
- *   maxSubArray([1])                              ->  1
- *   maxSubArray([-3, -1, -2])                     ->  -1  // all negative
+ *   maxSubArray([1])                              ->  1   // single element
+ *   maxSubArray([-3, -1, -2])                     ->  -1   // all negative
+ *   maxSubArray([5, 4, -1, 7, 8])                 ->  23   // the whole array
+ *   maxSubArray([0, -3, 0])                       ->  0   // best sum is 0, from a single 0
+ *   maxSubArray([2, -1, 2, -1, 2])                ->  4   // a dip is worth crossing
  *
  * EDGE CASES
  *   - All numbers negative — the answer is the single largest element, not 0.
@@ -36,12 +39,18 @@
  */
 
 
+// SOLUTION: Kadane's algorithm
+// 1. Move through the array keeping the best sum that ends at the current number.
+// 2. If the running sum still helps, extend it; if not, start again from the current number.
+// 3. Remember the largest running sum seen.
+// Time O(n), space O(1).
+// currentSubArray only records which numbers are in the run — the answer comes from maxSum.
 function maxSubArray(nums) {
   let currentSubArray = [nums[0]];
   let currentSum = nums[0];
   let maxSum =nums[0]
 
-  for (i=1;i<nums.length;i++){
+  for (let i=1;i<nums.length;i++){
       const currentNum = nums[i];
       let isExistingSubArrayWithNewItemGreater =  currentSum + currentNum > currentNum
       

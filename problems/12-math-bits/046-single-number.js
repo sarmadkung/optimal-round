@@ -16,6 +16,9 @@
  *   singleNumber([2, 2, 1])        ->  1
  *   singleNumber([4, 1, 2, 1, 2])  ->  4
  *   singleNumber([1])              ->  1
+ *   singleNumber([0, 1, 1])        ->  0    // the loner may be 0
+ *   singleNumber([-1, -1, 3])      ->  3    // negatives pair off too
+ *   singleNumber([5, -3, 5])       ->  -3   // the loner may be negative
  *
  * EDGE CASES
  *   - A single-element array.

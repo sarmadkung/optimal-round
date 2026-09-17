@@ -15,6 +15,9 @@
  *   nextPermutation([1, 2, 3])  ->  nums becomes [1, 3, 2]
  *   nextPermutation([3, 2, 1])  ->  nums becomes [1, 2, 3]   // wraps around
  *   nextPermutation([1, 1, 5])  ->  nums becomes [1, 5, 1]
+ *   nextPermutation([1])        ->  nums becomes [1]   // a single element is unchanged
+ *   nextPermutation([5, 5, 5])  ->  nums becomes [5, 5, 5]   // all same: already the lowest order
+ *   nextPermutation([1, 3, 2])  ->  nums becomes [2, 1, 3]   // pivot at index 0, suffix reversed
  *
  * EDGE CASES
  *   - Duplicate values: swap with the rightmost element STRICTLY greater than the pivot.

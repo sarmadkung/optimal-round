@@ -14,9 +14,12 @@
  *   You must do it in place with O(1) extra memory.
  *
  * EXAMPLES
- *   removeDuplicates([1, 1, 2])           ->  2, nums starts [1, 2, _]
- *   removeDuplicates([0,0,1,1,1,2,2,3,3,4]) ->  5, nums starts [0,1,2,3,4]
- *   removeDuplicates([1])                 ->  1
+ *   removeDuplicates([1, 1, 2])                ->  2, nums starts [1, 2, _]
+ *   removeDuplicates([0,0,1,1,1,2,2,3,3,4])    ->  5, nums starts [0,1,2,3,4]
+ *   removeDuplicates([1])                      ->  1
+ *   removeDuplicates([1, 1, 1])                ->  1, nums starts [1, _, _]   // all identical
+ *   removeDuplicates([1, 2, 3])                ->  3, nums starts [1, 2, 3]   // no duplicates to remove
+ *   removeDuplicates([-100, -100, 0, 0, 100])  ->  3, nums starts [-100, 0, 100]   // negatives
  *
  * EDGE CASES
  *   - A single element.
@@ -31,6 +34,13 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Two pointers (slow and fast), rewriting the array in place
+// slow = the last index of the kept, duplicate-free part.
+// fast = scans ahead for the next new value.
+// 1. The array is sorted, so duplicates always sit next to each other.
+// 2. When fast finds a value different from nums[slow], move slow on and put that value there.
+// 3. The answer is slow + 1, the length of the kept part.
+// Time O(n), space O(1).
 function removeDuplicates(nums) {
   // Two Pointer
   let slow = 0;

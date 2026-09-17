@@ -11,8 +11,12 @@
  *   1 <= nums[i] <= n
  *
  * EXAMPLES
- *   findDisappearedNumbers([4, 3, 2, 7, 8, 2, 3, 1])  ->  [5, 6]
+ *   findDisappearedNumbers([4, 3, 2, 7, 8, 2, 3, 1])  ->  [5, 6]   // any order
  *   findDisappearedNumbers([1, 1])                    ->  [2]
+ *   findDisappearedNumbers([1])                       ->  []   // n = 1, nothing missing
+ *   findDisappearedNumbers([2, 2])                    ->  [1]
+ *   findDisappearedNumbers([1, 2, 3])                 ->  []   // a permutation of 1..n
+ *   findDisappearedNumbers([3, 3, 3, 3])              ->  [1, 2, 4]   // all the same value; any order
  *
  * EDGE CASES
  *   - Nothing missing (a permutation of 1..n) returns [].
@@ -33,9 +37,14 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Hash set of the numbers that are present
+// 1. Put every number into a set.
+// 2. Walk 1 to n and collect the ones the set doesn't hold.
+// Time O(n), space O(n).
+// The O(1)-space version marks numbers as seen inside nums itself, by negating nums[value - 1].
 function findDisappearedNumbers(nums) {
-  // we well store every item into a set
-  // then we will check the missing indices from that set using nums array length
+  // we store every item into a set
+  // then we check 1..n against that set, using the array length as n
   let allNums = new Set();
   let missingNums = []
   for (let i=0;i<nums.length;i++) {

@@ -13,9 +13,12 @@
  *   All prerequisite pairs are distinct.
  *
  * EXAMPLES
- *   canFinish(2, [[1, 0]])          ->  true
- *   canFinish(2, [[1, 0], [0, 1]])  ->  false  // cyclic
- *   canFinish(1, [])                ->  true
+ *   canFinish(2, [[1, 0]])                          ->  true
+ *   canFinish(2, [[1, 0], [0, 1]])                  ->  false   // cyclic
+ *   canFinish(1, [])                                ->  true
+ *   canFinish(1, [[0, 0]])                          ->  false   // a self-loop is a cycle
+ *   canFinish(4, [[1, 0], [3, 2]])                  ->  true   // two disconnected chains
+ *   canFinish(4, [[1, 0], [2, 1], [3, 2], [1, 3]])  ->  false   // cycle 1 -> 2 -> 3 -> 1
  *
  * EDGE CASES
  *   - No prerequisites at all.

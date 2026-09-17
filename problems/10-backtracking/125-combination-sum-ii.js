@@ -12,8 +12,12 @@
  *   1 <= target <= 30
  *
  * EXAMPLES
- *   combinationSum2([10,1,2,7,6,1,5], 8)  ->  [[1,1,6], [1,2,5], [1,7], [2,6]]
- *   combinationSum2([2, 5, 2, 1, 2], 5)   ->  [[1,2,2], [5]]
+ *   combinationSum2([10,1,2,7,6,1,5], 8)    ->  [[1,1,6], [1,2,5], [1,7], [2,6]]
+ *   combinationSum2([2, 5, 2, 1, 2], 5)     ->  [[1,2,2], [5]]
+ *   combinationSum2([1], 1)                 ->  [[1]]   // smallest input
+ *   combinationSum2([2], 1)                 ->  []   // no combination reaches the target
+ *   combinationSum2([1, 1, 1], 2)           ->  [[1,1]]   // one combination, not three
+ *   combinationSum2([3, 1, 3, 5, 1, 1], 8)  ->  [[1,1,1,5], [1,1,3,3], [3,5]]
  *
  * EDGE CASES
  *   - Each element is usable once, but equal VALUES may legitimately appear twice (as [1,1,6]

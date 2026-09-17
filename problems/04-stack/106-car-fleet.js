@@ -17,6 +17,9 @@
  *   carFleet(12, [10,8,0,5,3], [2,4,1,1,3])  ->  3
  *   carFleet(10, [3], [3])                   ->  1
  *   carFleet(100, [0, 2, 4], [4, 2, 1])      ->  1
+ *   carFleet(10, [0, 5], [1, 1])             ->  2   // equal speeds never catch up
+ *   carFleet(12, [0, 2, 4], [1, 2, 3])       ->  3   // nobody catches anybody
+ *   carFleet(10, [0, 4, 2], [2, 1, 3])       ->  1   // everyone merges behind the slowest
  *
  * EDGE CASES
  *   - A single car is one fleet.

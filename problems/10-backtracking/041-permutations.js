@@ -12,8 +12,11 @@
  *   All integers are distinct.
  *
  * EXAMPLES
- *   permute([1, 2, 3])  ->  [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
- *   permute([1])        ->  [[1]]
+ *   permute([1, 2, 3])     ->  [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+ *   permute([1])           ->  [[1]]
+ *   permute([1, 2])        ->  [[1,2], [2,1]]   // any order
+ *   permute([0, -1])       ->  [[0,-1], [-1,0]]   // negatives are fine
+ *   permute([1, 2, 3, 4])  ->  24 permutations   // exactly n! of them
  *
  * EDGE CASES
  *   - A single element yields one permutation.

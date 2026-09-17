@@ -16,6 +16,9 @@
  *   networkDelayTime([[2,1,1],[2,3,1],[3,4,1]], 4, 2)  ->  2
  *   networkDelayTime([[1, 2, 1]], 2, 1)                ->  1
  *   networkDelayTime([[1, 2, 1]], 2, 2)                ->  -1  // node 1 unreachable
+ *   networkDelayTime([[1,2,1],[2,3,2],[1,3,4]], 3, 1)  ->  3   // via node 2 (3) beats the direct edge (4)
+ *   networkDelayTime([[1, 2, 0]], 2, 1)                ->  0   // zero-weight edges are allowed
+ *   networkDelayTime([[1,2,1],[3,4,1]], 4, 1)          ->  -1  // disconnected graph
  *
  * EDGE CASES
  *   - An unreachable node makes the answer -1.

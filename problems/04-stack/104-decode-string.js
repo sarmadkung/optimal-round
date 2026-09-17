@@ -12,9 +12,12 @@
  *   The input is always valid; k is a positive integer.
  *
  * EXAMPLES
- *   decodeString("3[a]2[bc]")   ->  "aaabcbc"
- *   decodeString("3[a2[c]]")    ->  "accaccacc"  // nested
- *   decodeString("2[abc]3[cd]ef") ->  "abcabccdcdcdef"
+ *   decodeString("3[a]2[bc]")      ->  "aaabcbc"
+ *   decodeString("3[a2[c]]")       ->  "accaccacc"       // nested
+ *   decodeString("2[abc]3[cd]ef")  ->  "abcabccdcdcdef"
+ *   decodeString("abc")            ->  "abc"             // no brackets at all
+ *   decodeString("1[a]")           ->  "a"               // a repeat count of 1
+ *   decodeString("12[a]")          ->  "aaaaaaaaaaaa"    // multi-digit repeat count
  *
  * EDGE CASES
  *   - Multi-digit repeat counts (12[a]) must be parsed as one number.

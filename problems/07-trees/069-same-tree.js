@@ -16,9 +16,12 @@
  *   test runner builds a real tree from that array before calling your function.
  *
  * EXAMPLES
- *   isSameTree([1, 2, 3], [1, 2, 3])        ->  true
- *   isSameTree([1, 2], [1, null, 2])        ->  false  // same values, different shape
- *   isSameTree(null, null)                  ->  true
+ *   isSameTree([1, 2, 3], [1, 2, 3])  ->  true
+ *   isSameTree([1, 2], [1, null, 2])  ->  false  // same values, different shape
+ *   isSameTree(null, null)            ->  true
+ *   isSameTree([1], null)             ->  false  // one empty, one not
+ *   isSameTree([1, 2, 1], [1, 1, 2])  ->  false  // mirrored children, not identical
+ *   isSameTree([0, -1], [0, -1])      ->  true   // negatives compare like any other value
  *
  * EDGE CASES
  *   - Two empty trees are the same.

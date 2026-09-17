@@ -14,6 +14,9 @@
  *   solveNQueens(4)  ->  [[".Q..","...Q","Q...","..Q."], ["..Q.","Q...","...Q",".Q.."]]
  *   solveNQueens(1)  ->  [["Q"]]
  *   solveNQueens(3)  ->  []   // no solution exists
+ *   solveNQueens(2)  ->  []   // no solution here either
+ *   solveNQueens(5)  ->  10 distinct solutions
+ *   solveNQueens(8)  ->  92 distinct solutions   // the classic board
  *
  * EDGE CASES
  *   - n = 2 and n = 3 have no solutions.

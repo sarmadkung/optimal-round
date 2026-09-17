@@ -15,6 +15,10 @@
  * EXAMPLES
  *   nextGreaterElement([4, 1, 2], [1, 3, 4, 2])  ->  [-1, 3, -1]
  *   nextGreaterElement([2, 4], [1, 2, 3, 4])     ->  [3, -1]
+ *   nextGreaterElement([1], [1])                 ->  [-1]              // smallest possible input
+ *   nextGreaterElement([1, 3], [1, 2, 3])        ->  [2, -1]           // first and last of nums2
+ *   nextGreaterElement([3, 2, 1], [3, 2, 1])     ->  [-1, -1, -1]      // decreasing nums2
+ *   nextGreaterElement([3, 1], [1, 2, 3, 4])     ->  [4, 2]            // output follows nums1 order
  *
  * EDGE CASES
  *   - The last element of nums2 never has a next greater element.

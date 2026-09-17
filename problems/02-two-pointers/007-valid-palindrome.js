@@ -13,7 +13,10 @@
  * EXAMPLES
  *   isPalindrome("A man, a plan, a canal: Panama")  ->  true
  *   isPalindrome("race a car")                      ->  false
- *   isPalindrome(" ")                               ->  true  // empty after cleaning
+ *   isPalindrome(" ")                               ->  true   // empty after cleaning
+ *   isPalindrome("a")                               ->  true   // single character
+ *   isPalindrome(".,")                              ->  true   // no alphanumeric characters at all
+ *   isPalindrome("0P")                              ->  false   // '0' and 'p' are both alphanumeric, but differ
  *
  * EDGE CASES
  *   - A string with no alphanumeric characters is a palindrome.
@@ -29,6 +32,12 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Two pointers from both ends
+// 1. Lowercase the string and drop anything that isn't a letter or digit.
+// 2. Compare the first character with the last, then step inward.
+// 3. Any mismatch means it is not a palindrome.
+// Time O(n), space O(n) for the cleaned string.
+// The loop runs the full length, so every pair is compared twice; stopping at the middle is enough.
 function isPalindrome(s) {
   // Naive Technique
   // let cleanedStr = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, "")

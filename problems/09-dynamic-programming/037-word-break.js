@@ -13,9 +13,12 @@
  *   All dictionary words are unique and lowercase.
  *
  * EXAMPLES
- *   wordBreak("leetcode", ["leet", "code"])            ->  true
- *   wordBreak("applepenapple", ["apple", "pen"])       ->  true  // reuse allowed
+ *   wordBreak("leetcode", ["leet", "code"])                    ->  true
+ *   wordBreak("applepenapple", ["apple", "pen"])               ->  true    // reuse allowed
  *   wordBreak("catsandog", ["cats","dog","sand","and","cat"])  ->  false
+ *   wordBreak("a", ["a"])                                      ->  true    // shortest possible input
+ *   wordBreak("a", ["b"])                                      ->  false   // no word matches
+ *   wordBreak("aaaaaaa", ["aaaa", "aaa"])                      ->  true    // 4 + 3
  *
  * EDGE CASES
  *   - Words may be reused any number of times.

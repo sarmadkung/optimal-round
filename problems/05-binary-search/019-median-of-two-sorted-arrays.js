@@ -14,7 +14,10 @@
  * EXAMPLES
  *   findMedianSortedArrays([1, 3], [2])     ->  2.0
  *   findMedianSortedArrays([1, 2], [3, 4])  ->  2.5  // (2 + 3) / 2
- *   findMedianSortedArrays([], [1])         ->  1.0
+ *   findMedianSortedArrays([], [1])         ->  1.0  // nums1 empty
+ *   findMedianSortedArrays([1, 2, 3], [])   ->  2.0  // nums2 empty
+ *   findMedianSortedArrays([1, 3], [2, 7])  ->  2.5  // interleaved, even total length
+ *   findMedianSortedArrays([0, 0], [0, 0])  ->  0.0  // duplicates
  *
  * EDGE CASES
  *   - Either array may be empty.

@@ -15,6 +15,9 @@
  *   partitionLabels("ababcbacadefegdehijhklij")  ->  [9, 7, 8]
  *   partitionLabels("eccbbbbdec")                ->  [10]
  *   partitionLabels("a")                         ->  [1]
+ *   partitionLabels("aa")                        ->  [2]         // a repeat forces one part
+ *   partitionLabels("abc")                       ->  [1, 1, 1]   // all distinct, maximal split
+ *   partitionLabels("abab")                      ->  [4]         // interleaved letters cannot split
  *
  * EDGE CASES
  *   - A single character gives [1].

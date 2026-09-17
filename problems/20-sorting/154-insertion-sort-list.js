@@ -16,9 +16,12 @@
  *   order; the test runner links them into real nodes before calling your function.
  *
  * EXAMPLES
- *   insertionSortList(4 -> 2 -> 1 -> 3)      ->  1 -> 2 -> 3 -> 4
- *   insertionSortList(-1 -> 5 -> 3 -> 4 -> 0) ->  -1 -> 0 -> 3 -> 4 -> 5
- *   insertionSortList(1)                     ->  1
+ *   insertionSortList(4 -> 2 -> 1 -> 3)        ->  1 -> 2 -> 3 -> 4
+ *   insertionSortList(-1 -> 5 -> 3 -> 4 -> 0)  ->  -1 -> 0 -> 3 -> 4 -> 5
+ *   insertionSortList(1)                       ->  1   // single node
+ *   insertionSortList(1 -> 2 -> 3)             ->  1 -> 2 -> 3   // already sorted, best case
+ *   insertionSortList(3 -> 2 -> 1)             ->  1 -> 2 -> 3   // reverse sorted, worst case
+ *   insertionSortList(2 -> 1 -> 2 -> 0)        ->  0 -> 1 -> 2 -> 2   // duplicates are kept
  *
  * EDGE CASES
  *   - A single node is already sorted.

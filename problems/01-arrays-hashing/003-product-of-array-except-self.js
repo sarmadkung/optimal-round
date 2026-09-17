@@ -13,8 +13,12 @@
  *   The product of any prefix or suffix fits in a 32-bit integer.
  *
  * EXAMPLES
- *   productExceptSelf([1, 2, 3, 4])    ->  [24, 12, 8, 6]
- *   productExceptSelf([-1, 1, 0, -3, 3]) ->  [0, 0, 9, 0, 0]
+ *   productExceptSelf([1, 2, 3, 4])       ->  [24, 12, 8, 6]
+ *   productExceptSelf([-1, 1, 0, -3, 3])  ->  [0, 0, 9, 0, 0]   // one zero
+ *   productExceptSelf([2, 3])             ->  [3, 2]   // shortest allowed input
+ *   productExceptSelf([0, 0])             ->  [0, 0]   // two zeros wipe everything out
+ *   productExceptSelf([-2, 3, -4])        ->  [-12, 8, -6]   // signs matter
+ *   productExceptSelf([5, 5, 5])          ->  [25, 25, 25]   // all the same value
  *
  * EDGE CASES
  *   - A single zero — every slot except its own becomes 0.
@@ -33,6 +37,11 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Prefix and suffix products, no division
+// 1. Left to right: store in result[i] the product of everything before i.
+// 2. Right to left: multiply each result[i] by the product of everything after i.
+// That leaves every element multiplied by all the others.
+// Time O(n), space O(1) on top of the output array.
 function productExceptSelf(nums) {
 
   let result = new Array(nums.length);

@@ -11,9 +11,12 @@
  *   s consists of lowercase English letters.
  *
  * EXAMPLES
- *   validPalindrome("aba")   ->  true   // already a palindrome
- *   validPalindrome("abca")  ->  true   // delete 'c' (or 'b')
- *   validPalindrome("abc")   ->  false
+ *   validPalindrome("aba")      ->  true   // already a palindrome
+ *   validPalindrome("abca")     ->  true   // delete 'c' (or 'b')
+ *   validPalindrome("abc")      ->  false
+ *   validPalindrome("a")        ->  true   // a single character
+ *   validPalindrome("aaaa")     ->  true   // all-same, no deletion needed
+ *   validPalindrome("cuppucu")  ->  true   // only deleting the RIGHT side works
  *
  * EDGE CASES
  *   - At the first mismatch you may have to try BOTH deletions: skipping the left character can
@@ -47,8 +50,12 @@ function isPalindrome(s, left, right) {
 
   return true;
 }
-// The technique is commonly called Two Pointers with a Greedy/Branching Check—more specifically, 
-// for this problem: Two Pointers + At-Most-One Deletion
+// SOLUTION: Two pointers, with one deletion allowed
+// 1. Compare characters from both ends while they match, stepping inward.
+// 2. At the first mismatch, the only way forward is to delete one of the two characters.
+// 3. So check both: skip the left one, or skip the right one. Either working is enough.
+// The helper above checks a plain palindrome between two indices.
+// Time O(n), space O(n) for the split (indexing the string directly would make it O(1)).
 function validPalindrome(s) {
   let letters= s.split("");
   let right =  letters.length -1

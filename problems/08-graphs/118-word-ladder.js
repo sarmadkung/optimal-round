@@ -16,7 +16,10 @@
  * EXAMPLES
  *   ladderLength("hit", "cog", ["hot","dot","dog","lot","log","cog"])  ->  5
  *   ladderLength("hit", "cog", ["hot","dot","dog","lot","log"])        ->  0
- *   ladderLength("a", "c", ["a","b","c"])  ->  2
+ *   ladderLength("a", "c", ["a","b","c"])                              ->  2
+ *   ladderLength("hit", "hit", ["hit"])                                ->  1   // begin equals end
+ *   ladderLength("hot", "dog", ["hot","dog"])                          ->  0   // 2 letters differ
+ *   ladderLength("hot", "dog", ["hot","dot","dog"])                    ->  3   // via dot
  *
  * EDGE CASES
  *   - endWord absent from wordList makes it impossible — return 0.

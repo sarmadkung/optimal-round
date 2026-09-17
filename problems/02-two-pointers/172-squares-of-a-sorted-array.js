@@ -14,6 +14,10 @@
  * EXAMPLES
  *   sortedSquares([-4, -1, 0, 3, 10])  ->  [0, 1, 9, 16, 100]
  *   sortedSquares([-7, -3, 2, 3, 11])  ->  [4, 9, 9, 49, 121]
+ *   sortedSquares([-5])                ->  [25]   // single element
+ *   sortedSquares([-3, -2, -1])        ->  [1, 4, 9]   // all negative: squares reverse the order
+ *   sortedSquares([1, 2, 3])           ->  [1, 4, 9]   // all non-negative: order is kept
+ *   sortedSquares([-2, -1, 1, 2])      ->  [1, 1, 4, 4]   // mirrored values square to duplicates
  *
  * EDGE CASES
  *   - All negative: the squares come out in reverse order.
@@ -34,11 +38,13 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Two pointers from both ends, filling the result backwards
+// 1. The input is sorted, so the biggest square comes from one end or the other:
+//    a large negative squares to the same size as a large positive.
+// 2. Compare the two ends, put the larger square at the back of the result, and move that pointer inward.
+// 3. Filling backwards is what keeps the result sorted without a sort call.
+// Time O(n), space O(n) for the result array.
 function sortedSquares(nums) {
-  // We use an extra array because we need to preserve the original
-  // sorted array while calculating squares.
-  // The largest square must come from either the left or right end.
-  // We place the larger square at the current position from the end.
   let result = new Array(nums.length)
   let right=nums.length-1;
   let position = nums.length-1;

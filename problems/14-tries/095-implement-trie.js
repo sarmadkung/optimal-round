@@ -21,9 +21,13 @@
  * EXAMPLES
  *   const t = new Trie();
  *   t.insert("apple");
- *   t.search("apple")    ->  true
- *   t.search("app")      ->  false   // inserted as a prefix only
- *   t.startsWith("app")  ->  true
+ *   t.search("apple")      ->  true
+ *   t.search("app")        ->  false   // inserted as a prefix only
+ *   t.startsWith("app")    ->  true
+ *   t.startsWith("apple")  ->  true    // a word is a prefix of itself
+ *   t.startsWith("b")      ->  false
+ *   t.insert("app"); t.insert("app");  // a duplicate insert is harmless
+ *   t.search("app")        ->  true
  *
  * EDGE CASES
  *   - search must distinguish a full word from a mere prefix.

@@ -13,9 +13,12 @@
  *   0 <= k <= s.length
  *
  * EXAMPLES
- *   characterReplacement("ABAB", 2)    ->  4   // change both A or both B
- *   characterReplacement("AABABBA", 1) ->  4   // "AABA" -> "AAAA"
- *   characterReplacement("A", 0)       ->  1
+ *   characterReplacement("ABAB", 2)     ->  4   // change both A or both B
+ *   characterReplacement("AABABBA", 1)  ->  4   // "AABA" -> "AAAA"
+ *   characterReplacement("A", 0)        ->  1
+ *   characterReplacement("AAAA", 0)     ->  4   // k = 0, all identical
+ *   characterReplacement("ABCDE", 1)    ->  2   // k = 1 buys only one neighbour
+ *   characterReplacement("AB", 5)       ->  2   // k larger than the string
  *
  * EDGE CASES
  *   - k = 0 means the longest run of one repeated character.

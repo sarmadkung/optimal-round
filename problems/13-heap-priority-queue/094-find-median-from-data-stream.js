@@ -20,8 +20,21 @@
  * EXAMPLES
  *   const mf = new MedianFinder();
  *   mf.addNum(1); mf.addNum(2);
- *   mf.findMedian()  ->  1.5
+ *   mf.findMedian()                 ->  1.5
  *   mf.addNum(3);  mf.findMedian()  ->  2.0
+ *   mf.addNum(4);  mf.findMedian()  ->  2.5   // even count averages 2 and 3
+ *   mf.addNum(-5); mf.findMedian()  ->  2.0   // negatives are allowed
+ *
+ *   const one = new MedianFinder();
+ *   one.addNum(6); one.findMedian()  ->  6.0   // a single number is its own median
+ *
+ *   const dup = new MedianFinder();
+ *   dup.addNum(2); dup.addNum(2); dup.addNum(2);
+ *   dup.findMedian()                 ->  2.0   // duplicates are kept, not collapsed
+ *
+ *   const one = new MedianFinder();
+ *   one.addNum(7);  one.findMedian()  ->  7.0   // a single element is its own median
+ *   one.addNum(7);  one.findMedian()  ->  7.0   // duplicates are kept
  *
  * EDGE CASES
  *   - An even count averages the two middle values and may return a non-integer.

@@ -13,8 +13,11 @@
  *
  * EXAMPLES
  *   longestPalindrome("abccccdd")  ->  7   // e.g. "dccaccd"
- *   longestPalindrome("a")         ->  1
- *   longestPalindrome("Aa")        ->  1
+ *   longestPalindrome("a")         ->  1   // single letter
+ *   longestPalindrome("Aa")        ->  1   // case sensitive — no pair here
+ *   longestPalindrome("bb")        ->  2   // one clean pair
+ *   longestPalindrome("abc")       ->  1   // no pairs; one odd letter sits in the middle
+ *   longestPalindrome("abccba")    ->  6   // already a palindrome
  *
  * EDGE CASES
  *   - A letter with an odd count still contributes count - 1 letters.
@@ -32,6 +35,12 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Count the characters and use them in pairs
+// 1. Count how often each character appears.
+// 2. An even count can be used in full; an odd count contributes count - 1.
+// 3. If any odd count existed, one spare character can sit in the middle, so add 1.
+// Time O(n), space O(1), since the alphabet is a fixed size.
+// The frequencyHash.size === 1 shortcut isn't needed — the loop below already handles that case.
 function longestPalindrome(s) {
   let frequencyHash = new Map()
   let sLetters = s.split("");

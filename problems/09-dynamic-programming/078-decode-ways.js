@@ -12,9 +12,12 @@
  *   s contains only digits and may contain leading zeros.
  *
  * EXAMPLES
- *   numDecodings("12")   ->  2   // "AB" or "L"
- *   numDecodings("226")  ->  3   // "BZ", "VF", "BBF"
- *   numDecodings("06")   ->  0   // a leading zero is invalid
+ *   numDecodings("12")     ->  2   // "AB" or "L"
+ *   numDecodings("226")    ->  3   // "BZ", "VF", "BBF"
+ *   numDecodings("06")     ->  0   // a leading zero is invalid
+ *   numDecodings("0")      ->  0   // shortest undecodable input
+ *   numDecodings("27")     ->  1   // only "BG" — 27 is out of range
+ *   numDecodings("11106")  ->  2   // "AAJF" or "KJF"
  *
  * EDGE CASES
  *   - '0' alone is never decodable; only "10" and "20" are valid pairs containing it.

@@ -17,9 +17,12 @@
  *   test runner builds a real tree from that array before calling your function.
  *
  * EXAMPLES
- *   isValidBST([2, 1, 3])              ->  true
- *   isValidBST([5, 1, 4, null, null, 3, 6])  ->  false  // 3 sits left of 5 but under 4
- *   isValidBST([1, 1])                 ->  false  // equal values are not allowed
+ *   isValidBST([2, 1, 3])                         ->  true
+ *   isValidBST([5, 1, 4, null, null, 3, 6])       ->  false  // 3 sits left of 5 but under 4
+ *   isValidBST([1, 1])                            ->  false  // equal values are not allowed
+ *   isValidBST([1])                               ->  true   // a single node is a valid BST
+ *   isValidBST([1, null, 2, null, 3])             ->  true   // a right-skewed chain still qualifies
+ *   isValidBST([-2147483648, null, 2147483647])   ->  true   // the 32-bit extremes are legal values
  *
  * EDGE CASES
  *   - Duplicate values make it invalid.

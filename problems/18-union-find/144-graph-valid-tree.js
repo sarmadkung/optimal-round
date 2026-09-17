@@ -14,7 +14,10 @@
  * EXAMPLES
  *   validTree(5, [[0,1],[0,2],[0,3],[1,4]])        ->  true
  *   validTree(5, [[0,1],[1,2],[2,3],[1,3],[1,4]])  ->  false  // has a cycle
- *   validTree(2, [])  ->  false  // disconnected
+ *   validTree(2, [])                               ->  false  // disconnected
+ *   validTree(1, [])                               ->  true   // single node, no edges
+ *   validTree(3, [[0,1],[1,2]])                    ->  true   // a path is a tree
+ *   validTree(4, [[0,1],[1,2],[0,2]])              ->  false  // n-1 edges, still not connected
  *
  * EDGE CASES
  *   - A tree on n nodes has EXACTLY n - 1 edges.

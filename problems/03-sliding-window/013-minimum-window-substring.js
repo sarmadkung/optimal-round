@@ -12,9 +12,12 @@
  *   s and t consist of uppercase and lowercase English letters.
  *
  * EXAMPLES
- *   minWindow("ADOBECODEBANC", "ABC")  ->  "BANC"
- *   minWindow("a", "a")                ->  "a"
- *   minWindow("a", "aa")               ->  ""   // not enough copies
+ *   minWindow("ADOBECODEBANC", "ABC")   ->  "BANC"
+ *   minWindow("a", "a")                 ->  "a"
+ *   minWindow("a", "aa")                ->  ""   // not enough copies
+ *   minWindow("a", "b")                 ->  ""   // no window at all
+ *   minWindow("aa", "aa")               ->  "aa"   // the whole string is the answer
+ *   minWindow("ADOBECODEBANC", "ABBC")  ->  "BECODEBA"   // the second B forces a longer window
  *
  * EDGE CASES
  *   - t longer than s — return the empty string.

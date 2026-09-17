@@ -17,6 +17,9 @@
  *   canCompleteCircuit([1,2,3,4,5], [3,4,5,1,2])  ->  3
  *   canCompleteCircuit([2, 3, 4], [3, 4, 3])      ->  -1
  *   canCompleteCircuit([5], [4])                  ->  0
+ *   canCompleteCircuit([2], [2])                  ->  0    // n = 1, exactly enough fuel
+ *   canCompleteCircuit([1], [2])                  ->  -1   // n = 1, not enough fuel
+ *   canCompleteCircuit([3,1,1], [1,2,2])          ->  0    // the tank never dips below 0
  *
  * EDGE CASES
  *   - If total gas < total cost, no start works — return -1.

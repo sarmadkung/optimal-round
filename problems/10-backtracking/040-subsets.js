@@ -12,8 +12,12 @@
  *   All elements are unique.
  *
  * EXAMPLES
- *   subsets([1, 2, 3])  ->  [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]]
- *   subsets([0])        ->  [[], [0]]
+ *   subsets([1, 2, 3])     ->  [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]]
+ *   subsets([0])           ->  [[], [0]]
+ *   subsets([1, 2])        ->  [[], [1], [2], [1,2]]   // any order
+ *   subsets([-1])          ->  [[], [-1]]   // one element still yields the empty subset
+ *   subsets([-10, 10])     ->  [[], [-10], [10], [-10,10]]   // the value bounds
+ *   subsets([1, 2, 3, 4])  ->  16 subsets   // exactly 2^n of them
  *
  * EDGE CASES
  *   - The empty subset is always included.

@@ -21,7 +21,10 @@
  *   const na = new NumArray([-2, 0, 3, -5, 2, -1]);
  *   na.sumRange(0, 2)  ->  1
  *   na.sumRange(2, 5)  ->  -1
- *   na.sumRange(0, 5)  ->  -3
+ *   na.sumRange(0, 5)  ->  -3   // the full range
+ *   na.sumRange(3, 3)  ->  -5   // a single index
+ *   na.sumRange(1, 1)  ->  0
+ *   na.sumRange(4, 5)  ->  1
  *
  * EDGE CASES
  *   - left may equal right, giving a single element.

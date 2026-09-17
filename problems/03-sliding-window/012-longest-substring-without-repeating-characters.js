@@ -14,6 +14,9 @@
  *   lengthOfLongestSubstring("abcabcbb")  ->  3   // "abc"
  *   lengthOfLongestSubstring("bbbbb")     ->  1   // "b"
  *   lengthOfLongestSubstring("pwwkew")    ->  3   // "wke", not "pwke"
+ *   lengthOfLongestSubstring("")          ->  0   // empty string
+ *   lengthOfLongestSubstring(" ")         ->  1   // a space is a character
+ *   lengthOfLongestSubstring("tmmzuxt")   ->  5   // "mzuxt"; never move the left edge backwards
  *
  * EDGE CASES
  *   - Empty string returns 0.

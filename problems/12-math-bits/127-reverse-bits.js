@@ -9,9 +9,12 @@
  *   The input is a 32-bit unsigned integer.
  *
  * EXAMPLES
- *   reverseBits(43261596)   ->  964176192
- *   reverseBits(0)          ->  0
- *   reverseBits(4294967293) ->  3221225471
+ *   reverseBits(43261596)    ->  964176192
+ *   reverseBits(0)           ->  0
+ *   reverseBits(4294967293)  ->  3221225471
+ *   reverseBits(1)           ->  2147483648   // the lowest bit moves to the top
+ *   reverseBits(2147483648)  ->  1            // and back again
+ *   reverseBits(4294967295)  ->  4294967295   // all ones is its own reverse
  *
  * EDGE CASES
  *   - Leading zeros matter — always process exactly 32 bits.

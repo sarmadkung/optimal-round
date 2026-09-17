@@ -12,8 +12,11 @@
  *
  * EXAMPLES
  *   canJump([2, 3, 1, 1, 4])  ->  true
- *   canJump([3, 2, 1, 0, 4])  ->  false  // stuck at the 0
- *   canJump([0])              ->  true   // already at the end
+ *   canJump([3, 2, 1, 0, 4])  ->  false   // stuck at the 0
+ *   canJump([0])              ->  true    // already at the end
+ *   canJump([0, 1])           ->  false   // leading 0 with length > 1
+ *   canJump([2, 0, 0])        ->  true    // one jump clears both zeros
+ *   canJump([1, 0, 1, 0])     ->  false   // the first 0 is a dead end
  *
  * EDGE CASES
  *   - A single element — you are already there.

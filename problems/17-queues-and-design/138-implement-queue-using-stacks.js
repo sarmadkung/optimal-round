@@ -21,10 +21,14 @@
  *
  * EXAMPLES
  *   const q = new MyQueue();
+ *   q.empty()  ->  true    // nothing pushed yet
  *   q.push(1); q.push(2);
  *   q.peek()   ->  1
  *   q.pop()    ->  1
  *   q.empty()  ->  false
+ *   q.push(3);
+ *   q.pop()    ->  2       // FIFO survives an interleaved push
+ *   q.pop()    ->  3
  *
  * EDGE CASES
  *   - All calls are guaranteed valid, so pop and peek are never called on an empty queue.

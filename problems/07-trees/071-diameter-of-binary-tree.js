@@ -16,9 +16,12 @@
  *   test runner builds a real tree from that array before calling your function.
  *
  * EXAMPLES
- *   diameterOfBinaryTree([1, 2, 3, 4, 5])  ->  3   // path 4 - 2 - 1 - 3
- *   diameterOfBinaryTree([1, 2])           ->  1
- *   diameterOfBinaryTree([1])              ->  0   // a single node has no edges
+ *   diameterOfBinaryTree([1, 2, 3, 4, 5])           ->  3   // path 4 - 2 - 1 - 3
+ *   diameterOfBinaryTree([1, 2])                    ->  1
+ *   diameterOfBinaryTree([1])                       ->  0   // a single node has no edges
+ *   diameterOfBinaryTree([1, 2, 3, 4, 5, 6, 7])     ->  4   // perfectly balanced: 4 - 2 - 1 - 3 - 6
+ *   diameterOfBinaryTree([1, null, 2, null, 3])     ->  2   // a skewed chain of three nodes
+ *   diameterOfBinaryTree([1, 2, null, 3, null, 4])  ->  3   // left-skewed chain of four
  *
  * EDGE CASES
  *   - A single node has diameter 0, not 1.

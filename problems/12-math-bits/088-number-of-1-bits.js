@@ -10,9 +10,12 @@
  *   The input is a 32-bit unsigned integer.
  *
  * EXAMPLES
- *   hammingWeight(11)          ->  3   // 1011
- *   hammingWeight(128)         ->  1   // 10000000
+ *   hammingWeight(11)          ->  3    // 1011
+ *   hammingWeight(128)         ->  1    // 10000000
  *   hammingWeight(4294967293)  ->  31
+ *   hammingWeight(0)           ->  0    // no bits set
+ *   hammingWeight(2147483648)  ->  1    // only the sign bit, 2^31
+ *   hammingWeight(4294967295)  ->  32   // all 32 bits set
  *
  * EDGE CASES
  *   - Zero has weight 0.

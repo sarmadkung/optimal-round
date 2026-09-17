@@ -15,6 +15,9 @@
  *   lastStoneWeight([2, 7, 4, 1, 8, 1])  ->  1
  *   lastStoneWeight([1])                 ->  1
  *   lastStoneWeight([2, 2])              ->  0   // both destroyed
+ *   lastStoneWeight([1, 3])              ->  2   // the difference survives
+ *   lastStoneWeight([3, 7, 2])           ->  2   // 7-3 = 4, then 4-2 = 2
+ *   lastStoneWeight([1, 1, 1])           ->  1   // a tie cancels, leaving one
  *
  * EDGE CASES
  *   - A single stone survives untouched.

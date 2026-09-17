@@ -11,9 +11,12 @@
  *   0 <= nums[i] <= 400
  *
  * EXAMPLES
- *   rob([1, 2, 3, 1])     ->  4   // houses 0 and 2
- *   rob([2, 7, 9, 3, 1])  ->  12  // houses 0, 2 and 4
+ *   rob([1, 2, 3, 1])     ->  4    // houses 0 and 2
+ *   rob([2, 7, 9, 3, 1])  ->  12   // houses 0, 2 and 4
  *   rob([5])              ->  5
+ *   rob([2, 1])           ->  2    // two houses — take the larger
+ *   rob([2, 1, 1, 2])     ->  4    // houses 0 and 3, not alternating
+ *   rob([0, 0, 0])        ->  0    // all houses empty
  *
  * EDGE CASES
  *   - A single house.

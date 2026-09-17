@@ -15,6 +15,9 @@
  *   checkSubarraySum([23, 2, 4, 6, 7], 6)   ->  true   // [2, 4]
  *   checkSubarraySum([23, 2, 6, 4, 7], 13)  ->  false
  *   checkSubarraySum([1, 0], 2)             ->  false
+ *   checkSubarraySum([0, 0], 1)             ->  true   // 0 is a multiple of every k
+ *   checkSubarraySum([1, 2, 3], 5)          ->  true   // [2, 3]
+ *   checkSubarraySum([5], 5)                ->  false  // one element, length must be >= 2
  *
  * EDGE CASES
  *   - The subarray must have length >= 2 — a single multiple of k does not count.

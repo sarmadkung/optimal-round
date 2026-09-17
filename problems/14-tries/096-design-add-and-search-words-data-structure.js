@@ -21,9 +21,12 @@
  * EXAMPLES
  *   const d = new WordDictionary();
  *   d.addWord("bad"); d.addWord("dad");
- *   d.search("pad")  ->  false
- *   d.search(".ad")  ->  true
- *   d.search("b..")  ->  true
+ *   d.search("pad")   ->  false
+ *   d.search(".ad")   ->  true
+ *   d.search("b..")   ->  true
+ *   d.search("bad")   ->  true
+ *   d.search("...")   ->  true    // all wildcards, and length 3 matches
+ *   d.search("....")  ->  false   // longer than every stored word
  *
  * EDGE CASES
  *   - A search string may be entirely wildcards.

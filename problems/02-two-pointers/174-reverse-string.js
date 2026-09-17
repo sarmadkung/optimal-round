@@ -13,6 +13,10 @@
  * EXAMPLES
  *   reverseString(["h", "e", "l", "l", "o"])       ->  s becomes ["o", "l", "l", "e", "h"]
  *   reverseString(["H", "a", "n", "n", "a", "h"])  ->  s becomes ["h", "a", "n", "n", "a", "H"]
+ *   reverseString(["a"])                           ->  s becomes ["a"]   // single character, unchanged
+ *   reverseString(["a", "b"])                      ->  s becomes ["b", "a"]   // one swap
+ *   reverseString(["x", "y", "z"])                 ->  s becomes ["z", "y", "x"]   // odd length: the middle stays put
+ *   reverseString(["7", "7", "7"])                 ->  s becomes ["7", "7", "7"]   // all same, visibly unchanged
  *
  * EDGE CASES
  *   - A single character is unchanged.
@@ -26,6 +30,10 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Two pointers swapping toward the middle
+// 1. Swap the first character with the last.
+// 2. Step both pointers inward and repeat until they meet.
+// Time O(n), space O(1) — the array is reversed in place, as the problem requires.
 function reverseString(s) {
   let left = 0;
   let right = s.length-1;

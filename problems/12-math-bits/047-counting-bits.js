@@ -13,6 +13,9 @@
  *   countBits(2)  ->  [0, 1, 1]
  *   countBits(5)  ->  [0, 1, 1, 2, 1, 2]
  *   countBits(0)  ->  [0]
+ *   countBits(1)  ->  [0, 1]
+ *   countBits(3)  ->  [0, 1, 1, 2]
+ *   countBits(8)  ->  [0, 1, 1, 2, 1, 2, 2, 3, 1]   // powers of two drop back to 1
  *
  * EDGE CASES
  *   - n = 0 returns [0].

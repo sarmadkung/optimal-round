@@ -13,6 +13,9 @@
  *   fib(2)   ->  1
  *   fib(10)  ->  55
  *   fib(0)   ->  0
+ *   fib(1)   ->  1
+ *   fib(3)   ->  2
+ *   fib(50)  ->  12586269025   // still exact in a double
  *
  * EDGE CASES
  *   - n = 0 and n = 1 are the base cases.

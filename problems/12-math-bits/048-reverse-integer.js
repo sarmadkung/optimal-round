@@ -11,10 +11,12 @@
  *   You may not use 64-bit integers.
  *
  * EXAMPLES
- *   reverse(123)   ->  321
- *   reverse(-123)  ->  -321
- *   reverse(120)   ->  21   // trailing zeros vanish
- *   reverse(1534236469)  ->  0  // overflows
+ *   reverse(123)          ->  321
+ *   reverse(-123)         ->  -321
+ *   reverse(120)          ->  21   // trailing zeros vanish
+ *   reverse(1534236469)   ->  0    // overflows
+ *   reverse(0)            ->  0
+ *   reverse(-2147483648)  ->  0    // -2^31 reversed overflows
  *
  * EDGE CASES
  *   - Trailing zeros disappear.

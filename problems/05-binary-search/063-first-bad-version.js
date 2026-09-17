@@ -18,8 +18,12 @@
  *   test runner can supply its own — the algorithm you write is identical.
  *
  * EXAMPLES
- *   n = 5, bad = 4  ->  firstBadVersion(5) returns 4
- *   n = 1, bad = 1  ->  firstBadVersion(1) returns 1
+ *   n = 5,   bad = 4   ->  firstBadVersion(5) returns 4
+ *   n = 1,   bad = 1   ->  firstBadVersion(1) returns 1    // smallest possible input
+ *   n = 2,   bad = 1   ->  firstBadVersion(2) returns 1    // the very first version is bad
+ *   n = 2,   bad = 2   ->  firstBadVersion(2) returns 2    // only the last version is bad
+ *   n = 10,  bad = 10  ->  firstBadVersion(10) returns 10  // the boundary is the last version
+ *   n = 100, bad = 37  ->  firstBadVersion(100) returns 37 // a boundary in the middle
  *
  * EDGE CASES
  *   - The first version may itself be bad.

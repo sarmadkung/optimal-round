@@ -15,6 +15,9 @@
  *   sortColors([2, 0, 2, 1, 1, 0])  ->  [0, 0, 1, 1, 2, 2]
  *   sortColors([2, 0, 1])           ->  [0, 1, 2]
  *   sortColors([0])                 ->  [0]
+ *   sortColors([1, 1, 1])           ->  [1, 1, 1]   // a single colour
+ *   sortColors([0, 1, 2])           ->  [0, 1, 2]   // already sorted
+ *   sortColors([2, 2, 1, 1, 0, 0])  ->  [0, 0, 1, 1, 2, 2]   // exactly reversed
  *
  * EDGE CASES
  *   - An array of a single color.

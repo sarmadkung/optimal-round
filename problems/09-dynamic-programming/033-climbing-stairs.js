@@ -10,9 +10,12 @@
  *   1 <= n <= 45
  *
  * EXAMPLES
- *   climbStairs(2)  ->  2   // 1+1, 2
- *   climbStairs(3)  ->  3   // 1+1+1, 1+2, 2+1
- *   climbStairs(1)  ->  1
+ *   climbStairs(2)   ->  2   // 1+1, 2
+ *   climbStairs(3)   ->  3   // 1+1+1, 1+2, 2+1
+ *   climbStairs(1)   ->  1
+ *   climbStairs(4)   ->  5
+ *   climbStairs(5)   ->  8
+ *   climbStairs(10)  ->  89
  *
  * EDGE CASES
  *   - n = 1 and n = 2 are the base cases.

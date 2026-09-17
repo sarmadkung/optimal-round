@@ -14,9 +14,14 @@
  *   board[i][j] is 0 or 1.
  *
  * EXAMPLES
+ *   The board is mutated in place; the result shown is the board afterwards.
  *   gameOfLife([[0,1,0],[0,0,1],[1,1,1],[0,0,0]])
  *     ->  [[0,0,0],[1,0,1],[0,1,1],[0,1,0]]
- *   gameOfLife([[1, 1], [1, 0]])  ->  [[1, 1], [1, 1]]
+ *   gameOfLife([[1, 1], [1, 0]])           ->  [[1, 1], [1, 1]]
+ *   gameOfLife([[1]])                      ->  [[0]]            // no neighbors, so it dies
+ *   gameOfLife([[0,0],[0,0]])              ->  [[0,0],[0,0]]    // all dead stays all dead
+ *   gameOfLife([[1,1],[1,1]])              ->  [[1,1],[1,1]]    // a stable 2x2 block
+ *   gameOfLife([[0,1,0],[0,1,0],[0,1,0]])  ->  [[0,0,0],[1,1,1],[0,0,0]]   // blinker
  *
  * EDGE CASES
  *   - Updates are simultaneous — writing directly corrupts later neighbor counts.

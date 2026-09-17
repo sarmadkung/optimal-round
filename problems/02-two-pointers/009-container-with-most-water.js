@@ -14,6 +14,10 @@
  * EXAMPLES
  *   maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7])  ->  49
  *   maxArea([1, 1])                       ->  1
+ *   maxArea([0, 2])                       ->  0   // a zero-height line holds nothing
+ *   maxArea([1, 2, 1])                    ->  2   // the two outer 1s beat any taller-but-closer pair
+ *   maxArea([4, 4, 4, 4])                 ->  12   // all equal: width wins
+ *   maxArea([2, 3, 4, 5, 18, 17, 6])      ->  17   // min(18, 17) * 1
  *
  * EDGE CASES
  *   - Zero-height lines contribute no area.

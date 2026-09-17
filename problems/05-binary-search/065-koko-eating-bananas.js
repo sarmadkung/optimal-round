@@ -16,6 +16,9 @@
  *   minEatingSpeed([3, 6, 7, 11], 8)          ->  4
  *   minEatingSpeed([30, 11, 23, 4, 20], 5)    ->  30
  *   minEatingSpeed([30, 11, 23, 4, 20], 6)    ->  23
+ *   minEatingSpeed([4], 1)                    ->  4   // one pile, one hour
+ *   minEatingSpeed([3, 6, 7, 11], 4)          ->  11  // h == pile count, so k = max(piles)
+ *   minEatingSpeed([3, 6, 7, 11], 27)         ->  1   // 27 hours is exactly enough at k = 1
  *
  * EDGE CASES
  *   - h equal to the pile count forces k to be the largest pile.

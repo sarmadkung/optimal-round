@@ -14,6 +14,10 @@
  * EXAMPLES
  *   maxProfit([7, 1, 5, 3, 6, 4])  ->  5   // buy at 1, sell at 6
  *   maxProfit([7, 6, 4, 3, 1])     ->  0   // never profitable
+ *   maxProfit([2])                 ->  0   // a single day leaves no time to sell
+ *   maxProfit([3, 3, 3])           ->  0   // a flat market
+ *   maxProfit([2, 4, 1])           ->  2   // the later low does not help
+ *   maxProfit([3, 2, 6, 5, 0, 3])  ->  4   // buy at 2, sell at 6
  *
  * EDGE CASES
  *   - Strictly decreasing prices — return 0, never a negative.

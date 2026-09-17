@@ -16,9 +16,12 @@
  *   order; the test runner links them into real nodes before calling your function.
  *
  * EXAMPLES
- *   removeNthFromEnd(1 -> 2 -> 3 -> 4 -> 5, n = 2)  ->  1 -> 2 -> 3 -> 5
- *   removeNthFromEnd(1, n = 1)                      ->  null
- *   removeNthFromEnd(1 -> 2, n = 2)                 ->  2  // removes the head
+ *   removeNthFromEnd(1 -> 2 -> 3 -> 4 -> 5, n = 2)   ->  1 -> 2 -> 3 -> 5
+ *   removeNthFromEnd(1, n = 1)                       ->  null
+ *   removeNthFromEnd(1 -> 2, n = 2)                  ->  2  // removes the head
+ *   removeNthFromEnd(1 -> 2, n = 1)                  ->  1  // removes the tail
+ *   removeNthFromEnd(1 -> 2 -> 3 -> 4 -> 5, n = 5)   ->  2 -> 3 -> 4 -> 5  // n = length
+ *   removeNthFromEnd(-1 -> 0 -> 1, n = 3)            ->  0 -> 1  // negatives
  *
  * EDGE CASES
  *   - Removing the head itself.

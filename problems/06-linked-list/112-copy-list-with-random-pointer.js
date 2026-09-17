@@ -20,7 +20,11 @@
  * EXAMPLES
  *   copyRandomList([[7,null],[13,0],[11,4],[10,2],[1,0]])
  *     ->  an identical list built entirely from new nodes
- *   copyRandomList(null)  ->  null
+ *   copyRandomList(null)              ->  null
+ *   copyRandomList([[1,null]])        ->  [[1,null]]   // one node, random is null
+ *   copyRandomList([[1,0]])           ->  [[1,0]]   // random points at the node itself
+ *   copyRandomList([[1,1],[2,1]])     ->  [[1,1],[2,1]]   // both randoms point forward
+ *   copyRandomList([[-1,1],[-2,0]])   ->  [[-1,1],[-2,0]]   // randoms cross, negative values
  *
  * EDGE CASES
  *   - An empty list.

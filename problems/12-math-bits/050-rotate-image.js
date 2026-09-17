@@ -13,9 +13,12 @@
  *   You must rotate the matrix in place, without allocating another one.
  *
  * EXAMPLES
- *   rotate([[1,2,3],[4,5,6],[7,8,9]])  ->  [[7,4,1],[8,5,2],[9,6,3]]
- *   rotate([[1,2],[3,4]])              ->  [[3,1],[4,2]]
- *   rotate([[1]])                      ->  [[1]]
+ *   rotate([[1,2,3],[4,5,6],[7,8,9]])                  ->  [[7,4,1],[8,5,2],[9,6,3]]
+ *   rotate([[1,2],[3,4]])                              ->  [[3,1],[4,2]]
+ *   rotate([[1]])                                      ->  [[1]]
+ *   rotate([[-1,2],[3,-4]])                            ->  [[3,-1],[-4,2]]        // negative values are fine
+ *   rotate([[0,-1000],[1000,0]])                       ->  [[1000,0],[0,-1000]]   // the value bounds
+ *   rotate([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]])  ->  [[0,0,0,1],[0,0,1,0],[0,1,0,0],[1,0,0,0]]
  *
  * EDGE CASES
  *   - A 1x1 matrix is unchanged.

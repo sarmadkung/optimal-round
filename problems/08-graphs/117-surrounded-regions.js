@@ -15,6 +15,10 @@
  * EXAMPLES
  *   solve([["X","X","X"],["X","O","X"],["X","X","X"]])  ->  the O becomes X
  *   solve([["O"]])  ->  [["O"]]   // touches the border, so it survives
+ *   solve([["X"]])  ->  [["X"]]   // no O to capture
+ *   solve([["X","X"],["X","O"]])  ->  unchanged   // the O is on the border
+ *   solve([["O","O"],["O","O"]])  ->  unchanged   // every cell is border
+ *   solve([["X","O","X"],["X","O","X"],["X","X","X"]])  ->  unchanged   // reaches the top border
  *
  * EDGE CASES
  *   - Any region connected to the border survives, however large.

@@ -16,9 +16,12 @@
  *   order; the test runner links them into real nodes before calling your function.
  *
  * EXAMPLES
- *   mergeTwoLists(1 -> 2 -> 4, 1 -> 3 -> 4)  ->  1 -> 1 -> 2 -> 3 -> 4 -> 4
- *   mergeTwoLists(null, null)                ->  null
- *   mergeTwoLists(null, 0)                   ->  0
+ *   mergeTwoLists(1 -> 2 -> 4, 1 -> 3 -> 4)      ->  1 -> 1 -> 2 -> 3 -> 4 -> 4
+ *   mergeTwoLists(null, null)                    ->  null
+ *   mergeTwoLists(null, 0)                       ->  0
+ *   mergeTwoLists(1 -> 2 -> 3, null)             ->  1 -> 2 -> 3   // remainder attached as-is
+ *   mergeTwoLists(2 -> 2, 2 -> 2)                ->  2 -> 2 -> 2 -> 2   // duplicates across lists
+ *   mergeTwoLists(-100 -> -50, -75 -> 0 -> 100)  ->  -100 -> -75 -> -50 -> 0 -> 100
  *
  * EDGE CASES
  *   - Either or both lists empty.

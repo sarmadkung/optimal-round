@@ -11,9 +11,12 @@
  *   0 <= nums[i] <= 10^9
  *
  * EXAMPLES
- *   largestNumber([10, 2])           ->  "210"
- *   largestNumber([3, 30, 34, 5, 9]) ->  "9534330"
- *   largestNumber([0, 0])            ->  "0"   // not "00"
+ *   largestNumber([10, 2])            ->  "210"
+ *   largestNumber([3, 30, 34, 5, 9])  ->  "9534330"
+ *   largestNumber([0, 0])             ->  "0"   // not "00"
+ *   largestNumber([0])                ->  "0"   // a single zero
+ *   largestNumber([432, 43243])       ->  "43243432"   // the longer number does not win by length
+ *   largestNumber([121, 12])          ->  "12121"   // "12121" beats "12112"
  *
  * EDGE CASES
  *   - All zeros must produce "0", not a string of zeroes.

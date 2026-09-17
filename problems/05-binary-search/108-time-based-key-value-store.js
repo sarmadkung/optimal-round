@@ -22,9 +22,18 @@
  * EXAMPLES
  *   const tm = new TimeMap();
  *   tm.set("foo", "bar", 1);
- *   tm.get("foo", 1)  ->  "bar"
- *   tm.get("foo", 3)  ->  "bar"   // falls back to the latest <= 3
- *   tm.get("foo", 0)  ->  ""      // nothing that early
+ *   tm.get("foo", 1)    ->  "bar"
+ *   tm.get("foo", 3)    ->  "bar"   // falls back to the latest <= 3
+ *   tm.get("foo", 0)    ->  ""      // nothing that early
+ *   tm.set("foo", "baz", 4);
+ *   tm.get("foo", 4)    ->  "baz"   // exact hit on the newer timestamp
+ *   tm.get("foo", 3)    ->  "bar"   // an older query still sees the older value
+ *   tm.get("nope", 99)  ->  ""      // a key that was never set
+ *
+ *   tm.set("foo", "bar2", 4);
+ *   tm.get("foo", 4)  ->  "bar2"  // exact hit on the newest timestamp
+ *   tm.get("foo", 3)  ->  "bar"   // 3 is before 4, so the older value still wins
+ *   tm.get("dog", 4)  ->  ""      // unknown key
  *
  * EDGE CASES
  *   - A query before any set for that key returns the empty string.

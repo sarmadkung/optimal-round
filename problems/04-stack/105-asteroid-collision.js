@@ -15,6 +15,9 @@
  *   asteroidCollision([5, 10, -5])   ->  [5, 10]
  *   asteroidCollision([8, -8])       ->  []   // equal sizes destroy each other
  *   asteroidCollision([10, 2, -5])   ->  [10]
+ *   asteroidCollision([-2, 2])       ->  [-2, 2]        // moving apart, never collide
+ *   asteroidCollision([5, -5, 5])    ->  [5]            // pair annihilates, the last survives
+ *   asteroidCollision([3, 1, -4])    ->  [-4]           // one asteroid destroys a whole chain
  *
  * EDGE CASES
  *   - A collision only happens when a positive is immediately left of a negative.

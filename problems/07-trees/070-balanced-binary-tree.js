@@ -16,9 +16,12 @@
  *   test runner builds a real tree from that array before calling your function.
  *
  * EXAMPLES
- *   isBalanced([3, 9, 20, null, null, 15, 7])           ->  true
- *   isBalanced([1, 2, 2, 3, 3, null, null, 4, 4])       ->  false
- *   isBalanced(null)                                    ->  true
+ *   isBalanced([3, 9, 20, null, null, 15, 7])          ->  true
+ *   isBalanced([1, 2, 2, 3, 3, null, null, 4, 4])      ->  false
+ *   isBalanced(null)                                   ->  true
+ *   isBalanced([1])                                    ->  true   // a single node is balanced
+ *   isBalanced([1, 2, 3, 4, 5, 6, 7])                  ->  true   // perfectly balanced
+ *   isBalanced([1, null, 2, null, 3])                  ->  false  // a skewed chain of three
  *
  * EDGE CASES
  *   - An empty tree is balanced.

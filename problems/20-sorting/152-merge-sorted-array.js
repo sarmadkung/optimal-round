@@ -16,6 +16,9 @@
  *   merge([1,2,3,0,0,0], 3, [2,5,6], 3)  ->  [1,2,2,3,5,6]
  *   merge([1], 1, [], 0)                 ->  [1]
  *   merge([0], 0, [1], 1)                ->  [1]   // nums1 has no real values
+ *   merge([4,5,6,0,0,0], 3, [1,2,3], 3)  ->  [1,2,3,4,5,6]   // all of nums2 sorts first
+ *   merge([1,2,2,0], 3, [2], 1)          ->  [1,2,2,2]   // duplicates across both arrays
+ *   merge([-1,3,0,0], 2, [-2,0], 2)      ->  [-2,-1,0,3]   // negatives, and a real 0 in nums2
  *
  * EDGE CASES
  *   - m = 0 means nums1 holds only spare room.

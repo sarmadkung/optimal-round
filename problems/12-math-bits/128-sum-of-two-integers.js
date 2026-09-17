@@ -9,9 +9,12 @@
  *   -1000 <= a, b <= 1000
  *
  * EXAMPLES
- *   getSum(1, 2)    ->  3
- *   getSum(2, 3)    ->  5
- *   getSum(-1, 1)   ->  0
+ *   getSum(1, 2)         ->  3
+ *   getSum(2, 3)         ->  5
+ *   getSum(-1, 1)        ->  0
+ *   getSum(0, 0)         ->  0    // both operands zero
+ *   getSum(-2, -3)       ->  -5   // both operands negative
+ *   getSum(1000, -1000)  ->  0    // the constraint bounds
  *
  * EDGE CASES
  *   - Negative operands must work — two's complement handles this naturally.

@@ -15,6 +15,9 @@
  *   threeSum([-1, 0, 1, 2, -1, -4])  ->  [[-1, -1, 2], [-1, 0, 1]]
  *   threeSum([0, 1, 1])              ->  []
  *   threeSum([0, 0, 0])              ->  [[0, 0, 0]]
+ *   threeSum([1, 2, 3])              ->  []   // smallest input, no triplet sums to 0
+ *   threeSum([-1, -1, 2, 2, 0, 0])   ->  [[-1, -1, 2]]   // duplicates collapse to one triplet
+ *   threeSum([3, 0, -2, -1, 1, 2])   ->  [[-2, -1, 3], [-2, 0, 2], [-1, 0, 1]]   // order-agnostic
  *
  * EDGE CASES
  *   - Duplicate triplets must be filtered out — this is the hard part.

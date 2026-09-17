@@ -13,6 +13,10 @@
  * EXAMPLES
  *   subsetsWithDup([1, 2, 2])  ->  [[], [1], [1,2], [1,2,2], [2], [2,2]]
  *   subsetsWithDup([0])        ->  [[], [0]]
+ *   subsetsWithDup([1, 1])     ->  [[], [1], [1,1]]   // 3 subsets, not 4
+ *   subsetsWithDup([2, 1, 2])  ->  [[], [1], [1,2], [1,2,2], [2], [2,2]]   // unsorted input
+ *   subsetsWithDup([1, 2])     ->  [[], [1], [1,2], [2]]   // no duplicates, so the full 2^n
+ *   subsetsWithDup([0, 0, 0])  ->  [[], [0], [0,0], [0,0,0]]   // all equal, only n+1 subsets
  *
  * EDGE CASES
  *   - Duplicates in the input must not produce duplicate subsets.

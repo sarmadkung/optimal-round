@@ -14,7 +14,12 @@
  * EXAMPLES
  *   groupAnagrams(["eat","tea","tan","ate","nat","bat"])
  *     ->  [["eat","tea","ate"], ["tan","nat"], ["bat"]]
- *   groupAnagrams([""])   ->  [[""]]
+ *   groupAnagrams(["ab","ba","abc","cba","bac"])
+ *     ->  [["ab","ba"], ["abc","cba","bac"]]   // groups and members may be in any order
+ *   groupAnagrams([""])            ->  [[""]]   // the empty string is its own group
+ *   groupAnagrams(["a"])           ->  [["a"]]   // single string
+ *   groupAnagrams(["abc", "def"])  ->  [["abc"], ["def"]]   // no anagrams at all
+ *   groupAnagrams(["", "", "a"])   ->  [["", ""], ["a"]]   // equal empty strings group together
  *
  * EDGE CASES
  *   - The empty string is its own group.
@@ -32,19 +37,12 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Sort the letters of each word to build a grouping key
+// 1. Sorting a word's letters gives all its anagrams the same key: "eat" and "tea" both become "aet".
+// 2. Store the original words in a map under that key.
+// 3. The answer is the map's values.
+// Time O(n * k log k) for n words of length k, space O(n * k).
 function groupAnagrams(strs) {
-  // Sorting + Object using 
-  const groups = {}
-  for (let word of strs){
-    const sortedWord = word.split("").sort().join("");
-    if(groups[sortedWord]){
-      groups[sortedWord].push(word)
-    } else {
-      groups[sortedWord] = [word]
-    }
-  }
-  // return Object.values(groups)
-
   // Sorting + Map
   const groupMap = new Map()
   for (let word of strs){
@@ -52,7 +50,6 @@ function groupAnagrams(strs) {
     if(!groupMap.has(sortedWord)){
       groupMap.set(sortedWord,[word]);
     } else {
-      console.log("Else case is here")
       groupMap.get(sortedWord).push(word)
     }
   }

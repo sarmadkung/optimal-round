@@ -12,9 +12,12 @@
  *   Every prefix or suffix product fits in a 32-bit integer.
  *
  * EXAMPLES
- *   maxProduct([2, 3, -2, 4])   ->  6   // [2,3]
- *   maxProduct([-2, 0, -1])     ->  0
- *   maxProduct([-2, 3, -4])     ->  24  // two negatives make a positive
+ *   maxProduct([2, 3, -2, 4])     ->  6     // [2,3]
+ *   maxProduct([-2, 0, -1])       ->  0
+ *   maxProduct([-2, 3, -4])       ->  24    // two negatives make a positive
+ *   maxProduct([-3])              ->  -3    // single negative element
+ *   maxProduct([-1, -2, -9, -6])  ->  108   // all four multiplied
+ *   maxProduct([0, -3, 0, 2, 2])  ->  4     // [2,2]; zeros reset the run
  *
  * EDGE CASES
  *   - Zeros reset the running product.

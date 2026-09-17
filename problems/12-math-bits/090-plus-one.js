@@ -12,9 +12,12 @@
  *   digits has no leading zeros.
  *
  * EXAMPLES
- *   plusOne([1, 2, 3])  ->  [1, 2, 4]
+ *   plusOne([1, 2, 3])     ->  [1, 2, 4]
  *   plusOne([4, 3, 2, 1])  ->  [4, 3, 2, 2]
- *   plusOne([9, 9])     ->  [1, 0, 0]   // the result is LONGER
+ *   plusOne([9, 9])        ->  [1, 0, 0]   // the result is LONGER
+ *   plusOne([0])           ->  [1]         // the only legal leading zero
+ *   plusOne([9])           ->  [1, 0]      // a single 9 grows the array
+ *   plusOne([1, 9, 9])     ->  [2, 0, 0]   // the carry stops partway
  *
  * EDGE CASES
  *   - All nines grows the array by one digit.

@@ -15,6 +15,9 @@
  *   evalRPN(["2", "1", "+", "3", "*"])       ->  9    // ((2 + 1) * 3)
  *   evalRPN(["4", "13", "5", "/", "+"])      ->  6    // (4 + (13 / 5))
  *   evalRPN(["-7", "2", "/"])                ->  -3   // truncates toward zero, not -4
+ *   evalRPN(["5"])                           ->  5    // a lone operand
+ *   evalRPN(["3", "4", "-"])                 ->  -1   // left operand is the second pop: 3 - 4
+ *   evalRPN(["4", "-2", "/", "2", "-"])      ->  -4   // negative token, then (4 / -2) - 2
  *
  * EDGE CASES
  *   - Division truncates toward ZERO — use Math.trunc, not Math.floor.

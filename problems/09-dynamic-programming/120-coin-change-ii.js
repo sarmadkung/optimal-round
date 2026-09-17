@@ -14,9 +14,12 @@
  *   All coin values are distinct.
  *
  * EXAMPLES
- *   change(5, [1, 2, 5])  ->  4   // 5, 2+2+1, 2+1+1+1, 1x5
- *   change(3, [2])        ->  0
- *   change(0, [7])        ->  1   // the empty combination
+ *   change(5, [1, 2, 5])    ->  4   // 5, 2+2+1, 2+1+1+1, 1x5
+ *   change(3, [2])          ->  0
+ *   change(0, [7])          ->  1   // the empty combination
+ *   change(1, [2])          ->  0   // smallest unreachable amount
+ *   change(4, [1, 2])       ->  3   // 1x4, 2+1+1, 2+2
+ *   change(11, [1, 5, 10])  ->  4
  *
  * EDGE CASES
  *   - Amount 0 has exactly one combination — take nothing.

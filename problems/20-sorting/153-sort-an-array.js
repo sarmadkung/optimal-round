@@ -11,9 +11,12 @@
  *   -5 * 10^4 <= nums[i] <= 5 * 10^4
  *
  * EXAMPLES
- *   sortArray([5, 2, 3, 1])     ->  [1, 2, 3, 5]
- *   sortArray([5, 1, 1, 2, 0, 0]) ->  [0, 0, 1, 1, 2, 5]
- *   sortArray([1])              ->  [1]
+ *   sortArray([5, 2, 3, 1])        ->  [1, 2, 3, 5]
+ *   sortArray([5, 1, 1, 2, 0, 0])  ->  [0, 0, 1, 1, 2, 5]
+ *   sortArray([1])                 ->  [1]   // single element
+ *   sortArray([1, 2, 3, 4])        ->  [1, 2, 3, 4]   // already sorted
+ *   sortArray([4, 3, 2, 1])        ->  [1, 2, 3, 4]   // reverse sorted
+ *   sortArray([-5, 3, -5, 0, 2])   ->  [-5, -5, 0, 2, 3]   // negatives, zero and duplicates
  *
  * EDGE CASES
  *   - Duplicates must be preserved, not collapsed.

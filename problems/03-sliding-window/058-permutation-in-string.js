@@ -11,9 +11,12 @@
  *   Both consist of lowercase English letters.
  *
  * EXAMPLES
- *   checkInclusion("ab", "eidbaooo")  ->  true   // "ba"
- *   checkInclusion("ab", "eidboaoo")  ->  false
- *   checkInclusion("adc", "dcda")     ->  true
+ *   checkInclusion("ab", "eidbaooo")       ->  true   // "ba"
+ *   checkInclusion("ab", "eidboaoo")       ->  false
+ *   checkInclusion("adc", "dcda")          ->  true
+ *   checkInclusion("a", "a")               ->  true   // smallest input
+ *   checkInclusion("ab", "a")              ->  false   // s1 longer than s2
+ *   checkInclusion("abc", "ccccbbbbaaaa")  ->  false   // all letters present, never contiguous
  *
  * EDGE CASES
  *   - s1 longer than s2 — immediately false.

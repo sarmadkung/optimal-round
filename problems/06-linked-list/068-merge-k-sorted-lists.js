@@ -18,8 +18,11 @@
  *
  * EXAMPLES
  *   mergeKLists([1 -> 4 -> 5, 1 -> 3 -> 4, 2 -> 6])  ->  1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6
- *   mergeKLists([])                                   ->  null
- *   mergeKLists([null])                               ->  null
+ *   mergeKLists([])                                  ->  null
+ *   mergeKLists([null])                              ->  null
+ *   mergeKLists([1 -> 2 -> 3])                       ->  1 -> 2 -> 3   // a single list, as-is
+ *   mergeKLists([null, null, null])                  ->  null   // every list empty
+ *   mergeKLists([-2 -> 0, -1, null])                 ->  -2 -> -1 -> 0   // negatives, one empty
  *
  * EDGE CASES
  *   - An empty array of lists, or lists that are themselves empty.

@@ -17,8 +17,12 @@
  *   test runner builds a real tree from that array before calling your function.
  *
  * EXAMPLES
- *   buildTree([3, 9, 20, 15, 7], [9, 3, 15, 20, 7])  ->  [3, 9, 20, null, null, 15, 7]
- *   buildTree([-1], [-1])                            ->  [-1]
+ *   buildTree([3, 9, 20, 15, 7], [9, 3, 15, 20, 7])          ->  [3, 9, 20, null, null, 15, 7]
+ *   buildTree([-1], [-1])                                    ->  [-1]
+ *   buildTree([1, 2], [2, 1])                                ->  [1, 2]   // two nodes, leaning left
+ *   buildTree([1, 2], [1, 2])                                ->  [1, null, 2]   // leaning right
+ *   buildTree([1, 2, 3, 4], [4, 3, 2, 1])                    ->  [1, 2, null, 3, null, 4]   // skewed
+ *   buildTree([1, 2, 4, 5, 3, 6, 7], [4, 2, 5, 1, 6, 3, 7])  ->  [1, 2, 3, 4, 5, 6, 7]   // balanced
  *
  * EDGE CASES
  *   - A single node.

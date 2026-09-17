@@ -12,9 +12,12 @@
  *   -10^7 <= k <= 10^7
  *
  * EXAMPLES
- *   subarraySum([1, 1, 1], 2)     ->  2   // two overlapping [1,1]
- *   subarraySum([1, 2, 3], 3)     ->  2   // [1,2] and [3]
- *   subarraySum([1, -1, 0], 0)    ->  3
+ *   subarraySum([1, 1, 1], 2)                  ->  2   // two overlapping [1,1]
+ *   subarraySum([1, 2, 3], 3)                  ->  2   // [1,2] and [3]
+ *   subarraySum([1, -1, 0], 0)                 ->  3
+ *   subarraySum([1], 1)                        ->  1   // shortest allowed input
+ *   subarraySum([0, 0, 0], 0)                  ->  6   // every one of the 6 subarrays sums to 0
+ *   subarraySum([3, 4, 7, 2, -3, 1, 4, 2], 7)  ->  4   // negatives rule out a sliding window
  *
  * EDGE CASES
  *   - Zeros create extra valid subarrays.

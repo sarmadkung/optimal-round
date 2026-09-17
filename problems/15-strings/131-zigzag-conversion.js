@@ -14,7 +14,10 @@
  * EXAMPLES
  *   convert("PAYPALISHIRING", 3)  ->  "PAHNAPLSIIGYIR"
  *   convert("PAYPALISHIRING", 4)  ->  "PINALSIGYAHRPI"
- *   convert("AB", 1)              ->  "AB"   // one row is unchanged
+ *   convert("AB", 1)              ->  "AB"        // one row is unchanged
+ *   convert("ABC", 5)             ->  "ABC"       // numRows >= s.length is unchanged
+ *   convert("ABCD", 2)            ->  "ACBD"
+ *   convert("ABCDEFG", 4)         ->  "AGBFCED"
  *
  * EDGE CASES
  *   - numRows = 1 returns the input unchanged.

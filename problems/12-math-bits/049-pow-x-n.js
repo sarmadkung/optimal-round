@@ -12,9 +12,12 @@
  *   -10^4 <= x^n <= 10^4
  *
  * EXAMPLES
- *   myPow(2.00000, 10)   ->  1024.00000
- *   myPow(2.10000, 3)    ->  9.26100
- *   myPow(2.00000, -2)   ->  0.25000  // 1 / 2^2
+ *   myPow(2.00000, 10)           ->  1024.00000
+ *   myPow(2.10000, 3)            ->  9.26100
+ *   myPow(2.00000, -2)           ->  0.25000    // 1 / 2^2
+ *   myPow(2.00000, 0)            ->  1.00000    // any x to the 0 is 1
+ *   myPow(-2.00000, 3)           ->  -8.00000   // a negative base keeps its sign
+ *   myPow(1.00000, -2147483648)  ->  1.00000    // n = -2^31, the negation edge case
  *
  * EDGE CASES
  *   - n = 0 returns 1 for any x.

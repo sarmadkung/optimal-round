@@ -15,6 +15,9 @@
  *   findTargetSumWays([1, 1, 1, 1, 1], 3)  ->  5
  *   findTargetSumWays([1], 1)              ->  1
  *   findTargetSumWays([1], 2)              ->  0
+ *   findTargetSumWays([0], 0)              ->  2   // +0 and -0 are distinct
+ *   findTargetSumWays([1, 2, 1], 0)        ->  2   // +1-2+1 and -1+2-1
+ *   findTargetSumWays([1, 2, 3, 4], 11)    ->  0   // target beyond the total sum
  *
  * EDGE CASES
  *   - Zeros double the count — +0 and -0 are distinct assignments.

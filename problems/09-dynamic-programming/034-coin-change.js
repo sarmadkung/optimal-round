@@ -13,9 +13,12 @@
  *   0 <= amount <= 10^4
  *
  * EXAMPLES
- *   coinChange([1, 2, 5], 11)  ->  3   // 5 + 5 + 1
- *   coinChange([2], 3)         ->  -1
- *   coinChange([1], 0)         ->  0
+ *   coinChange([1, 2, 5], 11)      ->  3    // 5 + 5 + 1
+ *   coinChange([2], 3)             ->  -1
+ *   coinChange([1], 0)             ->  0
+ *   coinChange([1, 3, 4], 6)       ->  2    // 3 + 3; greedy 4+1+1 would give 3
+ *   coinChange([3, 7], 11)         ->  -1   // no combination reaches 11
+ *   coinChange([2, 5, 10, 1], 27)  ->  4    // 10 + 10 + 5 + 2
  *
  * EDGE CASES
  *   - Amount 0 needs 0 coins.

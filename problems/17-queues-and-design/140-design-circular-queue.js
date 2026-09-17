@@ -23,10 +23,13 @@
  *
  * EXAMPLES
  *   const q = new MyCircularQueue(3);
- *   q.enQueue(1)  ->  true
+ *   q.Front()                   ->  -1     // empty queue
+ *   q.enQueue(1)                ->  true
  *   q.enQueue(2); q.enQueue(3);
- *   q.enQueue(4)  ->  false   // full
- *   q.deQueue();  q.enQueue(4)  ->  true   // space reused
+ *   q.enQueue(4)                ->  false  // full
+ *   q.deQueue();  q.enQueue(4)  ->  true   // space reused, the index wraps to slot 0
+ *   q.Front()                   ->  2
+ *   q.Rear()                    ->  4
  *
  * EDGE CASES
  *   - Front and Rear on an empty queue return -1.

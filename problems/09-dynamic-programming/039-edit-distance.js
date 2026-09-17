@@ -11,9 +11,12 @@
  *   Both consist of lowercase English letters.
  *
  * EXAMPLES
- *   minDistance("horse", "ros")    ->  3
+ *   minDistance("horse", "ros")            ->  3
  *   minDistance("intention", "execution")  ->  5
- *   minDistance("", "abc")         ->  3  // three inserts
+ *   minDistance("", "abc")                 ->  3   // three inserts
+ *   minDistance("abc", "")                 ->  3   // three deletes
+ *   minDistance("abc", "abc")              ->  0   // already equal
+ *   minDistance("kitten", "sitting")       ->  3   // replace, replace, insert
  *
  * EDGE CASES
  *   - Either string empty — the answer is the other's length.

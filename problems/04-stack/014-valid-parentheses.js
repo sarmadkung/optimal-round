@@ -15,6 +15,8 @@
  *   isValid("()[]{}")  ->  true
  *   isValid("(]")      ->  false
  *   isValid("([)]")    ->  false  // wrong nesting order
+ *   isValid("(")       ->  false  // odd length; stack still non-empty at the end
+ *   isValid("())")     ->  false  // closer with an empty stack
  *
  * EDGE CASES
  *   - Odd-length strings can never be valid.

@@ -12,8 +12,13 @@
  *   -2^31 <= matrix[i][j] <= 2^31 - 1
  *
  * EXAMPLES
- *   setZeroes([[1,1,1],[1,0,1],[1,1,1]])  ->  [[1,0,1],[0,0,0],[1,0,1]]
+ *   The matrix is mutated in place; the result shown is the matrix afterwards.
+ *   setZeroes([[1,1,1],[1,0,1],[1,1,1]])        ->  [[1,0,1],[0,0,0],[1,0,1]]
  *   setZeroes([[0,1,2,0],[3,4,5,2],[1,3,1,5]])  ->  [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
+ *   setZeroes([[1]])                            ->  [[1]]            // 1x1, no zero
+ *   setZeroes([[0]])                            ->  [[0]]            // 1x1, zero
+ *   setZeroes([[1,2],[3,0]])                    ->  [[1,0],[0,0]]
+ *   setZeroes([[0,0],[0,0]])                    ->  [[0,0],[0,0]]    // already all zeroes
  *
  * EDGE CASES
  *   - A matrix that is already all zeroes.

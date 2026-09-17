@@ -13,9 +13,12 @@
  *   All values are unique.
  *
  * EXAMPLES
- *   missingNumber([3, 0, 1])           ->  2
- *   missingNumber([0, 1])              ->  2   // the missing one can be n itself
- *   missingNumber([9,6,4,2,3,5,7,0,1]) ->  8
+ *   missingNumber([3, 0, 1])            ->  2
+ *   missingNumber([0, 1])               ->  2   // the missing one can be n itself
+ *   missingNumber([9,6,4,2,3,5,7,0,1])  ->  8
+ *   missingNumber([0])                  ->  1   // n = 1, the top of the range is gone
+ *   missingNumber([1])                  ->  0   // n = 1, 0 is the one missing
+ *   missingNumber([2, 0])               ->  1   // missing from the middle
  *
  * EDGE CASES
  *   - The missing value may be 0 or n, at either end of the range.

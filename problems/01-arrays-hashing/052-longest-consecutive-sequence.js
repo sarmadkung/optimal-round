@@ -13,9 +13,12 @@
  *   Your solution must run in O(n) time.
  *
  * EXAMPLES
- *   longestConsecutive([100, 4, 200, 1, 3, 2])  ->  4   // [1,2,3,4]
- *   longestConsecutive([0,3,7,2,5,8,4,6,0,1])   ->  9
- *   longestConsecutive([])                      ->  0
+ *   longestConsecutive([100, 4, 200, 1, 3, 2])               ->  4   // [1,2,3,4]
+ *   longestConsecutive([0,3,7,2,5,8,4,6,0,1])                ->  9
+ *   longestConsecutive([])                                   ->  0   // empty array
+ *   longestConsecutive([5])                                  ->  1   // single element
+ *   longestConsecutive([1, 2, 0, 1])                         ->  3   // the duplicate 1 does not inflate [0,1,2]
+ *   longestConsecutive([9, 1, 4, 7, 3, -1, 0, 5, 8, -1, 6])  ->  7   // [3..9] beats [-1,0,1]
  *
  * EDGE CASES
  *   - Empty array returns 0.
@@ -30,10 +33,15 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Hash set, count each run only from its starting number
+// 1. Put every number in a set so lookups are instant and duplicates disappear.
+// 2. A number starts a run only when num - 1 is missing from the set.
+// 3. From each start, count upward while the next number exists.
+// Counting only from the starts is what keeps this O(n) overall, space O(n).
 function longestConsecutive(nums) {
   // HashSet Technique
-  // we convert array into set then check for each item in set wether it has onward sequence
-  // if has onward sequence then count them in case it has backward sequence we skip and move to next item
+  // we convert array into set then check for each item in set whether it starts a sequence
+  // if it starts one we count forward, otherwise we skip it and move to the next item
   let uniqueNums = new Set(nums);
   let longest = 0;
   // loop through set, for of is best for our case

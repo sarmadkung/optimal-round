@@ -12,9 +12,12 @@
  *   0 <= cost[i] <= 999
  *
  * EXAMPLES
- *   minCostClimbingStairs([10, 15, 20])              ->  15  // start at 1, pay 15, jump 2
- *   minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]) ->  6
- *   minCostClimbingStairs([0, 0])                    ->  0
+ *   minCostClimbingStairs([10, 15, 20])                 ->  15   // start at 1, pay 15, jump 2
+ *   minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1])  ->  6
+ *   minCostClimbingStairs([0, 0])                       ->  0
+ *   minCostClimbingStairs([5, 9])                       ->  5    // shortest input — start at 0, jump 2
+ *   minCostClimbingStairs([2, 2, 2, 2])                 ->  4
+ *   minCostClimbingStairs([1, 2, 3, 4, 5, 6])           ->  9    // 1 + 3 + 5, the last step unpaid
  *
  * EDGE CASES
  *   - You may start at index 0 OR index 1 — both are free to enter.

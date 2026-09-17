@@ -19,9 +19,14 @@
  * EXAMPLES
  *   const m = new MyHashMap();
  *   m.put(1, 1); m.put(2, 2);
- *   m.get(1)  ->  1
- *   m.get(3)  ->  -1
- *   m.remove(2); m.get(2)  ->  -1
+ *   m.get(1)                ->  1
+ *   m.get(3)                ->  -1   // an absent key returns -1, not undefined
+ *   m.put(1, 10); m.get(1)  ->  10   // put on an existing key updates
+ *   m.remove(2); m.get(2)   ->  -1
+ *   m.remove(99);                    // removing an absent key is a no-op
+ *   m.put(0, 0); m.get(0)   ->  0    // 0 is a legal key and a legal value
+ *   m.put(1000000, 7);
+ *   m.get(1000000)          ->  7    // the largest permitted key
  *
  * EDGE CASES
  *   - A missing key returns -1, not undefined.

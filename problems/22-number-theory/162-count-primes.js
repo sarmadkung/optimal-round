@@ -9,9 +9,12 @@
  *   0 <= n <= 5 * 10^6
  *
  * EXAMPLES
- *   countPrimes(10)  ->  4   // 2, 3, 5, 7
- *   countPrimes(0)   ->  0
- *   countPrimes(2)   ->  0   // strictly less than n
+ *   countPrimes(10)   ->  4   // 2, 3, 5, 7
+ *   countPrimes(0)    ->  0
+ *   countPrimes(2)    ->  0   // strictly less than n
+ *   countPrimes(1)    ->  0
+ *   countPrimes(3)    ->  1   // only 2
+ *   countPrimes(100)  ->  25
  *
  * EDGE CASES
  *   - n = 0, 1 and 2 all return 0.

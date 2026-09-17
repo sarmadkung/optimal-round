@@ -13,7 +13,10 @@
  * EXAMPLES
  *   trap([0,1,0,2,1,0,1,3,2,1,2,1])  ->  6
  *   trap([4, 2, 0, 3, 2, 5])         ->  9
- *   trap([3, 2, 1])                  ->  0  // strictly decreasing traps nothing
+ *   trap([3, 2, 1])                  ->  0   // strictly decreasing traps nothing
+ *   trap([5])                        ->  0   // a single bar has no walls
+ *   trap([2, 2, 2])                  ->  0   // all-equal bars trap nothing
+ *   trap([0, 3, 0, 2, 0, 4])         ->  7   // leading zero wasted; 3 + 1 + 3 trapped inside
  *
  * EDGE CASES
  *   - Monotonic arrays trap zero water.

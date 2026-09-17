@@ -13,6 +13,10 @@
  * EXAMPLES
  *   partition("aab")  ->  [["a","a","b"], ["aa","b"]]
  *   partition("a")    ->  [["a"]]
+ *   partition("ab")   ->  [["a","b"]]   // no multi-character palindrome
+ *   partition("aa")   ->  [["a","a"], ["aa"]]
+ *   partition("aba")  ->  [["a","b","a"], ["aba"]]
+ *   partition("aaa")  ->  [["a","a","a"], ["a","aa"], ["aa","a"], ["aaa"]]
  *
  * EDGE CASES
  *   - Single characters are always palindromes, so a partitioning always exists.

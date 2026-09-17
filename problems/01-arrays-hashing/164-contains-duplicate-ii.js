@@ -14,7 +14,10 @@
  * EXAMPLES
  *   containsNearbyDuplicate([1, 2, 3, 1], 3)        ->  true
  *   containsNearbyDuplicate([1, 0, 1, 1], 1)        ->  true
- *   containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2)  ->  false  // duplicates exist, but too far apart
+ *   containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2)  ->  false   // duplicates exist, but too far apart
+ *   containsNearbyDuplicate([1, 1], 1)              ->  true   // adjacent duplicates
+ *   containsNearbyDuplicate([1, 1], 0)              ->  false   // k = 0 can never succeed
+ *   containsNearbyDuplicate([1, 2, 3, 1], 10)       ->  true   // k larger than the array
  *
  * EDGE CASES
  *   - k = 0 can never succeed — the indices must be distinct.
@@ -32,6 +35,11 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Hash map of value -> the last index it was seen at
+// 1. Store the most recent index for every value.
+// 2. When a value repeats, check the gap to that stored index: a gap of k or less is a hit.
+// 3. If the gap is too big, keep the newer index, since it gives later values a better chance.
+// Time O(n), space O(n).
 function containsNearbyDuplicate(nums, k) {
 
   let seen = new Map();

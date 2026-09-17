@@ -23,10 +23,15 @@
  *
  * EXAMPLES
  *   const t = new Twitter();
+ *   t.getNewsFeed(1)                    ->  []       // no tweets yet
  *   t.postTweet(1, 5);
- *   t.getNewsFeed(1)  ->  [5]
+ *   t.getNewsFeed(1)                    ->  [5]
  *   t.follow(1, 2); t.postTweet(2, 6);
- *   t.getNewsFeed(1)  ->  [6, 5]
+ *   t.getNewsFeed(1)                    ->  [6, 5]   // most recent first
+ *   t.getNewsFeed(2)                    ->  [6]      // 2 does not follow 1
+ *   t.follow(1, 1); t.getNewsFeed(1)    ->  [6, 5]   // a self-follow adds no duplicates
+ *   t.unfollow(1, 3);                                // never followed — a harmless no-op
+ *   t.unfollow(1, 2); t.getNewsFeed(1)  ->  [5]
  *
  * EDGE CASES
  *   - A user's own tweets always appear in their feed, followed or not.

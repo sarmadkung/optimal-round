@@ -11,9 +11,12 @@
  *   0 <= nums[i] <= 1000
  *
  * EXAMPLES
- *   rob([2, 3, 2])     ->  3   // cannot take both 2s, they are adjacent
- *   rob([1, 2, 3, 1])  ->  4
- *   rob([1, 2, 3])     ->  3
+ *   rob([2, 3, 2])          ->  3     // cannot take both 2s, they are adjacent
+ *   rob([1, 2, 3, 1])       ->  4
+ *   rob([1, 2, 3])          ->  3
+ *   rob([5])                ->  5     // a single house
+ *   rob([2, 7])             ->  7     // two houses — take the larger
+ *   rob([1, 3, 1, 3, 100])  ->  103   // houses 1 and 4 are not adjacent
  *
  * EDGE CASES
  *   - A single house — the circle rule cannot apply.

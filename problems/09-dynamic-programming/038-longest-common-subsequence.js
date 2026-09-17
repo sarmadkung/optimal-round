@@ -11,9 +11,12 @@
  *   Both consist of lowercase English characters.
  *
  * EXAMPLES
- *   longestCommonSubsequence("abcde", "ace")  ->  3  // "ace"
- *   longestCommonSubsequence("abc", "abc")    ->  3
- *   longestCommonSubsequence("abc", "def")    ->  0
+ *   longestCommonSubsequence("abcde", "ace")        ->  3   // "ace"
+ *   longestCommonSubsequence("abc", "abc")          ->  3
+ *   longestCommonSubsequence("abc", "def")          ->  0
+ *   longestCommonSubsequence("a", "a")              ->  1   // shortest possible inputs
+ *   longestCommonSubsequence("abcdefg", "gfedcba")  ->  1   // reversed — only one char lines up
+ *   longestCommonSubsequence("aaa", "aa")           ->  2   // duplicates
  *
  * EDGE CASES
  *   - No characters in common.

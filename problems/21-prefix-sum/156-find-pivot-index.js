@@ -15,6 +15,9 @@
  *   pivotIndex([1, 7, 3, 6, 5, 6])  ->  3
  *   pivotIndex([1, 2, 3])           ->  -1
  *   pivotIndex([2, 1, -1])          ->  0   // empty left side sums to 0
+ *   pivotIndex([1])                 ->  0   // single element, both sides empty
+ *   pivotIndex([-1, 1, 0])          ->  2   // the last index qualifies the same way
+ *   pivotIndex([0, 0, 0])           ->  0   // every index qualifies — return the leftmost
  *
  * EDGE CASES
  *   - Index 0 is valid — the empty left side sums to 0.

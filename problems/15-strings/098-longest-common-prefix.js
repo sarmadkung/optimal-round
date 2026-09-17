@@ -12,9 +12,12 @@
  *   strs[i] consists of lowercase English letters.
  *
  * EXAMPLES
- *   longestCommonPrefix(["flower","flow","flight"])  ->  "fl"
- *   longestCommonPrefix(["dog","racecar","car"])     ->  ""
- *   longestCommonPrefix(["a"])                       ->  "a"
+ *   longestCommonPrefix(["flower","flow","flight"])                    ->  "fl"
+ *   longestCommonPrefix(["dog","racecar","car"])                       ->  ""
+ *   longestCommonPrefix(["a"])                                         ->  "a"
+ *   longestCommonPrefix(["ab","ab"])                                   ->  "ab"   // identical
+ *   longestCommonPrefix(["ab",""])                                     ->  ""     // "" forces ""
+ *   longestCommonPrefix(["interspecies","interstellar","interstate"])  ->  "inters"
  *
  * EDGE CASES
  *   - An empty string anywhere in the array forces an empty result.

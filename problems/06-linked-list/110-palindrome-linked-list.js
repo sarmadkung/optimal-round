@@ -18,6 +18,9 @@
  *   isPalindrome(1 -> 2 -> 2 -> 1)  ->  true
  *   isPalindrome(1 -> 2)            ->  false
  *   isPalindrome(1)                 ->  true
+ *   isPalindrome(1 -> 2 -> 1)       ->  true   // odd length, middle node skipped
+ *   isPalindrome(0 -> 0)            ->  true   // two equal nodes
+ *   isPalindrome(1 -> 0 -> 1 -> 1)  ->  false  // nearly symmetric, but not quite
  *
  * EDGE CASES
  *   - A single node is a palindrome.

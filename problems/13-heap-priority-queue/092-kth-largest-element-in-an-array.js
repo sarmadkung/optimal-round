@@ -11,9 +11,12 @@
  *   -10^4 <= nums[i] <= 10^4
  *
  * EXAMPLES
- *   findKthLargest([3, 2, 1, 5, 6, 4], 2)        ->  5
- *   findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4) ->  4
- *   findKthLargest([1], 1)                       ->  1
+ *   findKthLargest([3, 2, 1, 5, 6, 4], 2)           ->  5
+ *   findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4)  ->  4
+ *   findKthLargest([1], 1)                          ->  1
+ *   findKthLargest([3, 2, 1, 5, 6, 4], 6)           ->  1    // k = n is the minimum
+ *   findKthLargest([2, 2, 2], 2)                    ->  2    // duplicates count separately
+ *   findKthLargest([-1, -5, -3], 1)                 ->  -1   // negatives are allowed
  *
  * EDGE CASES
  *   - Duplicates count separately — this is positional, not distinct.

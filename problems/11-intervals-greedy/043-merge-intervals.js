@@ -12,8 +12,11 @@
  *
  * EXAMPLES
  *   merge([[1,3],[2,6],[8,10],[15,18]])  ->  [[1,6],[8,10],[15,18]]
- *   merge([[1,4],[4,5]])                 ->  [[1,5]]  // touching counts as overlapping
- *   merge([[1,4],[2,3]])                 ->  [[1,4]]  // fully contained
+ *   merge([[1,4],[4,5]])                 ->  [[1,5]]         // touching counts as overlapping
+ *   merge([[1,4],[2,3]])                 ->  [[1,4]]         // fully contained
+ *   merge([[1,4]])                       ->  [[1,4]]         // single interval, nothing to merge
+ *   merge([[5,6],[1,2]])                 ->  [[1,2],[5,6]]   // unsorted input, fully disjoint
+ *   merge([[1,4],[0,4]])                 ->  [[0,4]]         // shared end, later start comes first
  *
  * EDGE CASES
  *   - Intervals touching at an endpoint merge.

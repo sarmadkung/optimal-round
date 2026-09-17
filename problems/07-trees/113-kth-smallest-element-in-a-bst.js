@@ -16,9 +16,12 @@
  *   test runner builds a real tree from that array before calling your function.
  *
  * EXAMPLES
- *   kthSmallest([3, 1, 4, null, 2], k = 1)          ->  1
- *   kthSmallest([5, 3, 6, 2, 4, null, null, 1], k = 3) ->  3
- *   kthSmallest([1], k = 1)                         ->  1
+ *   kthSmallest([3, 1, 4, null, 2], k = 1)              ->  1
+ *   kthSmallest([5, 3, 6, 2, 4, null, null, 1], k = 3)  ->  3
+ *   kthSmallest([1], k = 1)                             ->  1
+ *   kthSmallest([3, 1, 4, null, 2], k = 4)              ->  4   // k = n gives the maximum
+ *   kthSmallest([2, 1, 3], k = 2)                       ->  2   // perfectly balanced BST
+ *   kthSmallest([1, null, 2, null, 3], k = 3)           ->  3   // right-skewed BST
  *
  * EDGE CASES
  *   - k is 1-indexed, so k = 1 is the minimum.

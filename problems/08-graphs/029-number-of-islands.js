@@ -12,8 +12,11 @@
  *
  * EXAMPLES
  *   numIslands([["1","1","0"],["1","1","0"],["0","0","1"]])  ->  2
- *   numIslands([["0"]])  ->  0
- *   numIslands([["1"]])  ->  1
+ *   numIslands([["0"]])                                      ->  0
+ *   numIslands([["1"]])                                      ->  1
+ *   numIslands([["1","1"],["1","1"]])                        ->  1   // all land, one island
+ *   numIslands([["1","0"],["0","1"]])                        ->  2   // diagonals do not connect
+ *   numIslands([["1","0","1","0","1"]])                      ->  3   // a single row
  *
  * EDGE CASES
  *   - A grid of all water, or all land.

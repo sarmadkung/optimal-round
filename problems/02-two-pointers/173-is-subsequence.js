@@ -15,6 +15,9 @@
  *   isSubsequence("abc", "ahbgdc")  ->  true
  *   isSubsequence("axc", "ahbgdc")  ->  false
  *   isSubsequence("", "abc")        ->  true   // the empty string is a subsequence of anything
+ *   isSubsequence("", "")           ->  true   // both empty
+ *   isSubsequence("ba", "abc")      ->  false   // order matters
+ *   isSubsequence("abc", "ab")      ->  false   // s longer than t can never match
  *
  * EDGE CASES
  *   - s longer than t can never match.
@@ -36,6 +39,11 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Two pointers, one per string
+// 1. Walk through t one character at a time.
+// 2. Move the s pointer forward only when the characters match.
+// 3. If the s pointer reaches the end, every character of s was found in order.
+// Time O(n) over t, space O(1).
 function isSubsequence(s, t) {
   if(s===""){
     return true;

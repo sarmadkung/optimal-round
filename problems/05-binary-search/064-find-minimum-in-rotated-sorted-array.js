@@ -15,6 +15,9 @@
  *   findMin([3, 4, 5, 1, 2])        ->  1
  *   findMin([4, 5, 6, 7, 0, 1, 2])  ->  0
  *   findMin([11, 13, 15, 17])       ->  11  // zero rotation
+ *   findMin([1])                    ->  1   // single element
+ *   findMin([2, 1])                 ->  1   // smallest rotated case
+ *   findMin([-3, -2, -1])           ->  -3  // negatives, zero rotation
  *
  * EDGE CASES
  *   - A rotation of zero — the minimum is the first element.

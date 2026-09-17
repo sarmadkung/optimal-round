@@ -19,6 +19,9 @@
  *   maxDepth([3, 9, 20, null, null, 15, 7])  ->  3
  *   maxDepth([1, null, 2])                   ->  2
  *   maxDepth(null)                           ->  0
+ *   maxDepth([1])                            ->  1   // a single node has depth 1
+ *   maxDepth([1, 2, 3, 4, 5, 6, 7])          ->  3   // perfectly balanced
+ *   maxDepth([1, 2, null, 3, null, 4])       ->  4   // fully left-skewed, depth equals n
  *
  * EDGE CASES
  *   - Empty tree returns 0, not 1.

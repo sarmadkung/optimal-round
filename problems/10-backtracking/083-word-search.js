@@ -14,9 +14,12 @@
  *   board and word consist of English letters.
  *
  * EXAMPLES
- *   exist([["A","B"],["C","D"]], "AB")   ->  true
- *   exist([["A","B"],["C","D"]], "ABD")  ->  false  // B and D are adjacent, A and B... trace it
- *   exist([["A"]], "A")                  ->  true
+ *   exist([["A","B"],["C","D"]], "AB")     ->  true
+ *   exist([["A","B"],["C","D"]], "ABD")    ->  true   // A -> B then down to D
+ *   exist([["A"]], "A")                    ->  true
+ *   exist([["A"]], "B")                    ->  false   // no matching cell
+ *   exist([["A","B"],["C","D"]], "AD")     ->  false   // A and D are only diagonal
+ *   exist([["A","A"],["A","A"]], "AAAAA")  ->  false   // longer than the cell count
  *
  * EDGE CASES
  *   - A cell cannot be reused within one path.

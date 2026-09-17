@@ -12,8 +12,12 @@
  *   The answer is guaranteed to be unique.
  *
  * EXAMPLES
- *   topKFrequent([1, 1, 1, 2, 2, 3], 2)  ->  [1, 2]
- *   topKFrequent([1], 1)                 ->  [1]
+ *   topKFrequent([1, 1, 1, 2, 2, 3], 2)    ->  [1, 2]
+ *   topKFrequent([1], 1)                   ->  [1]   // single element
+ *   topKFrequent([1, 2], 2)                ->  [1, 2]   // every value ties at count 1; any order
+ *   topKFrequent([4, 4, 4, 4], 1)          ->  [4]   // all identical
+ *   topKFrequent([-1, -1, 2, 2, 2, 3], 2)  ->  [2, -1]   // negatives are valid keys; any order
+ *   topKFrequent([1, 1, 2, 2, 3], 3)       ->  [1, 2, 3]   // k === number of distinct values
  *
  * EDGE CASES
  *   - k equals the number of distinct elements — return them all.
@@ -29,6 +33,12 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Count in a hash map, then sort by count
+// 1. Count how many times each number appears.
+// 2. Sort the map entries by count, highest first.
+// 3. Take the first k keys.
+// Time O(n log n) because of the sort, space O(n).
+// The O(n) version is bucket sort: index an array by count instead of sorting.
 function topKFrequent(nums, k) {
   let frequent = new Map();
   let result = [];

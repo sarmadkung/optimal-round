@@ -13,7 +13,10 @@
  * EXAMPLES
  *   isAnagram("anagram", "nagaram")  ->  true
  *   isAnagram("rat", "car")          ->  false
- *   isAnagram("a", "ab")             ->  false  // different lengths
+ *   isAnagram("a", "ab")             ->  false   // different lengths
+ *   isAnagram("a", "a")              ->  true   // shortest possible input
+ *   isAnagram("ab", "ba")            ->  true   // pure reordering
+ *   isAnagram("aacc", "ccac")        ->  false   // same letter set, different counts
  *
  * EDGE CASES
  *   - Character COUNTS must match, not just the set of characters.
@@ -32,6 +35,10 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Sort both strings and compare
+// 1. Anagrams hold the same letters, so once sorted they are the same string.
+// Time O(n log n) for the sorting, space O(n).
+// Counting letters in a map instead would be O(n).
 function isAnagram(s, t) {
  let orderedT = t.split("").sort().join("")
  let orderedS = s.split("").sort().join("")

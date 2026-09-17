@@ -19,6 +19,9 @@
  *   hasCycle(3 -> 2 -> 0 -> -4 -> back to node 2)  ->  true
  *   hasCycle(1 -> 2 -> back to node 1)             ->  true
  *   hasCycle(1)                                    ->  false
+ *   hasCycle(null)                                 ->  false  // empty list
+ *   hasCycle(1 -> back to node 1)                  ->  true   // a node pointing at itself
+ *   hasCycle(1 -> 1 -> 1)                          ->  false  // repeated values, no cycle
  *
  * EDGE CASES
  *   - Empty list and single node without a cycle.

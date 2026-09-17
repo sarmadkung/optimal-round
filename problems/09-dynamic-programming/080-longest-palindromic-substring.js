@@ -11,9 +11,12 @@
  *   s consists of digits and English letters.
  *
  * EXAMPLES
- *   longestPalindrome("babad")  ->  "bab"   ("aba" is also valid)
- *   longestPalindrome("cbbd")   ->  "bb"
- *   longestPalindrome("a")      ->  "a"
+ *   longestPalindrome("babad")             ->  "bab"    // "aba" is also valid
+ *   longestPalindrome("cbbd")              ->  "bb"
+ *   longestPalindrome("a")                 ->  "a"
+ *   longestPalindrome("ac")                ->  "a"      // any single char is acceptable
+ *   longestPalindrome("aaaa")              ->  "aaaa"   // the whole string
+ *   longestPalindrome("forgeeksskeegfor")  ->  "geeksskeeg"
  *
  * EDGE CASES
  *   - Single characters are palindromes.

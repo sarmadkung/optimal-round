@@ -23,8 +23,11 @@
  *
  * EXAMPLES
  *   serialize([1, 2, 3, null, null, 4, 5])  ->  e.g. "1,2,#,#,3,4,#,#,5,#,#"
- *   deserialize(that string)  ->  a tree identical to the original
- *   serialize(null)  ->  a string that deserializes back to null
+ *   deserialize(that string)                ->  a tree identical to the original
+ *   serialize(null)                         ->  a string that deserializes back to null
+ *   serialize([1])                          ->  e.g. "1,#,#"   // a single node
+ *   serialize([1, null, 2])                 ->  e.g. "1,#,2,#,#"   // right child only
+ *   serialize([-1, null, -2])               ->  e.g. "-1,#,-2,#,#"   // '-' cannot be a separator
  *
  * EDGE CASES
  *   - An empty tree must round-trip correctly.

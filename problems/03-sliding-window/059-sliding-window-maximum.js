@@ -12,9 +12,12 @@
  *   1 <= k <= nums.length
  *
  * EXAMPLES
- *   maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3)  ->  [3, 3, 5, 5, 6, 7]
- *   maxSlidingWindow([1], 1)                  ->  [1]
- *   maxSlidingWindow([1, -1], 1)              ->  [1, -1]
+ *   maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3)         ->  [3, 3, 5, 5, 6, 7]
+ *   maxSlidingWindow([1], 1)                         ->  [1]
+ *   maxSlidingWindow([1, -1], 1)                     ->  [1, -1]
+ *   maxSlidingWindow([1,3,-1,-3,5,3,6,7], 8)         ->  [7]   // k = n gives one value
+ *   maxSlidingWindow([2, 2, 2, 2], 2)                ->  [2, 2, 2]   // all same; n - k + 1 = 3 entries
+ *   maxSlidingWindow([-7, -8, 7, 5, 7, 1, 6, 0], 4)  ->  [7, 7, 7, 7, 7]   // negatives, and a tie between equal maxima
  *
  * EDGE CASES
  *   - k = 1 returns the array unchanged.

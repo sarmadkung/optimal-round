@@ -11,9 +11,12 @@
  *   -10^9 <= nums[i] <= 10^9
  *
  * EXAMPLES
- *   majorityElement([3, 2, 3])  ->  [3]
- *   majorityElement([1])        ->  [1]
- *   majorityElement([1, 2])     ->  [1, 2]
+ *   majorityElement([3, 2, 3])           ->  [3]
+ *   majorityElement([1])                 ->  [1]   // single element
+ *   majorityElement([1, 2])              ->  [1, 2]   // any order
+ *   majorityElement([1, 2, 3])           ->  []   // each hits exactly n/3, which is not MORE than n/3
+ *   majorityElement([1, 1, 1, 2, 3, 4])  ->  [1]   // 3 of 6 is more than 6/3
+ *   majorityElement([2, 2, 1, 1, 3])     ->  [2, 1]   // the maximum of two answers; any order
  *
  * EDGE CASES
  *   - There can be at most TWO such elements — and there may be none.

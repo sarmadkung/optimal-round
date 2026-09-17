@@ -22,6 +22,10 @@
  *   const nm = new NumMatrix([[3,0,1,4,2],[5,6,3,2,1],[1,2,0,1,5]]);
  *   nm.sumRegion(1, 1, 2, 2)  ->  11
  *   nm.sumRegion(1, 2, 2, 4)  ->  12
+ *   nm.sumRegion(0, 0, 0, 0)  ->  3    // a single cell
+ *   nm.sumRegion(2, 0, 2, 4)  ->  9    // one whole row
+ *   nm.sumRegion(0, 2, 2, 2)  ->  4    // one whole column
+ *   nm.sumRegion(0, 0, 2, 4)  ->  36   // the entire matrix
  *
  * EDGE CASES
  *   - A single-cell rectangle where row1 = row2 and col1 = col2.

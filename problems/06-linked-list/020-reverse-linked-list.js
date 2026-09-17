@@ -18,6 +18,9 @@
  *   reverseList(1 -> 2 -> 3 -> 4 -> 5)  ->  5 -> 4 -> 3 -> 2 -> 1
  *   reverseList(1 -> 2)                 ->  2 -> 1
  *   reverseList(null)                   ->  null
+ *   reverseList(1)                      ->  1   // a single node is its own reverse
+ *   reverseList(-3 -> 0 -> 3)           ->  3 -> 0 -> -3   // negatives
+ *   reverseList(7 -> 7 -> 7)            ->  7 -> 7 -> 7   // duplicates look unchanged
  *
  * EDGE CASES
  *   - Empty list.

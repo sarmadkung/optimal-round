@@ -11,6 +11,9 @@
  * EXAMPLES
  *   generateParenthesis(1)  ->  ["()"]
  *   generateParenthesis(3)  ->  ["((()))","(()())","(())()","()(())","()()()"]
+ *   generateParenthesis(2)  ->  ["(())","()()"]   // any order
+ *   generateParenthesis(4)  ->  14 strings   // the 4th Catalan number
+ *   generateParenthesis(8)  ->  1430 strings   // the largest allowed n
  *
  * EDGE CASES
  *   - Every result has exactly 2n characters.

@@ -13,8 +13,12 @@
  *   -10^9 <= target <= 10^9
  *
  * EXAMPLES
- *   fourSum([1, 0, -1, 0, -2, 2], 0)  ->  [[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]
- *   fourSum([2, 2, 2, 2, 2], 8)       ->  [[2, 2, 2, 2]]
+ *   fourSum([1, 0, -1, 0, -2, 2], 0)   ->  [[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]
+ *   fourSum([2, 2, 2, 2, 2], 8)        ->  [[2, 2, 2, 2]]
+ *   fourSum([1, 2, 3], 6)              ->  []   // fewer than four elements
+ *   fourSum([0, 0, 0, 0], 0)           ->  [[0, 0, 0, 0]]   // exactly four, all zero
+ *   fourSum([-3, -1, 0, 2, 4, 5], 2)   ->  [[-3, -1, 2, 4]]   // negatives, one quadruplet
+ *   fourSum([1, 1, 1, 1, 2, 2, 2], 6)  ->  [[1, 1, 2, 2]]   // heavy duplicates, still one result
  *
  * EDGE CASES
  *   - Fewer than four elements returns [].

@@ -16,9 +16,12 @@
  *   test runner builds a real tree from that array before calling your function.
  *
  * EXAMPLES
- *   invertTree([4,2,7,1,3,6,9])  ->  [4,7,2,9,6,3,1]
- *   invertTree([2,1,3])          ->  [2,3,1]
- *   invertTree(null)             ->  null
+ *   invertTree([4,2,7,1,3,6,9])    ->  [4,7,2,9,6,3,1]
+ *   invertTree([2,1,3])            ->  [2,3,1]
+ *   invertTree(null)               ->  null
+ *   invertTree([1])                ->  [1]   // a single node is its own inverse
+ *   invertTree([1,2])              ->  [1,null,2]   // the lone left child moves right
+ *   invertTree([1,null,2,null,3])  ->  [1,2,null,3]   // a right-skewed chain becomes left-skewed
  *
  * EDGE CASES
  *   - Empty tree.

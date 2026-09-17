@@ -16,6 +16,9 @@
  *   leastInterval(["A","A","A","B","B","B"], 2)  ->  8   // A B idle A B idle A B
  *   leastInterval(["A","A","A","B","B","B"], 0)  ->  6   // no cooldown
  *   leastInterval(["A","A","A","A"], 2)          ->  10
+ *   leastInterval(["A"], 0)                      ->  1   // a single task
+ *   leastInterval(["A","B","C","D"], 2)          ->  4   // all distinct, never idle
+ *   leastInterval(["A","A","B","B"], 2)          ->  5   // a tie for most frequent shrinks idling
  *
  * EDGE CASES
  *   - n = 0 means the answer is simply the task count.

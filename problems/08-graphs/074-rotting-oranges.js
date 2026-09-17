@@ -13,8 +13,11 @@
  *
  * EXAMPLES
  *   orangesRotting([[2,1,1],[1,1,0],[0,1,1]])  ->  4
- *   orangesRotting([[2,1,1],[0,1,1],[1,0,1]])  ->  -1  // one is unreachable
+ *   orangesRotting([[2,1,1],[0,1,1],[1,0,1]])  ->  -1   // one is unreachable
  *   orangesRotting([[0,2]])                    ->  0   // nothing fresh
+ *   orangesRotting([[0]])                      ->  0   // no oranges at all
+ *   orangesRotting([[1]])                      ->  -1   // fresh, and nothing can ever rot it
+ *   orangesRotting([[2,2],[1,1]])              ->  1   // both rot in the same minute
  *
  * EDGE CASES
  *   - No fresh oranges at the start returns 0, not -1.

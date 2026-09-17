@@ -11,9 +11,12 @@
  *   The answer is guaranteed to be at most 2 * 10^9.
  *
  * EXAMPLES
- *   uniquePaths(3, 7)  ->  28
- *   uniquePaths(3, 2)  ->  3
- *   uniquePaths(1, 1)  ->  1
+ *   uniquePaths(3, 7)    ->  28
+ *   uniquePaths(3, 2)    ->  3
+ *   uniquePaths(1, 1)    ->  1
+ *   uniquePaths(1, 10)   ->  1   // a single row
+ *   uniquePaths(2, 2)    ->  2   // right-down or down-right
+ *   uniquePaths(10, 10)  ->  48620
  *
  * EDGE CASES
  *   - A single row or column has exactly one path.

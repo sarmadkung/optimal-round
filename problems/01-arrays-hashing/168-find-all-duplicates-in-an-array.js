@@ -14,9 +14,12 @@
  *   You must write an algorithm that runs in O(n) time and uses only constant extra space.
  *
  * EXAMPLES
- *   findDuplicates([4, 3, 2, 7, 8, 2, 3, 1])  ->  [2, 3]
+ *   findDuplicates([4, 3, 2, 7, 8, 2, 3, 1])  ->  [2, 3]   // any order
  *   findDuplicates([1, 1, 2])                 ->  [1]
- *   findDuplicates([1])                       ->  []
+ *   findDuplicates([1])                       ->  []   // n = 1, no duplicate possible
+ *   findDuplicates([1, 1])                    ->  [1]   // smallest duplicate case
+ *   findDuplicates([1, 2, 3, 4])              ->  []   // a permutation of 1..n
+ *   findDuplicates([2, 1, 2, 1])              ->  [2, 1]   // every value duplicated; any order
  *
  * EDGE CASES
  *   - No duplicates at all returns [].

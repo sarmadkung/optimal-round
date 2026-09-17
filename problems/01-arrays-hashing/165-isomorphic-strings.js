@@ -15,8 +15,11 @@
  *
  * EXAMPLES
  *   isIsomorphic("egg", "add")      ->  true
- *   isIsomorphic("foo", "bar")      ->  false  // 'o' would need to map to both 'a' and 'r'
+ *   isIsomorphic("foo", "bar")      ->  false   // 'o' would need to map to both 'a' and 'r'
  *   isIsomorphic("paper", "title")  ->  true
+ *   isIsomorphic("a", "b")          ->  true   // shortest possible input
+ *   isIsomorphic("badc", "baba")    ->  false   // 'd' and 'c' would both map to 'b'/'a' collisions
+ *   isIsomorphic("13:00", "24:11")  ->  true   // digits and punctuation are fine
  *
  * EDGE CASES
  *   - The mapping must be one-to-one in BOTH directions: "badc" / "baba" is false.
@@ -34,10 +37,15 @@
  * ----------------------------------------------------------------------
  */
 
+// SOLUTION: Two hash maps, one for each direction
+// 1. Pair up the characters at the same position: s -> t in one map, t -> s in the other.
+// 2. If a character already has a different partner stored, the strings are not isomorphic.
+// Both directions are needed, otherwise two different characters could map onto the same one.
+// Time O(n), space O(n).
 function isIsomorphic(s, t) {
   // split into arrays
-  // create 2 maps because we need to check mapping 2 ways
-  // loop and check mapping 2 ways
+  // create 2 maps because we need to check the mapping in both directions
+  // loop and check both directions
   const firstLetters= s.split("");
   const secondLetters = t.split("");
   const fMap = new Map();
