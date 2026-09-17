@@ -30,7 +30,33 @@
  */
 
 function topKFrequent(nums, k) {
-  // TODO: your solution here
+  let frequent = new Map();
+  let result = [];
+
+  for (let i=0;i<nums.length;i++){
+    let num = nums[i];
+    let isExist = frequent.has(num);
+    if(isExist){
+      frequent.set(num,frequent.get(num)+1)
+    } else {
+      frequent.set(num,1)
+    }
+  }
+
+  let sortedMap = new Map([...frequent].sort((a,b)=>b[1]-a[1]))
+
+  let start = 0;
+  for (const [key,value] of sortedMap) {
+
+    if(start===k){
+      break;
+    }
+    result.push(key);
+    start++
+  }
+
+  return result
+
 }
 
 module.exports = { topKFrequent };

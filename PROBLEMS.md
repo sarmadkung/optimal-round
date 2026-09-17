@@ -1,11 +1,11 @@
 # All Problems
 
-19 of 178 solved. ✅ means the stub has been replaced.
+21 of 178 solved. ✅ means the stub has been replaced.
 
 By difficulty: [Easy](EASY.md) · [Medium](MEDIUM.md) · [Hard](HARD.md)
 
 
-## Arrays & Hashing  <sub>12/19</sub>
+## Arrays & Hashing  <sub>14/19</sub>
 
 | | # | Problem | Difficulty |
 |---|---|---------|------------|
@@ -14,9 +14,9 @@ By difficulty: [Easy](EASY.md) · [Medium](MEDIUM.md) · [Hard](HARD.md)
 | ✅ | 003 | [Product of Array Except Self](problems/01-arrays-hashing/003-product-of-array-except-self.js) | Medium |
 | ✅ | 004 | [Maximum Subarray](problems/01-arrays-hashing/004-maximum-subarray.js) | Medium |
 | ✅ | 005 | [Group Anagrams](problems/01-arrays-hashing/005-group-anagrams.js) | Medium |
-| ⬜ | 006 | [Top K Frequent Elements](problems/01-arrays-hashing/006-top-k-frequent-elements.js) | Medium |
+| ✅ | 006 | [Top K Frequent Elements](problems/01-arrays-hashing/006-top-k-frequent-elements.js) | Medium |
 | ✅ | 051 | [Valid Anagram](problems/01-arrays-hashing/051-valid-anagram.js) | Easy |
-| ⬜ | 052 | [Longest Consecutive Sequence](problems/01-arrays-hashing/052-longest-consecutive-sequence.js) | Medium |
+| ✅ | 052 | [Longest Consecutive Sequence](problems/01-arrays-hashing/052-longest-consecutive-sequence.js) | Medium |
 | ⬜ | 053 | [Subarray Sum Equals K](problems/01-arrays-hashing/053-subarray-sum-equals-k.js) | Medium |
 | ✅ | 101 | [Majority Element](problems/01-arrays-hashing/101-majority-element.js) | Easy |
 | ✅ | 102 | [Move Zeroes](problems/01-arrays-hashing/102-move-zeroes.js) | Easy |

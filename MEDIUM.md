@@ -1,6 +1,6 @@
 # Medium Problems
 
-4 of 112 solved.
+6 of 112 solved.
 
 The bulk of technical interviews live here. Each one asks you to RECOGNISE a
 pattern (sliding window, binary search on the answer, DP over subproblems,
@@ -11,7 +11,7 @@ topological sort) rather than invent something new.
 | ✅ | 003 | [Product of Array Except Self](problems/01-arrays-hashing/003-product-of-array-except-self.js) | Arrays & Hashing |
 | ✅ | 004 | [Maximum Subarray](problems/01-arrays-hashing/004-maximum-subarray.js) | Arrays & Hashing |
 | ✅ | 005 | [Group Anagrams](problems/01-arrays-hashing/005-group-anagrams.js) | Arrays & Hashing |
-| ⬜ | 006 | [Top K Frequent Elements](problems/01-arrays-hashing/006-top-k-frequent-elements.js) | Arrays & Hashing |
+| ✅ | 006 | [Top K Frequent Elements](problems/01-arrays-hashing/006-top-k-frequent-elements.js) | Arrays & Hashing |
 | ⬜ | 008 | [3Sum](problems/02-two-pointers/008-three-sum.js) | Two Pointers |
 | ⬜ | 009 | [Container With Most Water](problems/02-two-pointers/009-container-with-most-water.js) | Two Pointers |
 | ⬜ | 012 | [Longest Substring Without Repeating Characters](problems/03-sliding-window/012-longest-substring-without-repeating-characters.js) | Sliding Window |
@@ -37,7 +37,7 @@ topological sort) rather than invent something new.
 | ⬜ | 048 | [Reverse Integer](problems/12-math-bits/048-reverse-integer.js) | Math & Bits |
 | ⬜ | 049 | [Pow(x, n)](problems/12-math-bits/049-pow-x-n.js) | Math & Bits |
 | ⬜ | 050 | [Rotate Image](problems/12-math-bits/050-rotate-image.js) | Math & Bits |
-| ⬜ | 052 | [Longest Consecutive Sequence](problems/01-arrays-hashing/052-longest-consecutive-sequence.js) | Arrays & Hashing |
+| ✅ | 052 | [Longest Consecutive Sequence](problems/01-arrays-hashing/052-longest-consecutive-sequence.js) | Arrays & Hashing |
 | ⬜ | 053 | [Subarray Sum Equals K](problems/01-arrays-hashing/053-subarray-sum-equals-k.js) | Arrays & Hashing |
 | ✅ | 055 | [Two Sum II - Input Array Is Sorted](problems/02-two-pointers/055-two-sum-ii-input-array-is-sorted.js) | Two Pointers |
 | ⬜ | 056 | [Sort Colors](problems/02-two-pointers/056-sort-colors.js) | Two Pointers |
