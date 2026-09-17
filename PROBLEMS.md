@@ -1,6 +1,6 @@
 # All Problems
 
-16 of 178 solved. ✅ means the stub has been replaced.
+19 of 178 solved. ✅ means the stub has been replaced.
 
 By difficulty: [Easy](EASY.md) · [Medium](MEDIUM.md) · [Hard](HARD.md)
 
@@ -29,7 +29,7 @@ By difficulty: [Easy](EASY.md) · [Medium](MEDIUM.md) · [Hard](HARD.md)
 | ⬜ | 169 | [First Missing Positive](problems/01-arrays-hashing/169-first-missing-positive.js) | Hard |
 | ✅ | 170 | [Longest Palindrome](problems/01-arrays-hashing/170-longest-palindrome.js) | Easy |
 
-## Two Pointers  <sub>4/15</sub>
+## Two Pointers  <sub>7/15</sub>
 
 | | # | Problem | Difficulty |
 |---|---|---------|------------|
@@ -41,9 +41,9 @@ By difficulty: [Easy](EASY.md) · [Medium](MEDIUM.md) · [Hard](HARD.md)
 | ✅ | 055 | [Two Sum II - Input Array Is Sorted](problems/02-two-pointers/055-two-sum-ii-input-array-is-sorted.js) | Medium |
 | ⬜ | 056 | [Sort Colors](problems/02-two-pointers/056-sort-colors.js) | Medium |
 | ✅ | 171 | [Valid Palindrome II](problems/02-two-pointers/171-valid-palindrome-ii.js) | Easy |
-| ⬜ | 172 | [Squares of a Sorted Array](problems/02-two-pointers/172-squares-of-a-sorted-array.js) | Easy |
-| ⬜ | 173 | [Is Subsequence](problems/02-two-pointers/173-is-subsequence.js) | Easy |
-| ⬜ | 174 | [Reverse String](problems/02-two-pointers/174-reverse-string.js) | Easy |
+| ✅ | 172 | [Squares of a Sorted Array](problems/02-two-pointers/172-squares-of-a-sorted-array.js) | Easy |
+| ✅ | 173 | [Is Subsequence](problems/02-two-pointers/173-is-subsequence.js) | Easy |
+| ✅ | 174 | [Reverse String](problems/02-two-pointers/174-reverse-string.js) | Easy |
 | ⬜ | 175 | [3Sum Closest](problems/02-two-pointers/175-three-sum-closest.js) | Medium |
 | ⬜ | 176 | [4Sum](problems/02-two-pointers/176-four-sum.js) | Medium |
 | ⬜ | 177 | [Boats to Save People](problems/02-two-pointers/177-boats-to-save-people.js) | Medium |

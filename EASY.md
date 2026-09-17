@@ -1,6 +1,6 @@
 # Easy Problems
 
-12 of 49 solved.
+15 of 49 solved.
 
 Start here. These build the core reflexes — hash maps, two pointers, a stack, a
 single clean pass — that every harder problem is assembled from.
@@ -53,9 +53,9 @@ single clean pass — that every harder problem is assembled from.
 | ✅ | 166 | [Find All Numbers Disappeared in an Array](problems/01-arrays-hashing/166-find-all-numbers-disappeared-in-an-array.js) | Arrays & Hashing |
 | ✅ | 170 | [Longest Palindrome](problems/01-arrays-hashing/170-longest-palindrome.js) | Arrays & Hashing |
 | ✅ | 171 | [Valid Palindrome II](problems/02-two-pointers/171-valid-palindrome-ii.js) | Two Pointers |
-| ⬜ | 172 | [Squares of a Sorted Array](problems/02-two-pointers/172-squares-of-a-sorted-array.js) | Two Pointers |
-| ⬜ | 173 | [Is Subsequence](problems/02-two-pointers/173-is-subsequence.js) | Two Pointers |
-| ⬜ | 174 | [Reverse String](problems/02-two-pointers/174-reverse-string.js) | Two Pointers |
+| ✅ | 172 | [Squares of a Sorted Array](problems/02-two-pointers/172-squares-of-a-sorted-array.js) | Two Pointers |
+| ✅ | 173 | [Is Subsequence](problems/02-two-pointers/173-is-subsequence.js) | Two Pointers |
+| ✅ | 174 | [Reverse String](problems/02-two-pointers/174-reverse-string.js) | Two Pointers |
 
 ---
 

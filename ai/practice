@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# practice — run the AI problems' tests (offline, via uv).
+#
+#   ./practice 007         run one problem
+#   ./practice all         run every problem you have started
+#   ./practice all --all   include problems you have not started (they fail)
+#   ./practice list        show all problems and their state
+#   ./practice list --todo only problems not yet started
+set -euo pipefail
+cd "$(dirname "$0")"
+
+case "${1:-}" in
+  list)
+    uv run --quiet python _harness.py list "${@:2}"
+    ;;
+  all)
+    if [[ "${2:-}" == "--all" ]]; then
+      uv run --quiet pytest
+    else
+      started=$(uv run --quiet python -c "from _harness import problems; print(' '.join(f'tests/test_{p[\"num\"]}.py' for p in problems() if p['started']))")
+      if [[ -z "$started" ]]; then echo "No problems started yet. Try ./practice list"; exit 0; fi
+      # shellcheck disable=SC2086
+      uv run --quiet pytest $started
+    fi
+    ;;
+  [0-9][0-9][0-9])
+    uv run --quiet pytest "tests/test_$1.py"
+    ;;
+  *)
+    sed -n '2,8p' "$0" | sed 's/^# \{0,1\}//'
+    ;;
+esac
