@@ -8,13 +8,30 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** One pointer at each end. Look at the pair, then move the pointer whose value can
+never do better. Each move throws away that value and every remaining pair it belonged to.
+
+**The rule to remember.** Start `l` at the left end and `r` at the right. While they have not met:
+score the pair, keep it if it is what you want, otherwise move the used-up side inward.
+
+**Reach for it when** the array is sorted (or sorting is allowed), the question is about a pair,
+and a follow-up asks for O(1) extra space.
+
+**The two traps.** Writing `l <= r` when you need two *different* elements, and putting a
+converging pointer in a `for` header.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 Many questions ask about **pairs** in an array: two values that hit a target, two lines that hold
 the most water. There are about n²/2 pairs, so checking them all is O(n²).
 
-Converging two pointers checks only **n − 1** pairs. It works when the array has some order (usually
-sorted) that tells you, after one look, which pointer can never be part of a better pair.
+Converging two pointers checks only **n − 1** pairs. It needs the array to have some order, usually
+sorted. That order is what lets a single comparison tell you which pointer can never be part of a
+better pair.
 
 ## The core idea
 
@@ -29,6 +46,24 @@ In a sorted array looking for a target sum:
   Move the left finger in.
 
 Every move rules out one value **for good**, together with every pair it could still have made.
+
+Searching `[1, 3, 4, 6, 8, 11]` for a sum of `10`, the live stretch shrinks from both sides:
+
+```
+  [  1    3    4    6    8   11  ]
+     l                        r     1 + 11 = 12  too big    -> 11 is useless, r--
+  [  1    3    4    6    8  |11  ]
+     l                   r          1 +  8 =  9  too small  ->  1 is useless, l++
+  [  1 |  3    4    6    8  |11  ]
+          l              r          3 +  8 = 11  too big    ->  8 is useless, r--
+  [  1 |  3    4    6 |  8   11  ]
+          l         r               3 +  6 =  9  too small  ->  3 is useless, l++
+  [  1    3 |  4    6 |  8   11  ]
+               l    r               4 +  6 = 10  found
+```
+
+The `|` walls close in as values are ruled out, and anything outside them is gone for good. The
+gap between the fingers shrinks by one every step, so they meet after at most `n − 1` looks.
 
 ## Step by step
 
@@ -68,8 +103,8 @@ The rule "move the pointer that cannot do better" is not only for sums. When a p
 limited by the **smaller** of its two values, as with a container whose water level is set by its
 shorter wall:
 
-- Keeping the shorter side and moving the taller one inward can only make the width smaller while
-  the height is still capped by that same short side. That pair can never improve.
+- Suppose you keep the shorter side and move the taller one inward. The width just got smaller,
+  and the height is still capped by that same short wall. So the score can only drop.
 - So the shorter side is the one that is used up. Move it.
 
 Look at the score of every pair you visit and keep the best. You never need the pairs you skipped.
@@ -80,6 +115,36 @@ Two pointers can also move the **same** way. A fast **read** pointer scans every
 **write** pointer marks where the next kept element goes. Whenever the read pointer finds something
 worth keeping, copy it to the write slot and advance the write pointer. This removes duplicates or
 filters an array in place, in O(n) time and O(1) space.
+
+Moving every zero of `[1, 0, 2, 0, 3]` to the back:
+
+Each line shows the array *before* the step, with `r` on the slot being read and `w` on the slot
+waiting to be filled.
+
+```
+  [ 1    0    2    0    3 ]    r sees 1, a keeper -> write it at w, w++
+    w
+    r
+  [ 1    0    2    0    3 ]    r sees 0, skip     -> w stays put
+         w
+         r
+  [ 1    0    2    0    3 ]    r sees 2, a keeper -> write it at w, w++
+         w
+              r
+  [ 1    2    2    0    3 ]    r sees 0, skip     -> w stays put
+              w
+                   r
+  [ 1    2    2    0    3 ]    r sees 3, a keeper -> write it at w, w++
+              w
+                        r
+  [ 1    2    3    0    3 ]    r is done -> fill from w to the end with zeroes
+                   w
+
+  [ 1    2    3    0    0 ]    done
+```
+
+`w` never gets ahead of `r`, so a write can only land on a slot the read has already passed. That
+is what makes it safe to do in place, with no copy of the array.
 
 ## Loop shape: `while` or `for`?
 
@@ -114,9 +179,9 @@ Ask one question: **does one pointer move on every single iteration, no matter w
 - **Using `l <= r` for a pair.** A pair needs two different elements, so stop when they meet. (Use
   `l <= r` only when every element must be handled once, as in 172.)
 - **Putting a converging pointer in a `for` header.** `for (l = 0; l < n; l++)` moves `l` on every
-  iteration, even when the comparison says `r` should move. Add an `r--` in the body and both
-  pointers now move together, so the comparison no longer chooses anything. Use `while (l < r)` and
-  move exactly one pointer per branch.
+  iteration, even when the comparison says `r` should move. Patching that with an `r--` in the body
+  makes it worse: now both pointers move every step, so the comparison no longer decides anything.
+  Use `while (l < r)` and move exactly one pointer per branch.
 - **Moving the wrong pointer.** Say out loud why the value you drop can never be in a better pair.
 - **Forgetting the output format.** Some problems want 1-based indices, not 0-based.
 - **Using it on unsorted data** for a sum. The "too big, so drop the right one" argument needs order.

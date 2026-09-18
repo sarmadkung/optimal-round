@@ -8,6 +8,25 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Water poured in at the start spreads along the pipes at a steady speed, and each
+pipe is as long as its weight. Keep a min-heap of "I can reach X for total cost D" offers and
+always take the smallest. The first time a node comes out of the heap, its cost is final.
+
+**The rule to remember.** Pop the cheapest offer `(d, u)`. If `d > dist[u]` it is a stale leftover,
+so skip it. Otherwise relax every edge `u → v`: if `d + w < dist[v]`, lower `dist[v]` and push the
+new offer.
+
+**Reach for it when** the graph is weighted, every weight is zero or positive, and there is a
+single source. Equal weights everywhere mean plain BFS is enough.
+
+**The traps.** Marking a node done when it is **pushed** rather than when it **pops**, and using a
+FIFO queue, which is just BFS ignoring the weights. Negative edges break the greedy choice
+outright.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You have a graph whose edges have **costs** (time, distance, price), and you want the cheapest

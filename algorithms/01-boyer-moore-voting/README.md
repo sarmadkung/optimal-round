@@ -8,6 +8,22 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Remember one candidate and one counter, nothing else. Matching values add a
+supporter, differing values cancel one off. Whoever is left standing is the majority.
+
+**The rule to remember.** For each value `x`: if the count is 0, adopt `x`. Else if `x` is the
+candidate, add 1. Else subtract 1. The candidate at the very end is the answer.
+
+**Reach for it when** the question says "more than n/2" (or "more than n/3"), or a follow-up asks
+for O(1) space, or the input is a stream you cannot store.
+
+**The traps.** Testing `count == 0` after the match test instead of before, and trusting the
+candidate when no majority is guaranteed — that needs a second counting pass.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You have a list, and one value makes up **more than half** of it. Which one?
@@ -25,6 +41,19 @@ mismatched pair is left.
 Every pair you remove takes out **at most one** majority voter. The majority has more voters
 than everyone else combined, so the others run out of partners first. Whoever is still in the
 room at the end must be the majority.
+
+Take `[2, 2, 1, 1, 1, 2, 2]`. Each column below is one mismatched pair walking out together:
+
+```
+  majority (2)   2   2   2   2
+                 |   |   |
+  the rest (1)   1   1   1
+
+  remaining      ·   ·   ·   2       three pairs gone, one 2 still standing
+```
+
+The order the values arrive in does not change that count, which is why a single left-to-right
+pass is enough.
 
 Boyer-Moore does this pairing on the fly as it reads the array from left to right:
 

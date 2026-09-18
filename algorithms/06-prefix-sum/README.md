@@ -8,6 +8,24 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** `P[i]` is an odometer reading: the total of everything **before** index `i`. Any range
+sum is then the difference of two readings, so it costs one subtraction instead of a loop.
+
+**The rule to remember.** `P[0] = 0`, `P[i + 1] = P[i] + nums[i]`, and the sum of `nums[i..j]` is
+`P[j + 1] − P[i]`. For counting subarrays that sum to `k`, keep a map of prefix total → count, seed
+it with `{0: 1}`, and at each element look up `pre − k` **before** recording `pre`.
+
+**Reach for it when** you need many range sums on an array that does not change, a "left sum equals
+right sum" balance point, or a count of subarrays summing to `k` — especially when negative numbers
+rule out a sliding window.
+
+**The traps.** Off by one: `P` has `n + 1` entries and `P[i]` excludes `nums[i]`. Forgetting the
+`{0: 1}` seed. Recording `pre` before looking up `pre − k`. Storing "seen or not" instead of a count.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 "What is the sum of the elements from index `i` to index `j`?" Answering by adding them up costs up
@@ -58,7 +76,8 @@ negative ones included, which is a big advantage over the sliding window.
 ## Prefix sum + hash map: counting ranges
 
 A harder question: "How many subarrays sum to exactly `k`?" A subarray ending at index `j` sums to `k`
-when some earlier reading `P[i]` satisfies `P[j + 1] − P[i] = k`, that is `P[i] = P[j + 1] − k`.
+when some earlier reading `P[i]` satisfies `P[j + 1] − P[i] = k`. Rearranged, that is
+`P[i] = P[j + 1] − k`.
 
 So scan once, keeping a **hash map from each prefix total to how many times it has appeared**:
 

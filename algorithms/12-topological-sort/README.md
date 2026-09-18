@@ -8,6 +8,26 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Repeatedly take a task with nothing left blocking it, place it, and tick it off every
+task it was blocking. Socks and trousers before shoes. Get stuck with tasks left over and you have
+found a cycle.
+
+**The rule to remember.** Count each task's **in-degree**, the arrows pointing into it. Seed a queue
+with every task at 0. Take one out, append it to the order, and lower the in-degree of everything it
+points at; anything that hits 0 joins the queue. At the end, compare the order's length with the
+number of tasks.
+
+**Reach for it when** the words are "prerequisites", "dependencies", "must come before", "build
+order" or "task scheduling", when the question is "is it possible to finish everything?", or when an
+order has to be derived from pairwise hints.
+
+**The traps.** Reversing the arrow: `[a, b]` meaning "b before a" is the arrow `b → a`. Seeding from
+one node when several start free. Forgetting the final length check, which *is* the cycle test.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You have tasks and dependencies: "b must happen before a". Draw each dependency as an arrow
@@ -46,6 +66,36 @@ the number of arrows pointing into it that haven't been used up yet.
 
 Starting in-degrees: `[0, 2, 2, 0, 1, 1]` (index = task). Tasks 0 and 3 have none, so the queue
 starts as `[0, 3]`.
+
+Drawn out, with each task's **current** in-degree in brackets. Every snapshot shows only the tasks
+not yet placed, and anything reading `[0]` is sitting in the queue:
+
+```
+  start: queue [0, 3]
+
+        3[0] ──────┐
+                   v
+        0[0] ────> 1[2] ────┐
+        │                   v
+        └────────> 4[1] ──> 2[2] ──> 5[1]
+
+  0 and 3 placed: queue [4, 1]
+
+        1[0] ────┐
+                 v
+        4[0] ──> 2[2] ──> 5[1]
+
+  4 and 1 placed: queue [2]
+
+        2[0] ──> 5[1]
+
+  2 placed: queue [5]
+
+        5[0]
+```
+
+Each placed task takes its outgoing arrows with it, so the brackets behind it fall. Nothing else
+ever changes a count.
 
 | Take | In-degree changes | In-degrees after       | Queue after | Order so far             |
 |:----:|:------------------|:-----------------------|:------------|:-------------------------|
@@ -94,9 +144,9 @@ When all of a node's arrows are done, colour it black and append it to a list. T
 **reverse** topological order (a node finishes only after everything it points to), so reverse it
 at the end.
 
-Why three colours and not two? With only "visited / not visited" you can't tell a cycle (arrow back
-to a node on the current path) from a harmless diamond (arrow to a node finished via another
-branch). Kahn's is often easier to get right. DFS is natural when you are already writing a
+Why three colours and not two? With only "visited / not visited" you can't tell the two cases apart.
+An arrow back to a node on the current path is a cycle; an arrow to a node already finished on
+another branch is a harmless diamond. Kahn's is often easier to get right. DFS is natural when you are already writing a
 recursive search.
 
 ## Loop shape

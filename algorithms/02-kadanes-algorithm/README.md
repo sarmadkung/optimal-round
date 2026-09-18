@@ -8,6 +8,23 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Walk the array carrying a bag of everything picked up since the last fresh start. At
+each number, extend the bag or throw it away and start again. A bag worth less than nothing can
+only hurt what comes next.
+
+**The rule to remember.** Start `cur = best = nums[0]`. For each later `x`, set
+`cur = max(x, cur + x)`, then `best = max(best, cur)`. `best` is the answer.
+
+**Reach for it when** the question says "contiguous subarray" plus maximum or minimum, the brute
+force is "every start, every end", and each step only depends on the one before it.
+
+**The traps.** Starting `best` at 0 (an all-negative array's answer is its largest element), and
+restarting on a negative `x` rather than a negative `cur`.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You have an array of numbers, some of them negative. Which **contiguous** stretch of it has the
@@ -59,12 +76,31 @@ Final answer: **4**. ✓ Two subarrays reach it: `[2, -1, 3]` and `[4]`.
 
 Notice step 2: `cur` was `-1`, so carrying it would turn `2` into `1`. Restarting keeps the full `2`.
 
+The same run, drawn as the bag itself. Each line shows the stretch `cur` covers *after* reading
+index `i`, so a bracket that jumps forward is a restart.
+
+```
+  index       0    1    2    3    4    5    6
+  value       3   -4    2   -1    3   -5    4
+
+  i=0        [=]                                  cur =  3   best =  3
+  i=1        [======]                             cur = -1   best =  3
+  i=2                  [=]                        cur =  2   best =  3   <- restart
+  i=3                  [======]                   cur =  1   best =  3
+  i=4                  [===========]              cur =  4   best =  4
+  i=5                  [================]         cur = -1   best =  4
+  i=6                                      [=]    cur =  4   best =  4   <- restart
+```
+
+The bracket only ever grows to the right or snaps to a single element. It never slides backwards,
+which is why one pass is enough.
+
 ## Why it is correct
 
 Every subarray ends at some index `i`. The best subarray ending at `i` is either `nums[i]` alone,
-or `nums[i]` glued onto the best subarray ending at `i − 1`. Nothing else can win: if a longer
+or `nums[i]` glued onto the best subarray ending at `i − 1`. Nothing else can win. If a longer
 subarray ending at `i` beat that, its part ending at `i − 1` would beat the best one ending at
-`i − 1`, which is a contradiction. So `cur` is always right, and `best` looks at every possible
+`i − 1` — a contradiction. So `cur` is always right, and `best` looks at every possible
 ending index.
 
 This is dynamic programming with the table squashed down to one cell, because each step only

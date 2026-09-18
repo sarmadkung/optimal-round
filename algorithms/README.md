@@ -8,9 +8,11 @@ problem yourself and check it with `./practice c NNN`.
 
 Not sure which algorithm a problem needs? Start with the [problem-reading guide](../GUIDE.md).
 
-Every explainer has the same sections: the problem it solves, the core idea, step-by-step
-rules, a worked trace, why it is correct, which loop to use (`for` or `while`), how to recognise
-it, common mistakes, and practice.
+Every explainer opens with **In 60 seconds** — the idea, the rule, when to reach for it and the
+traps — so you can refresh a technique without rereading the whole page. Below that, the same
+sections every time: the problem it solves, the core idea, step-by-step rules, a worked trace,
+why it is correct, which loop to use (`for` or `while`), how to recognise it, common mistakes,
+and practice.
 
 ## Arrays & sequences
 

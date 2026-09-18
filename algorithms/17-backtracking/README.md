@@ -8,6 +8,22 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Every candidate is one route through a decision tree. Walk that tree depth-first
+using a single shared list, the path: choose, explore, un-choose.
+
+**The rule to remember.** One recursive function. Record the path if it is an answer, then for
+each allowed choice: push it, recurse, pop it. Record a **copy**, never the path itself.
+
+**Reach for it when** the question says "return **all**" subsets, permutations, combinations or
+placements, and the input limit is tiny (n up to about 10–20).
+
+**The traps.** Saving the path instead of a copy, forgetting to un-choose, and mixing up the two
+"allowed" rules: a `start` index for subsets, a `used` flag for permutations.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 Some questions ask for **every** arrangement: all subsets, all orderings, all ways to place
@@ -20,7 +36,7 @@ Backtracking does that with a single growing and shrinking list, the **path**, a
 ## The core idea
 
 Think of walking through a maze with a piece of chalk. At each fork you **choose** a branch and
-mark it, **explore** everything down that branch, and when you come back to the fork you
+mark it, then **explore** everything down that branch. When you come back to the fork you
 **erase** the mark and take the next branch. You only ever carry one route in your head: the one
 you are on right now.
 
@@ -56,6 +72,31 @@ The un-choose step is what makes one shared path safe: when a call returns, it l
 Subsets of `[4, 5, 6]` with a `start` index. Each call records the current path first, then
 tries the elements from `start` onward.
 
+Here is the whole decision tree. Each arrow is a **choose**, each node is the path at that moment
+and is recorded as an answer, and coming back up an arrow is the **un-choose**. Calls are numbered
+in the order they actually happen, so reading the numbers top to bottom is the depth-first walk.
+
+```
+  []                                                        call 1   record []
+  |
+  +--choose 4--> [4]                                        call 2   record [4]
+  |              |
+  |              +--choose 5--> [4, 5]                      call 3   record [4, 5]
+  |              |              |
+  |              |              +--choose 6--> [4, 5, 6]    call 4   record [4, 5, 6]
+  |              |
+  |              +--choose 6--> [4, 6]                      call 5   record [4, 6]
+  |
+  +--choose 5--> [5]                                        call 6   record [5]
+  |              |
+  |              +--choose 6--> [5, 6]                      call 7   record [5, 6]
+  |
+  +--choose 6--> [6]                                        call 8   record [6]
+```
+
+A node's children are only the elements **after** the one it just took, which is what the `start`
+index enforces. That is why `[5, 4]` never appears anywhere in the tree.
+
 | Call | Path when called | Recorded  | Then, in order                                               |
 |-----:|:-----------------|:----------|:-------------------------------------------------------------|
 | 1    | []               | []        | choose 4 → call 2; un-choose 4; choose 5 → call 6; un-choose 5; choose 6 → call 8; un-choose 6 |
@@ -90,7 +131,7 @@ Every candidate corresponds to exactly one route from the root of the decision t
 sequence of choices that builds it. The loop in step 2 tries every allowed choice at every node,
 so every route is walked. The rules for "allowed" make sure two different routes never build the
 same candidate. And because every choose is matched by an un-choose, each call starts with the
-path exactly as its parent left it, so no route is polluted by a sibling's choices.
+path exactly as its parent left it. No route is ever polluted by a sibling's choices.
 
 ## Counting the cost
 
@@ -104,6 +145,31 @@ The running time is roughly (number of nodes in the tree) × (work per node).
 That is why these problems have tiny limits like n ≤ 10 or n ≤ 6. When a branch can be shown
 to lead nowhere (a sum is already too big, a queen is attacked), **prune** it: return early and
 skip that whole subtree.
+
+Same tree as above, but now only subsets summing to **9 or less** count. Every node shows its path
+and its sum; a node marked `✗` is rejected on sight, so no call is made and nothing below it is
+built.
+
+```
+  []                                                        sum  0
+  |
+  +--choose 4--> [4]                                        sum  4
+  |              |
+  |              +--choose 5--> [4, 5]                      sum  9
+  |              |              |
+  |              |              +--choose 6--> [4, 5, 6]    sum 15  ✗ prune, no call
+  |              |
+  |              +--choose 6--> [4, 6]                      sum 10  ✗ prune, no call
+  |
+  +--choose 5--> [5]                                        sum  5
+  |              |
+  |              +--choose 6--> [5, 6]                      sum 11  ✗ prune, no call
+  |
+  +--choose 6--> [6]                                        sum  6
+```
+
+Three of the eight nodes are cut here. On a real input, one cut near the root removes an
+exponential number of candidates at once.
 
 ## Loop shape
 

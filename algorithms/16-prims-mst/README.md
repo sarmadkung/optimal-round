@@ -8,6 +8,25 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Lay cable outward from one building. Look at every cable running from a covered
+building to an uncovered one, lay the cheapest, and that covers one more building. Repeat until
+all V are covered, which takes exactly `V − 1` edges.
+
+**The rule to remember.** Keep `best[v]`, the cheapest known single edge from the tree to `v`. Take
+the node not yet in the tree with the smallest `best`, add it, then update every remaining node
+with `best[v] = min(best[v], weight(u, v))` for the node `u` just added.
+
+**Reach for it when** the words are "connect all" or "minimum total cost", and the answer is a
+**sum** of edge weights rather than a distance between two nodes. Points on a plane where any pair
+can be joined make a dense graph, which favours the O(V²) array version.
+
+**The traps.** Ranking nodes by `dist[u] + w` as Dijkstra does, instead of by the single edge
+weight `w` into the tree, and adding a node twice in the heap version.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You have nodes and weighted undirected edges between them. Pick a set of edges so that every
@@ -62,8 +81,9 @@ at P0. `best` is listed for P0 to P4, and ✓ means already in the tree.
 | 4    | P3 (5,5)  | 4         | 12    | ✓, ✓, 5, ✓, ✓       |
 | 5    | P2 (4,1)  | 5         | 17    | ✓, ✓, ✓, ✓, ✓       |
 
-Minimum total: **17**, using edges P0–P1, P1–P4, P4–P3 and P0–P2 (4 edges for 5 nodes). P1–P2 also costs 5, so an equally cheap
-tree could use it instead: the MST's total is unique, its edges need not be.
+Minimum total: **17**, using edges P0–P1, P1–P4, P4–P3 and P0–P2 (4 edges for 5 nodes). P1–P2 also
+costs 5, so an equally cheap tree could use it instead: the MST's total is unique, its edges need
+not be.
 
 Notice step 2: adding P1 dropped `best[P4]` from 8 (direct from P0) to 4 (from P1). Also,
 P2 had a cheap offer of 5 from the very first step, but it waited until last, because a 4 was
@@ -75,9 +95,9 @@ The key fact is the **cut property**: split the nodes into two groups in any way
 edge crossing between the groups belongs to some minimum spanning tree.
 
 Prim's always splits the nodes into "in the tree" and "not in the tree", and adds the cheapest
-edge crossing that split. So every edge it adds is safe. If some MST skipped that edge, you
-could add it (making a cycle), remove another crossing edge on that cycle that costs at least as
-much, and get a tree that is no more expensive and does contain it.
+edge crossing that split. So every edge it adds is safe. Suppose some MST skipped that edge. You
+could add it, which makes a cycle, then remove another crossing edge on that cycle that costs at
+least as much. The result is a tree that is no more expensive and does contain the edge.
 
 ## Prim's vs Kruskal's
 

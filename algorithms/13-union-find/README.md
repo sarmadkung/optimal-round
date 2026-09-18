@@ -8,6 +8,24 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Every group is a club with a president. Each member points at one other member,
+their parent, and following parents upward always ends at the president. Two items are in the
+same group exactly when they reach the same president.
+
+**The rule to remember.** `find` walks up until a node is its own parent. `union` joins **root to
+root**, never item to item. Two habits keep the chains short: point everyone you walked past
+straight at the root, and hang the smaller tree under the bigger one.
+
+**Reach for it when** edges arrive one at a time and the question is "how many groups", "are these
+two connected", or "which edge closes a cycle" in an undirected graph.
+
+**The traps.** Writing `parent[a] = b` instead of linking the two roots, and dropping the group
+count on every edge rather than only on a real merge.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You have n items, each starting in its own group. Two kinds of request arrive, in any order:
@@ -76,6 +94,37 @@ Two things to notice:
   cycle.
 - In that same row, `parent[3]` changed from 2 to 0 even though nothing merged. That is path
   compression: the find from 3 walked 3→2→0 and then pointed 3 straight at 0.
+
+The same trace drawn as a forest. Every line runs from a child **up** to its parent, so each root
+sits at the top of its own tree, and an item with no line above it is a tree of one:
+
+```
+  after [0,1] and [2,3]        four trees, nothing joined yet
+
+      0        2        4     5     6
+      |        |
+      1        3
+
+
+  after [1,2]                  roots 0 and 2 both have size 2, so 2 goes under 0
+
+        0               4     5     6
+       / \
+      1   2
+          |
+          3
+
+
+  after [4,5] and [3,0]        no merge on [3,0], but find(3) walked 3 -> 2 -> 0
+                               and re-hung 3 directly on 0
+
+        0               4     6
+      / | \             |
+     1  2  3            5
+```
+
+Compression does not move anyone between groups. It only makes the tree flatter, so the next
+find from 3 costs one step instead of two.
 
 ## Why it is correct
 

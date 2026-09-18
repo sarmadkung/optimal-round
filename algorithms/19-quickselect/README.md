@@ -8,6 +8,26 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Partition around a pivot. That one pivot lands at its final sorted index for free.
+Compare that index with the rank you want, then keep searching in **only** the side that holds
+it and throw the other side away.
+
+**The rule to remember.** `target = n − k` for the kth largest. Loop while `lo <= hi`: partition
+`lo..hi`, get the pivot index `i`. `i == target` → answer. `i < target` → `lo = i + 1`.
+`i > target` → `hi = i − 1`.
+
+**Reach for it when** the question wants one value by rank — kth largest, kth smallest, the
+median — and order among the rest does not matter. A heap gives O(n log k); this is the O(n)
+average alternative.
+
+**The traps.** Recursing into both sides (that is Quicksort), getting `n − k` the wrong way
+round, and a first-or-last pivot on sorted input, which is the O(n²) case. Pick the pivot at
+random.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You want **one** value by rank: the median, the 3rd largest, the 10th smallest. Sorting gives it
@@ -71,13 +91,27 @@ Place the pivot at `i = 3`: `[2, 4, 1, 5, 9, 8, 7]`.
 
 Answer: **7**. ✓ Notice that `[2, 4, 1]` was never sorted. Quickselect doesn't care.
 
+The same two rounds as a picture. A `*` marks a value now sitting at its final sorted index, and
+a `|` marks the edge of the live range — everything outside it has been thrown away and is never
+looked at again.
+
+```
+             0   1   2   3     4   5   6
+start      [ 7   2   9   4     1   8   5 ]   live 0..6, looking for index 4
+round 1    [ 2   4   1   5*  | 9   8   7 ]   pivot 5 lands at 3; 3 < 4, so drop 0..3
+round 2    [ 2   4   1   5   | 7*  8   9 ]   pivot 7 lands at 4; 4 == 4, answer 7
+```
+
+Round 2 only ever touched three values. That shrinking live range, rather than any clever
+comparison, is where the saving over a full sort comes from.
+
 ## Why it is correct
 
 After a partition, every value left of `i` is smaller than the pivot and every value right of
 it is at least the pivot. So exactly `i` values (within the whole array) come before the pivot
 in sorted order, which means the pivot's sorted index **is** `i`. The value at `target` must
-lie on the side that contains `target`, and partitioning never moves values across `lo` or
-`hi`, so discarding the other side loses nothing.
+therefore lie on the side that contains `target`. And partitioning never moves values across
+`lo` or `hi`, so discarding the other side loses nothing.
 
 ## Average O(n), worst O(n²), and the random pivot
 
@@ -93,8 +127,8 @@ lie on the side that contains `target`, and partitioning never moves values acro
 
 Hoare's scheme moves **two** pointers inward from both ends and swaps a big value on the left
 with a small value on the right. It does fewer swaps than Lomuto, but the pivot does **not**
-necessarily end at the split index, so you recurse on `lo..split` or `split+1..hi` instead of
-checking "is the pivot at target". Lomuto is easier to get right; Hoare is faster in practice.
+necessarily end at the split index. So instead of checking "is the pivot at target", you recurse
+on `lo..split` or `split+1..hi`. Lomuto is easier to get right; Hoare is faster in practice.
 
 ## Loop shape
 

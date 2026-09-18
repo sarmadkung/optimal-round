@@ -8,6 +8,25 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** No greedy choice at all. Relax every edge, round after round, until nothing changes.
+After round r, every cost is the cheapest path using **at most r edges**, so `V − 1` rounds settle
+everything.
+
+**The rule to remember.** **k stops = k + 1 edges**, so run `k + 1` rounds. And when the number of
+edges is capped, **copy the array**: read from last round's `cost`, write into `next`, swap at the
+end of the round. Without the copy a single round can chain several edges and quietly overshoot
+the limit.
+
+**Reach for it when** weights can be negative, a negative cycle has to be detected (run one extra
+round and see if anything still drops), or the path may use at most k edges.
+
+**The traps.** Running k rounds for k stops, skipping the copy under an edge limit, and relaxing
+from a node still at infinity when infinity is a big sentinel number.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You want the cheapest path from one source, but one of these is true:
@@ -42,8 +61,8 @@ Set `cost[src] = 0` and every other cost to infinity.
 
 ### The copy-the-array trick (limiting edges)
 
-In step 1, a round that writes into `cost` while it reads from `cost` can chain several edges
-in one round: it lowers `cost[u]`, then a later edge in the same round reads the new `cost[u]`
+In step 1, a round that writes into `cost` while it reads from `cost` can chain several edges in
+one round. It lowers `cost[u]`, and then a later edge in the same round reads that new `cost[u]`
 right away. That is fine for plain shortest paths (it only converges faster), but it breaks the
 promise "after round r, at most r edges".
 

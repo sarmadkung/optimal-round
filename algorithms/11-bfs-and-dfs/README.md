@@ -8,6 +8,26 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Both visit every reachable node exactly once, and differ only in the **order**. BFS is
+a ripple: everything 1 step away, then 2, then 3, using a **queue**. DFS is a person in a maze
+following one corridor to its end before backing up, using a **stack** or plain recursion.
+
+**The rule to remember.** Put the start in the container and mark it visited. While the container is
+not empty, take one node out, and for each neighbour that is in bounds, passable and not visited:
+mark it and put it in. Mark on the way **in**, never on the way out.
+
+**Reach for it when** a grid is "connected 4-directionally", or the question counts islands,
+regions or components, or asks for the fewest steps with every move costing the same. "Every minute
+X spreads to its neighbours" is BFS levels; several starting points at once is multi-source BFS.
+
+**The traps.** Marking visited when a node comes out instead of when it goes in. Re-reading
+`queue.length` inside a level loop instead of saving the size first. Counting one level too many.
+Recursive DFS overflowing the call stack on a big grid.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You have a graph: nodes joined by edges. Very often the graph is a **grid**, where each cell is a
@@ -31,6 +51,26 @@ Think of spilling ink on a map.
   recursion, which is a stack in disguise.
 
 Both need a **visited** mark. Without it, two neighbouring cells keep adding each other forever.
+
+The difference shows up best as a picture. Take a 3 × 3 grid with no walls and start at the
+top-left. Each cell holds the step at which it is **first reached**, and both traversals try
+neighbours in the same order: up, down, left, right.
+
+```
+     BFS (queue)          DFS (recursion)
+
+       1   3   6            1   6   7
+       2   5   8            2   5   8
+       4   7   9            3   4   9
+```
+
+BFS grows in bands: `1`, then `2 3`, then `4 5 6`, then `7 8`, then `9`. Every cell in a band is
+the same number of steps from the start, which is why the bands are diagonal. That is the whole
+reason BFS measures distance.
+
+DFS makes one unbroken walk. Read `1` to `9` in order and each number sits next to the one before
+it: down the left column, along the bottom, back up the middle, and so on. It turns around only
+when it is boxed in by walls and cells it has already marked.
 
 ## Step by step
 
@@ -99,7 +139,7 @@ reached from (2,3) in one step, without waiting for the ripple from (0,0).
 
 **Every reachable node is visited once.** A node enters the container only when it is first
 marked, and a marked node never enters again. Any reachable node is connected to the start by some
-path, and each node on that path adds the next one if nobody else has already, so the traversal
+path. Each node on that path adds the next one, unless somebody else already has, so the traversal
 reaches the whole path. That gives O(V + E): each node is taken out once, and each edge is looked
 at from each of its ends.
 

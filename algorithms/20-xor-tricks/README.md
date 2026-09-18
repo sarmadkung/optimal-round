@@ -8,6 +8,23 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Treat every bit as a light switch. A repeated value flips the same switches back, so
+everything appearing an even number of times disappears and the odd one out is what survives.
+
+**The rule to remember.** Start `acc = 0`, then `acc = acc ^ x` for every value. `x ^ x = 0`,
+`x ^ 0 = x`, and order and grouping don't matter, so the pairs need not sit next to each other.
+
+**Reach for it when** every element appears twice except one, or a value is missing from a known
+range, and O(1) extra space is demanded. If nothing is paired yet, supply the partners yourself.
+
+**The traps.** Starting `acc` at the first element and then XOR-ing the whole array. Forgetting the
+last range value when pairing indices with values. Using it when values repeat three times — XOR
+only cancels **even** counts.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You have a pile of values where almost everything comes in **pairs**, and you want the one value
@@ -63,7 +80,7 @@ even equals `6` after step 2, by coincidence). Only the final value means anythi
 ## Why it is correct
 
 By the commutative and associative rules, `5 ^ 3 ^ 5 ^ 6 ^ 3` equals
-`(5 ^ 5) ^ (3 ^ 3) ^ 6`. Each bracket is `0` by `x ^ x = 0`, which leaves `0 ^ 0 ^ 6`, which is
+`(5 ^ 5) ^ (3 ^ 3) ^ 6`. Each bracket is `0` by `x ^ x = 0`, which leaves `0 ^ 0 ^ 6`. That is
 `6` by `x ^ 0 = x`. The same regrouping works for any order and any number of pairs.
 
 ## Making your own pairs

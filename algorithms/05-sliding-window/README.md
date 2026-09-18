@@ -8,6 +8,24 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** A caterpillar crawling along the array. The head always moves forward and eats one
+new element. When the rule breaks, the tail creeps forward dropping elements until it holds again.
+Neither end ever walks backwards.
+
+**The rule to remember.** For each `r`: add element `r` to the window's summary, then while the
+window is invalid remove element `l` and do `l += 1`, then record the length `r − l + 1`.
+
+**Reach for it when** the question asks for the longest or shortest **contiguous** stretch obeying
+a monotone rule: "no repeating", "at most k distinct", "at most k changes". A named length `k` means
+the fixed-size version.
+
+**The traps.** Using `if` instead of `while` to shrink, and recording `best` before the window is
+valid again.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 "Find the longest (or shortest) **contiguous** stretch that obeys some rule." There are about n²/2
@@ -57,6 +75,26 @@ Final answer: **5** (`"mzuxt"`). ✓
 Step 6 is worth a look. `t` appeared before, at index 0, but that copy already left the window at
 step 2. The summary describes only what is **inside** the window, so there is no clash.
 
+The same run as a picture. Each line shows the window at one moment, and `r = 2` gets three lines
+because the tail has to move twice before the rule holds again.
+
+```
+  index     0  1  2  3  4  5  6
+  string    t  m  m  z  u  x  t
+
+  r=0      [t]                          valid              best = 1
+  r=1      [t  m]                       valid              best = 2
+  r=2      [t  m  m]                    m twice   -> drop t
+  r=2         [m  m]                    still bad -> drop m
+  r=2            [m]                    valid              best = 2
+  r=3            [m  z]                 valid              best = 2
+  r=4            [m  z  u]              valid              best = 3
+  r=5            [m  z  u  x]           valid              best = 4
+  r=6            [m  z  u  x  t]        valid              best = 5
+```
+
+Neither edge ever moves left. That is the whole reason the caterpillar costs O(n), not O(n²).
+
 ## Why it is correct
 
 Fix any right edge `r`. The window keeps the **smallest** `l` for which `l..r` is valid. That works
@@ -70,7 +108,7 @@ element, no later window could have wanted it back, and the tail never needs to 
 When the problem names the length, for example "the largest sum of any 3 in a row", the window never
 changes size. Once it holds `k` elements, every step adds element `r` and removes element `r − k` in
 the same move. On `[2, 1, 5, 1, 3, 2]` with `k = 3` the sums are `8, 7, 9, 6`, each found from the
-previous one with one add and one subtract, so the best is **9**.
+previous one with one add and one subtract. The best is **9**.
 
 ## Variable windows with a counted rule
 

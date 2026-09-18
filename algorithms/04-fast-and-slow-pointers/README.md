@@ -8,6 +8,24 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Two pointers down the same chain, one at single speed and one at double. If the chain
+ends, the fast one falls off it. If it loops, the fast one gains a step per turn and has to land on
+the slow one.
+
+**The rule to remember.** While `fast` and `fast.next` exist: move `slow` one, `fast` two, *then*
+compare. To find where the loop starts, restart one pointer at the head and step both by one until
+they meet.
+
+**Reach for it when** the question is "does it loop?", "where does the cycle begin?", or "find the
+duplicate", and a follow-up asks for O(1) memory that rules out a visited set.
+
+**The traps.** Comparing the pointers before moving them (they start equal), and taking two steps
+without first checking `fast.next`.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You follow a chain of "next" steps: `next` pointers in a linked list, or a rule like "replace the
@@ -47,7 +65,17 @@ To also find **where the cycle starts**, continue after they meet:
 ## Worked trace
 
 Nodes `0 → 1 → 2 → 3 → 4 → 5 → 6`, and node 6 points back to node 2. So the tail before the loop
-is 2 nodes long and the loop holds 5 nodes (2 through 6).
+is 2 nodes long and the loop holds 5 nodes (2 through 6). Drawn out, that is a short straight road
+running onto a circular track:
+
+```
+  0 --> 1 --> 2 --> 3 --> 4
+              ^           |
+              |           v
+              6 <-------- 5
+
+  tail: 0, 1  (a = 2)        loop: 2, 3, 4, 5, 6  (c = 5)
+```
 
 **Phase 1: do they meet?**
 

@@ -8,6 +8,22 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Reversing a stretch in place is easy. Reversing the whole array swaps the two blocks
+but leaves both backwards, so reverse each block again and they read forwards in their new places.
+
+**The rule to remember.** To rotate right by k: `k = k % n`, reverse `0..n−1`, reverse `0..k−1`,
+reverse `k..n−1`. The reverse primitive itself is two pointers swapping and stepping inward.
+
+**Reach for it when** a block must move **in place** — "rotate", "shift by k", "move the last k to
+the front" — or when a suffix is known to be sorted backwards and you need it sorted forwards.
+
+**The traps.** Skipping `k % n`. Off-by-one block edges. Doing the two block reversals first, which
+gives a **left** rotation instead.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You need to move a **block** of an array to a different place, for example "take the last k
@@ -27,6 +43,16 @@ and they read forwards, now in their new positions.
 
 Picture a sentence `AB` where `A` and `B` are chunks. Reversing everything gives
 `reverse(B) reverse(A)`. Reverse each chunk back and you get `BA`.
+
+Rotating `[1..8]` right by `k = 2`. The `|` marks the split between the two blocks: it sits at
+`n − k` to begin with, and at `k` from the first reversal onwards.
+
+```
+  start              [ 1  2  3  4  5  6 | 7  8 ]     A       then B
+  reverse 0..n−1     [ 8  7 | 6  5  4  3  2  1 ]     rev(B)  then rev(A)
+  reverse 0..k−1     [ 7  8 | 6  5  4  3  2  1 ]     B       then rev(A)
+  reverse k..n−1     [ 7  8 | 1  2  3  4  5  6 ]     B       then A
+```
 
 ## Step by step
 

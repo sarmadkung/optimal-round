@@ -8,6 +8,24 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Keep a range that must contain the answer. Look at its middle, and throw away the half
+that cannot hold it. Every look halves what is left, so a billion elements take about 30 looks.
+
+**The rule to remember.** Before writing the loop, say in one sentence what `lo` and `hi` mean, then
+pick one style and stick to it: closed `[lo, hi]` with `while (lo <= hi)`, or half-open / "first yes"
+with `while (lo < hi)`. Never mix the two.
+
+**Reach for it when** the input is sorted, the problem demands O(log n), or it asks for the minimum
+or maximum `x` that passes a yes/no check that is **monotone** — once `x` works, every bigger `x`
+works too.
+
+**The traps.** Writing `hi = mid − 1` when `mid` passed in a first-yes search, which can throw away
+the answer. A search range whose ends are not real answers. Rounding the wrong way inside the check.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You need to find something in a **sorted** array, or more generally in any range where a yes/no
@@ -53,6 +71,21 @@ Array `[2, 5, 8, 12, 16, 23, 38, 56]` (indices 0 to 7).
 | 3    | 4  | 4  | 4   | 16     | found           |
 
 Found at index **4**. ✓
+
+The same three steps as a picture. Each line shows the live range *before* the step: `|` walls off
+what has been discarded, and `^` sits under `mid`.
+
+```
+  [    2    5    8   12   16   23   38   56 ]   mid = 12, smaller than 16  ->  lo = 4
+                      ^
+  [    2    5    8   12  |16   23   38   56 ]   mid = 23, larger than 16   ->  hi = 4
+                                ^
+  [    2    5    8   12  |16  |23   38   56 ]   mid = 16, found
+                           ^
+```
+
+Nothing outside the walls is ever looked at again, and the live stretch is at most half as wide
+after every step.
 
 **Target 13** (absent):
 

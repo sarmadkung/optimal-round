@@ -8,6 +8,26 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** A value in 1..n is already a valid index, once you subtract 1. So the array can act as
+its own hash set: slot `v − 1` is where you record that `v` was seen.
+
+**The rule to remember.** Two ways to record. **Placement:** walk `i` from 0, and while `nums[i]` is
+in range and not already home, swap it to index `v − 1` and **leave `i` where it is**. **Marking:**
+when every value is in 1..n, read `v = |nums[i]|` and flip `nums[v − 1]` negative. Either way, a
+slot that was never claimed names a missing value.
+
+**Reach for it when** values are promised to be in **1..n** (or only such values matter), the
+question is about missing, duplicated or disappeared numbers, a follow-up asks for **O(1) extra
+space**, and you are allowed to modify the input.
+
+**The traps.** Advancing `i` after a swap. Swapping when the home slot already holds that value —
+test `nums[v − 1] != v`, not `i != v − 1`. Forgetting `abs` when marking, and marking at all when
+zeros or negatives are allowed.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You have an array of length n, and the interesting values lie in **1..n**. You want to know which
@@ -90,8 +110,8 @@ absolute value on each read means earlier flips never corrupt later reads.
 
 ## Why only 1..n matters
 
-For an array of length n, the smallest missing positive is **always in 1..n+1**: n slots can hold
-at most the n values 1..n, and if they do, the answer is n + 1. So zeros, negatives and anything
+For an array of length n, the smallest missing positive is **always in 1..n+1**. The n slots can
+hold at most the n values 1..n, and if they do, the answer is n + 1. So zeros, negatives and anything
 above n can be treated as junk and left wherever they land. That is what makes the technique work
 on arbitrary integers, not just on permutations.
 

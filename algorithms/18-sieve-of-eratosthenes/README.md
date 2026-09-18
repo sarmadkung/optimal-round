@@ -8,6 +8,24 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Do not ask "is x prime?" for each x. Instead let each prime announce that all its
+multiples are **not** prime, and cross them off a board of flags. Whatever is never crossed out
+is prime.
+
+**The rule to remember.** Outer loop `p` from 2 while `p × p < n`, skipping any `p` already
+crossed out. Inner loop crosses out `p × p`, `p × p + p`, `p × p + 2p`, ... up to n − 1. Start at
+`p × p`, not `2p`, and stop once `p × p ≥ n`.
+
+**Reach for it when** the question wants **all** primes below n, a count of them, or many
+primality questions over a range that one prebuilt table can answer by lookup.
+
+**The traps.** The bound is strict, so "less than n" excludes n itself; handle n = 0, 1 and 2.
+And never count 0 or 1 as prime just because nothing crossed them out.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You need **all** the primes below some bound n, or how many there are.
@@ -46,6 +64,22 @@ Make a boolean array `isComposite` of size n, all false.
 Primes below `n = 30`. The outer loop runs while `p × p < 30`, so p goes 2, 3, 4, 5 and stops
 at 6 (36 ≥ 30).
 
+The board, one row per pass. A number printed as itself is **still standing**, `X` is crossed out
+**on this pass**, and `.` was already crossed out on an earlier pass.
+
+```
+               2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
+p = 2          2  3  X  5  X  7  X  9  X 11  X 13  X 15  X 17  X 19  X 21  X 23  X 25  X 27  X 29
+p = 3          2  3  .  5  .  7  .  X  . 11  . 13  .  X  . 17  . 19  .  X  . 23  . 25  .  X  . 29
+p = 4 skip     2  3  .  5  .  7  .  .  . 11  . 13  .  .  . 17  . 19  .  .  . 23  . 25  .  .  . 29
+p = 5          2  3  .  5  .  7  .  .  . 11  . 13  .  .  . 17  . 19  .  .  . 23  .  X  .  .  . 29
+still up       2  3  .  5  .  7  .  .  . 11  . 13  .  .  . 17  . 19  .  .  . 23  .  .  .  .  . 29
+```
+
+Notice how little each later pass does. The `p = 2` row does almost all the crossing out, `p = 3`
+adds four numbers, `p = 4` is skipped because 4 is itself crossed out, and `p = 5` crosses out a
+single number. The same trace as a table:
+
 | p | p is...          | Start at p·p | Newly crossed out                      | Hit again (already out) |
 |--:|:-----------------|-------------:|:---------------------------------------|:------------------------|
 | 2 | prime            | 4            | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28 | –              |
@@ -68,9 +102,9 @@ Look at what the shortcuts saved:
 - **Nothing prime is crossed out.** A number is only crossed out as `p × m` with `m ≥ p ≥ 2`,
   so it has a divisor other than 1 and itself.
 - **Every composite is crossed out.** A composite `x < n` has a smallest prime factor `q`, and
-  `x = q × m` with `m ≥ q`, so `x ≥ q × q`. That means `q × q < n`, the loop reaches `q`, `q`
-  is still standing (nothing smaller divides a prime), and the crossing for `q` starts at `q × q
-  ≤ x` and steps by `q`, so it lands on `x`.
+  `x = q × m` with `m ≥ q`, so `x ≥ q × q`. That means `q × q < n`, so the outer loop reaches
+  `q`. And `q` is still standing, because nothing smaller divides a prime. So the crossing for
+  `q` runs; it starts at `q × q ≤ x` and steps by `q`, so it lands on `x`.
 
 ## Why O(n log log n)
 

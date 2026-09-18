@@ -8,6 +8,22 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Sort by start, then lay the intervals down one at a time. You only ever compare the
+new one with the **last** one you laid, because nothing later can start further left.
+
+**The rule to remember.** If `cur.start > last.end` there is a gap, so push a new interval.
+Otherwise they overlap: `last.end = max(last.end, cur.end)`. The `max` is the whole trick.
+
+**Reach for it when** the input is a list of `[start, end]` pairs and the words are "overlapping",
+"merge", "cover" or "union" — or when a problem asks for minimum rooms, arrows or removals.
+
+**The traps.** Forgetting to sort. Setting `last.end = cur.end` instead of the max, which lets a
+contained interval shrink the range. Using `<` instead of `≤` when touching endpoints should merge.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You have a pile of ranges such as meetings, bookings or covered stretches of a road, each written
@@ -28,6 +44,23 @@ need to look at the **last** strip you laid down:
   even further right), so the last strip is finished. Start a new one.
 
 Sorting by start is what makes "only look at the last one" safe.
+
+Here are six intervals already sorted by start. Each strip spans its start tick to its end tick
+inclusive; `=` is an input strip and `#` is a finished merged one.
+
+```
+  time        1  2  3  4  5  6  7  8  9 10 11 12
+  [1,4]       ==========
+  [2,3]          ====                             sits inside [1,4] -> end stays 4
+  [5,7]                   =======                 starts after 4 -> new strip
+  [6,9]                      ==========           6 <= 7 -> stretch the last strip to 9
+  [9,10]                              ====        9 <= 9, touching -> stretch to 10
+  [11,12]                                   ====  starts after 10 -> new strip
+
+  merged      ##########
+  merged                  ################
+  merged                                    ####
+```
 
 ## Step by step
 
@@ -63,8 +96,8 @@ After sorting, each interval starts no earlier than the ones before it. Suppose 
 interval starts after `last.end`. Every later interval starts at least as far right, so none of
 them can reach back and overlap anything that ended at `last.end` or earlier. Closing `last` is
 therefore final. If it starts at or before `last.end`, the two share at least one point, so they
-belong in the same merged range, and the union is `[last.start, max(ends)]` because `last.start`
-is already the smaller start.
+belong in the same merged range. The union is `[last.start, max(ends)]`, because `last.start` is
+already the smaller start.
 
 ## Insert: when the list is already sorted
 

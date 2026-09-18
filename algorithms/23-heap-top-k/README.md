@@ -8,6 +8,23 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** A club with k chairs and a bouncer. The bouncer only needs to know the **weakest**
+person seated: a newcomer who beats them takes their chair, anyone else is turned away.
+
+**The rule to remember.** Order the heap so its top is the **worst** kept item — the opposite of
+the goal. Min-heap for the k largest, max-heap for the k smallest. Push while size < k, then
+replace the top only when the new item beats it.
+
+**Reach for it when** the ask is "k most frequent", "k closest", "top k", any order accepted, or
+the data is a stream and `n` is much bigger than `k`. O(n log k) instead of O(n log n).
+
+**The traps.** Using the same ordering as the goal, so you can't evict the worst cheaply. Pushing
+everything and popping k times, which is just sorting. Taking square roots for distances.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 You have n items and want the **k best** by some score: most frequent, closest, largest. Sorting
@@ -66,8 +83,8 @@ Result: **7, 8, 9**. ✓ And the top, `7`, is the 3rd largest by itself.
 
 The heap always holds the k best items among those seen so far. That is true while it is filling
 up. Afterwards, a new item enters only by beating the current worst kept item, so the kept set
-stays the best k. An item that is skipped or evicted is beaten by k kept items, and those items
-never leave except for even better ones, so it can never belong in the final top k.
+stays the best k. An item that is skipped or evicted is beaten by k kept items. Those items never
+leave except for even better ones, so it can never belong in the final top k.
 
 ## JavaScript has no built-in heap
 

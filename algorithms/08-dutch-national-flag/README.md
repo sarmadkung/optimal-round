@@ -8,6 +8,24 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Three pointers cut the array into four zones: lows, middles, unknown, highs. `mid`
+reads one unknown value at a time and swaps it into the zone where it belongs, until no unknown is
+left.
+
+**The rule to remember.** Start `low = 0`, `mid = 0`, `high = n − 1`. While `mid <= high`, look at
+`nums[mid]`: a low swaps with `low` then `low += 1, mid += 1`; a middle just needs `mid += 1`; a
+high swaps with `high` then `high -= 1` and **`mid` stays put**.
+
+**Reach for it when** values fall into exactly three categories in a fixed order and the problem
+says **in place** or **one pass** — or when you need a three-way partition around a pivot.
+
+**The traps.** Advancing `mid` after a swap with `high`, which skips a value nobody has looked at.
+Looping while `mid < high`, which never checks the last unknown.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 Every value in the array belongs to one of **three groups**: "low", "middle" and "high". You want
@@ -28,6 +46,16 @@ four zones:
 | `[low, mid)`          | middles, already in place     |
 | `[mid, high]`         | **unknown**, not yet looked at |
 | `(high, end]`         | highs, already in place       |
+
+A snapshot of the array part-way through, with each pointer under the slot it names:
+
+```
+  [   lows    |   middles   |      unknown      |    highs     ]
+               ^             ^                 ^
+              low           mid              high
+```
+
+So `low` is the first middle, `mid` is the first unknown, and `high` is the last unknown.
 
 `mid` is the reader. Each step it looks at one unknown value and moves it into the right zone,
 shrinking the unknown zone by one. When the unknown zone is empty, the array is sorted.

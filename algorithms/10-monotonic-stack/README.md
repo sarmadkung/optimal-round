@@ -8,6 +8,25 @@
 
 ---
 
+## In 60 seconds
+
+**The idea.** Keep a line of people still waiting to see someone taller. The line is always
+decreasing in height, so a newcomer settles everyone shorter at the back, all at once, then joins
+the line themselves.
+
+**The rule to remember.** Hold a stack of **indices** whose answer is not known yet. For each `i`:
+while the value on top loses to `a[i]`, pop it — `a[i]` is its answer. Then push `i`. Whatever is
+left on the stack at the end has no answer.
+
+**Reach for it when** the question is "next greater", "next smaller", "next warmer", "how many days
+until", or a span that ends at the first taller or shorter item. The brute force is a nested loop
+scanning outward from every element.
+
+**The traps.** Pushing values instead of indices, so you lose the distance. Using `if` instead of
+`while` when popping, when one newcomer may settle many. Forgetting the leftovers on the stack.
+
+Everything below is those same ideas, slowly.
+
 ## The problem it solves
 
 For each position in an array you want its **next greater element**: the first value to its right
@@ -59,6 +78,25 @@ Stack entries are written `index(value)`, bottom to top.
 | 5 | 5 | –                   | 4(6) 5(5)            | `[6, 3, 3, 6, −1, −1]`      |
 
 Indices 4 and 5 are left on the stack, so they keep −1. Result: **`[6, 3, 3, 6, −1, −1]`**. ✓
+
+The same pass, drawn as shapes. Each column shows the stack *after* that index has been handled,
+with the top of the stack at the top of the column and entries written `index(value)`:
+
+```
+  i = 0        i = 1        i = 2        i = 3        i = 4        i = 5
+  x = 4        x = 2        x = 1        x = 3        x = 6        x = 5
+
+                            2(1) <- top
+               2(2) <- top  1(2)         3(3) <- top               5(5) <- top
+  0(4) <- top  0(4)         0(4)         0(4)         4(6) <- top  4(6)
+  -----------  -----------  -----------  -----------  -----------  -----------
+  push 0       push 1       push 2       pop 2,1      pop 3,0      push 5
+                                         push 3       push 4
+```
+
+Read the values up any column and they always decrease: `4, 2, 1` at `i = 2`, `6, 5` at `i = 5`.
+That is the whole invariant. A newcomer eats the short entries off the top until the shape holds
+again.
 
 Notice that at step 3, a single new value settled two old ones. That is normal and is exactly what
 saves the O(n²) scanning.
