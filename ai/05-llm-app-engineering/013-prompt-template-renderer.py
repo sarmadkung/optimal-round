@@ -57,6 +57,16 @@ EXAMPLES
          {"name": "Bo"})
   -> [{"role": "user", "content": "Use {{name}} syntax, Bo"}]
 
+  render([{"role": "assistant", "content": "{{a}}+{{a}}={{b}}; {{c}}; {{d}}"}],
+         {"a": 1, "b": 2.5, "c": None, "d": "{{a}}"})
+  -> [{"role": "assistant", "content": "1+1=2.5; None; {{a}}"}]
+     (values are stringified, repeated, and never scanned again)
+
+  render([{"role": "tool", "content": "{{ }} {{1st}} {x} C:\\path {{x}}"}],
+         {"x": "ok"})
+  -> [{"role": "tool", "content": "{{ }} {{1st}} {x} C:\\path ok"}]
+     (nothing but a valid placeholder is touched; a lone backslash is kept)
+
   render([{"role": "user", "content": "{{missing}}"}], {})   -> KeyError('missing')
   render([{"role": "robot", "content": "hi"}], {})          -> ValueError
 

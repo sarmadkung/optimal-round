@@ -50,6 +50,24 @@ EXAMPLES
   Same input with max_iters=1  ->  C = [[0],[22/3]], labels = [0,0,1,1],
     inertia = 0 + 1 + (10 - 22/3)² + (11 - 22/3)² = 1 + 64/9 + 121/9
 
+  Same input with max_iters=0: no update runs, but labels and inertia are
+  still computed against the returned (initial) centroids
+  kmeans(X, init, max_iters=0)  ->  C = [[0],[1]], labels = [0,1,1,1],
+    inertia = 0 + 0 + 81 + 100 = 181.0
+
+  Empty cluster keeps its old centroid.
+  X = [[0],[1],[10],[11]], init = [[0],[11],[1000]]
+  kmeans(X, init)  ->  C = [[0.5],[10.5],[1000.0]], labels = [0,0,1,1],
+    inertia = 1.0   (centroid 2 never wins a point, so it does not move)
+
+  k = 1: the one centroid becomes the mean of every point.
+  X = [[0,0],[2,0],[4,6]], init = [[100,100]]
+  kmeans(X, init)  ->  C = [[2.0,2.0]], labels = [0,0,0], inertia = 32.0
+
+  Ties go to the lowest index. X = [[1]], init = [[0],[2]]
+  kmeans(X, init, max_iters=0)  ->  labels = [0] (an integer ndarray of
+    shape (1,)), C = [[0],[2]], inertia = 1.0
+
 EDGE CASES
   - max_iters = 0: centroids are the initial ones; labels and inertia are
     computed against them.

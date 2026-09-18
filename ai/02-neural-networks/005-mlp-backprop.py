@@ -48,6 +48,31 @@ EXAMPLES
     dlogits = [p0 - 1, 1 - p0] ≈ [-0.119203, 0.119203]
     dW2 ≈ [[-0.119203], [0.119203]] ;  db2 ≈ [-0.119203, 0.119203]
     da1 = dz1 ≈ -0.238406 ;  dW1 ≈ [[-0.238406]] ;  db1 ≈ [-0.238406]
+  predict(params, [[1], [-1]])  ->  [0, 0]
+    (row 1 has a1 = 0, so logits = [0, 0] and the tie goes to class 0)
+
+  The loss is a MEAN, so duplicating the batch changes nothing.
+  Same params, X = [[1], [1]], y = [0, 0]
+    loss ≈ 0.126928 and every gradient is identical to the n = 1 case above
+
+  A dead hidden unit gets exactly zero first-layer gradient.
+  W1 = [[1]], b1 = [-5], W2 = [[1], [-1]], b2 = [0, 0], X = [[1]], y = [0]
+    z1 = -4, a1 = 0, logits = [0, 0], loss = log(2) ≈ 0.693147
+  backward  ->  dW1 = [[0.0]], db1 = [0.0], dW2 = [[0.0], [0.0]],
+    db2 = [-0.5, 0.5]
+    (a1 = 0 kills dW2 too, and [z1 > 0] is False so nothing reaches layer 1)
+
+  ReLU's derivative at exactly z1 = 0 is 0, not 1.
+  W1 = [[1]], b1 = [0], W2 = [[1], [-1]], b2 = [0, 0], X = [[0]], y = [0]
+    z1 = 0, a1 = 0, loss = log(2) ≈ 0.693147
+  backward  ->  dW1 = [[0.0]], db1 = [0.0], db2 = [-0.5, 0.5]
+
+  Gradient shapes always match the parameter shapes. With d=2, h=4, C=3 and
+  X of shape (3, 2), y = [0, 1, 2]:
+    g["W1"].shape == (4, 2), g["b1"].shape == (4,),
+    g["W2"].shape == (3, 4), g["b2"].shape == (3,)
+  predict(params, X) is an integer ndarray of shape (3,) with values in
+  [0, 3), and forward returns loss as a Python float.
 
 EDGE CASES
   - A hidden unit whose z1 <= 0 for every sample is dead: its rows of dW1 and

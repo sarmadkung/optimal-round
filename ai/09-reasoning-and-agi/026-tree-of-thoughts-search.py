@@ -61,10 +61,29 @@ EXAMPLES
       -> [1, 3, 9, 18, 19, 20, 21, 22, 23, 24]
     (the beam rushes to 18, the closest number, then can only crawl with +1)
 
+  A wide enough beam prunes nothing, so the same bad score still finds a
+  shortest path, because goals are checked level by level:
+    tree_of_thoughts(1, propose, score, is_goal, breadth=50, max_depth=6)
+      -> [1, 3, 6, 12, 24]
+
   With a score that knows 24's divisors,
     score = lambda n: -abs(24 - n) if 24 % n == 0 else -100 - abs(24 - n)
     tree_of_thoughts(1, propose, score, is_goal, breadth=1, max_depth=6)
       -> [1, 3, 6, 12, 24]
+    Four expansions are all it needs, so max_depth=4 gives the same path:
+    tree_of_thoughts(1, propose, score, is_goal, breadth=1, max_depth=4)
+      -> [1, 3, 6, 12, 24]
+    (a beam of 1 under the closeness score above never reaches 24 by depth 6)
+
+  The root is tested before anything else, so propose is never called:
+    tree_of_thoughts(24, propose, score, is_goal, breadth=1, max_depth=5)
+      -> [24]
+
+  No expansion rounds, or nowhere to expand to:
+    tree_of_thoughts(1, propose, score, is_goal, breadth=3, max_depth=0)
+      -> None
+    tree_of_thoughts(1, lambda n: [], score, is_goal, breadth=3, max_depth=5)
+      -> None
 
 EDGE CASES
   - The root is a goal: [root].

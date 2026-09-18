@@ -50,6 +50,25 @@ EXAMPLES
     -> [(0, 0.9286...)]     ("cats" is a different token, so doc 2 scores 0)
 
   top_k(corpus, "the", 5)  -> doc 1 (shorter) before doc 0
+    -> [(1, ≈0.5296), (0, ≈0.4450)]
+
+  top_k(corpus, "cat dog", 5)   (the two terms prefer different documents)
+    -> [(1, ≈1.1052), (0, ≈0.9286)]
+       (doc 1 wins on "dog" alone; doc 2 has neither token and is left out)
+
+  bm25_scores(corpus, "zzz")  -> [0.0, 0.0, 0.0]   (term in no document)
+  top_k(corpus, "zzz", 5)     -> []
+  top_k(corpus, "?!", 5)      -> []                (query tokenizes to [])
+
+  bm25_scores(["hello world"], "world")  -> [≈0.2877]
+    N = 1, df = 1, idf = ln(0.5/1.5 + 1) = ln(4/3); dl == avgdl == 2, so the
+    length factor is 1 and the tf factor is 2.5/(1 + 1.5) = 1.0
+
+  top_k(["zeta alpha", "alpha", "beta", "alpha beta gamma delta"],
+        "alpha", 10, b=0.0)
+    -> [(0, ≈0.3567), (1, ≈0.3567), (3, ≈0.3567)]
+       (b = 0 removes length normalisation: equal tf gives exactly equal
+        scores, so the three are ordered by doc index; doc 2 scores 0)
 
 EDGE CASES
   - A query with no tokens (e.g. "?!") gives all-zero scores and top_k [].

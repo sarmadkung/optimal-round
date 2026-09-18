@@ -97,6 +97,29 @@ EXAMPLES
    {"id": "w", "tool": "t"}]
     -> PlanError("cycle detected: x, y, z")
 
+  The smallest plans: one step with no args and no dependencies, and no steps.
+  execute_plan([{"id": "s", "tool": "now"}], {"now": lambda: "ok"})
+    -> {"waves": [["s"]], "status": {"s": "ok"}, "outputs": {"s": "ok"},
+        "errors": {}, "attempts": {"s": 1}}
+  execute_plan([], {})
+    -> {"waves": [], "status": {}, "outputs": {}, "errors": {}, "attempts": {}}
+
+  A flaky tool that raises TimeoutError("slow") on its first two calls and
+  returns "done" on the third:
+  execute_plan([{"id": "s", "tool": "flaky"}], {"flaky": flaky}, max_retries=2)
+    -> status {"s": "ok"}, outputs {"s": "done"}, errors {}, attempts {"s": 3}
+  With the default max_retries=0 the same tool gives status {"s": "failed"},
+  errors {"s": "TimeoutError: slow"} and attempts {"s": 1}.
+
+  Bad plans are rejected before any tool runs (tools = {"t": t}):
+  execute_plan([{"id": "a", "tool": "t"}, {"id": "b", "tool": "zzz"}], tools)
+    -> PlanError("unknown tool zzz in step b")
+  execute_plan([{"id": "a", "tool": "t"},
+                {"id": "b", "tool": "t", "args": {"x": "$ghost"}}], tools)
+    -> PlanError("step b depends on unknown step ghost")
+  execute_plan([{"id": "a", "tool": "t"}, {"id": "a", "tool": "t"}], tools)
+    -> PlanError("duplicate step id: a")
+
 EDGE CASES
   - An empty plan returns waves [] and four empty dicts.
   - A step that depends on the same id twice is fine.

@@ -74,7 +74,24 @@ EXAMPLES
   fit_to_budget(messages, 11, count_tokens, overhead=0) -> unchanged copy
   fit_to_budget(messages, 7,  count_tokens, overhead=0)
     -> [sys, user "q2 two", assistant "a2 two", user "q3"]   (turn 1 dropped)
+  fit_to_budget(messages, 6,  count_tokens, overhead=0)
+    -> [sys, user "q3"]                            (both turns dropped, d = 2)
   fit_to_budget(messages, 2,  count_tokens, overhead=0) -> ValueError
+    (cost([sys, user "q3"]) is 3, which is already over the budget)
+
+  With a summariser (FakeLLM from ai/_fakes, replies used in order):
+  llm = FakeLLM(replies=["Asked about q1.", "Short"])
+  fit_to_budget(messages, 9, count_tokens, overhead=0, llm=llm)
+    -> [sys, system "Summary of earlier conversation: Short", user "q3"]
+       (d = 1 fits as a base (7 <= 9) so llm is called, but that summary is
+        too long; d = 2 is summarised as "Short" and fits exactly. 2 calls.)
+
+  llm = FakeLLM(replies=["this reply is far too long"])
+  fit_to_budget(messages, 6, count_tokens, overhead=0, llm=llm)
+    -> [sys, user "q3"]
+       (d = 1 has base cost 7 > 6, so llm is NOT called for it; d = 2 is
+        summarised but does not fit, so step 4's fallback is returned.
+        Exactly 1 llm call.)
 
 EDGE CASES
   - An empty middle that still does not fit is caught by step 2.

@@ -50,10 +50,24 @@ EXAMPLES
   q_sample(x0=[[1.0]], t=[1], noise=[[1.0]], alphas_cumprod=[0.9, 0.72])
     -> [[sqrt(0.72) + sqrt(0.28)]]  ≈ [[1.37768]]
 
+  q_sample with a per-example t and 4-D data, alphas_cumprod=[0.9, 0.72, 0.5]
+    x0 = ones((2, 1, 2, 2)), noise = full((2, 1, 2, 2), 2.0), t = [0, 2]
+    -> shape (2, 1, 2, 2); every entry of example 0 is
+       sqrt(0.9) + 2·sqrt(0.1)  ≈ 1.58114, and of example 1
+       sqrt(0.5) + 2·sqrt(0.5)  ≈ 2.12132
+
+  predict_x0 undoes q_sample exactly:
+    predict_x0(x_t=[[sqrt(0.72) + sqrt(0.28)]], t=[1], eps_pred=[[1.0]],
+               alphas_cumprod=[0.9, 0.72])  ->  [[1.0]]
+
   posterior_mean_variance(x0=[[1.0]], x_t=[[2.0]], t=[1], betas=[0.1, 0.2])
     ᾱ_prev = 0.9, alpha_t = 0.8, 1 - ᾱ_t = 0.28
     mean = sqrt(0.9)·0.2/0.28 · 1 + sqrt(0.8)·0.1/0.28 · 2  ≈ [[1.31651]]
     var  = 0.2 · 0.1 / 0.28 = 1/14                            -> [0.0714286]
+
+  the same call at t = 0, where ᾱ_prev = 1 so 1 - ᾱ_prev = 0
+    posterior_mean_variance(x0=[[1.0]], x_t=[[2.0]], t=[0], betas=[0.1, 0.2])
+    -> mean [[1.0]] (exactly x0), var [0.0]
 
 EDGE CASES
   - t = 0: var is 0 and mean equals x0 (up to float rounding): nothing is

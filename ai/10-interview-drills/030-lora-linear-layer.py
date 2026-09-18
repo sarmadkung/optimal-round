@@ -58,6 +58,33 @@ EXAMPLES
   layer.B = [[1], [0], [-1]] as an array
   layer.forward([[1, 0]])                 ->  [[1 + 2·1, 3, 5 - 2·1]] = [[3, 3, 3]]
   layer.merge()                           ->  [[3, 4], [3, 4], [3, 4]]
+  layer.W                                 ->  still [[1, 2], [3, 4], [5, 6]]
+
+  The same layer on x = [[1, 2]]: h = x @ Aᵀ = [[3]], base = [[5, 11, 17]],
+  update = 2 · 3 · [1, 0, -1] = [6, 0, -6].
+  layer.forward([[1, 2]])                 ->  [[11, 11, 11]]
+  layer.backward([[1, 0, 0]])             ->  dx = [[3, 4]]
+                                              dA = [[2, 4]]
+                                              dB = [[6], [0], [0]]
+
+  At init B is zero, so the LoRA path carries no signal into A yet. With
+  x = [[1, 0], [0, 1]] and grad_out all ones:
+  layer = LoRALinear(W, A, alpha=2);  layer.forward(x);  layer.backward(ones)
+    dx  ->  [[9, 12], [9, 12]]   = grad_out @ W, shape (2, 2)
+    dA  ->  [[0, 0]]             all zeros, shape (1, 2)
+    dB  ->  [[4], [4], [4]]      non-zero, shape (3, 1)
+
+  alpha = r is the "no rescaling" setting, scale exactly 1.0. With r = 2,
+  A = [[1, 0], [0, 1]] and alpha = 2:
+  layer = LoRALinear(W, A, alpha=2)       ->  scale = 1.0, B = zeros((3, 2))
+  layer.B = [[0, 0], [0, 0], [1, 0]] as an array
+  layer.merge()                           ->  [[1, 2], [3, 4], [6, 6]]
+                                              (only the last row shifts, by B @ A)
+
+  Bad shapes, and use before forward:
+  LoRALinear(ones((3, 4)), ones((2, 5)), 1.0)  ->  ValueError  (in dims differ)
+  LoRALinear(ones((3, 4)), ones(4), 1.0)       ->  ValueError  (A is 1-D)
+  LoRALinear(W, A, 2).backward(ones((1, 3)))   ->  RuntimeError (no forward yet)
 
 EDGE CASES
   - At init (B = 0) the output equals x @ Wᵀ, dA is all zeros, but dB is not:

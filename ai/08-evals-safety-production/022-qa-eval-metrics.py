@@ -57,6 +57,11 @@ EXAMPLES
   f1_score("the the cat", ["cat cat"])
     pred ["cat"] (both "the" removed), gold ["cat", "cat"], common 1
     P = 1.0, R = 0.5, F1 = 0.6666...
+  f1_score("black cat", ["cat", "black cat sat"])
+    vs "cat":           common 1, P = 0.5, R = 1.0     -> F1 = 0.6666...
+    vs "black cat sat": common 2, P = 1.0, R = 0.6666  -> F1 = 0.8
+    the best gold wins -> 0.8
+    (no shared tokens at all is a plain 0.0: f1_score("dog", ["cat"]) -> 0.0)
 
   evaluate({"q1": "Paris", "q2": "blue whale"},
            [{"id": "q1", "answers": ["Paris"]},

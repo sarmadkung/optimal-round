@@ -78,6 +78,33 @@ EXAMPLES
   clock.sleeps -> [1.0, 2.0]
   client.complete([{"role": "user", "content": "hey"}]) -> "hi"  (cached, no call)
 
+  try_acquire never waits, and asking for more than the capacity is a bug:
+  clock = FakeClock()
+  bucket = TokenBucket(capacity=1, refill_rate=1.0, clock=clock)
+  bucket.try_acquire() -> True      # tokens 1.0 -> 0.0
+  bucket.try_acquire() -> False     # nothing changes, clock.sleeps stays []
+  clock.t += 0.25                   # 0.25 tokens refilled
+  bucket.try_acquire() -> False     # still short, tokens stay at 0.25
+  bucket.acquire(2)    -> ValueError (2 > capacity, it could never succeed)
+
+  Every retry is used up, then the last error is re-raised:
+  llm always raises ServerError; defaults max_retries=3, base_delay=1.0
+  client.complete(msgs) makes 4 llm calls, then raises the LAST ServerError
+  clock.sleeps -> [1.0, 2.0, 4.0]
+  With max_retries=5, base_delay=1.0, max_delay=5.0 the same llm gives 6 calls
+  and clock.sleeps -> [1.0, 2.0, 4.0, 5.0, 5.0].
+
+  A non-retryable error stops at once and is never cached:
+  llm raises ValueError("bad request"), then would return "next"
+  client.complete(msgs) -> raises ValueError after 1 llm call, clock.sleeps []
+  client.complete(msgs) -> "next"   (the error was not cached, so llm runs again)
+
+  LRU eviction with cache_size=2:
+  complete() on the prompts "a", "b", "a", "c", "b" makes the model see
+  "a", "b", "c", "b" — the hit on "a" made "b" least recently used, so "b" was
+  evicted when "c" was stored, and the later "b" missed.
+  With cache_size=0 nothing is cached: two identical calls hit the model twice.
+
 EDGE CASES
   - A rate-limit wait and a backoff wait both appear in clock.sleeps, in the
     order they happen.

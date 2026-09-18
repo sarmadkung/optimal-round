@@ -44,13 +44,52 @@ CONSTRAINTS
   No Python loops over batch, heads or positions.
 
 EXAMPLES
-  B=2, T=5, d=8, n_heads=4:
-    out.shape == (2, 5, 8),  weights.shape == (2, 4, 5, 5)
-    every row weights[b, i, t] sums to 1
+  Shapes and the softmax invariant, B=2, T=5, d=8, n_heads=4:
+    out, weights = multi_head_attention(X, W_q, W_k, W_v, W_o, 4)
+      out.shape             ->  (2, 5, 8)
+      weights.shape         ->  (2, 4, 5, 5)
+      weights.sum(axis=-1)  ->  1.0 everywhere
+    Both arrays are plain float arrays (float64 for float64 inputs).
+
+  The smallest readable case: B=1, T=2, d=2, n_heads=1, all four weights the
+  identity, X = [[1, 0], [0, 1]]. Then Q = K = V = X and
+  scores = X Xᵀ / sqrt(2) = [[0.7071, 0], [0, 0.7071]], so
+    weights[0, 0]  ->  [[0.6698, 0.3302],
+                        [0.3302, 0.6698]]
+    (0.6698 ≈ e^0.7071 / (e^0.7071 + 1))
+    out[0]         ->  the same two rows, because V = X and W_o = I
+
+  Head splitting, B=1, T=2, d=4, n_heads=2, identity weights,
+  X = [[1, 0, 0, 0], [0, 0, 1, 0]]. Head 0 sees only columns 0:2, where
+  token 0 is [1, 0] and token 1 is [0, 0]; head 1 sees only columns 2:4, where
+  the two are swapped. So the heads are mirror images:
+    weights.shape  ->  (1, 2, 2, 2)
+    weights[0, 0]  ->  [[0.6698, 0.3302], [0.5, 0.5]]
+    weights[0, 1]  ->  [[0.5, 0.5], [0.3302, 0.6698]]
+    out[0]         ->  [[0.6698, 0, 0.5, 0], [0.5, 0, 0.6698, 0]]
+    A reshape without the transpose back gives the right shape and wrong rows.
+
+  The mask alone, with W_q = 0 so every score is 0 and each row is uniform over
+  what it is allowed to see (B=1, T=3, d=2, n_heads=1):
+    multi_head_attention(X, zeros(2, 2), I, I, I, 1, causal=True)
+      weights[0, 0]  ->  [[1.0,    0.0,    0.0   ],
+                          [0.5,    0.5,    0.0   ],
+                          [0.3333, 0.3333, 0.3333]]
+    Without causal=True all nine entries are 0.3333. With it,
+    weights[b, i, t, s] == 0 for s > t, and changing X[:, 4] of a longer
+    sequence leaves out[:, :4] unchanged.
+
+  T = 1: one position, nothing to choose between, so attention is a no-op.
+    out, weights = multi_head_attention(X, W_q, W_k, W_v, W_o, 2, causal=True)
+      weights  ->  all 1.0, shape (B, 2, 1, 1)
+      out      ->  X @ W_v.T @ W_o.T           (W_q and W_k cannot matter)
+
   n_heads = 1 gives the classic single-head formula
     softmax(Q Kᵀ / sqrt(d)) V, then the output projection.
-  With causal=True, weights[b, i, t, s] == 0 for s > t, and changing X[:, 4]
-  leaves out[:, :4] unchanged.
+  d = 6 with n_heads = 4     ->  ValueError (6 is not divisible by 4)
+  X * 1e4 with n_heads = 2   ->  out and weights still finite, rows still
+                                 summing to 1 (a saturated row is one 1.0 and
+                                 the rest 0.0, never nan)
 
 EDGE CASES
   - T = 1: each token attends only to itself; weights are all 1.

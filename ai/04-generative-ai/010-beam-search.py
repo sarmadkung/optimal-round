@@ -60,6 +60,28 @@ EXAMPLES
     step 3: ("b","z","<eos>") 0.36 finishes; nothing live, stop
     -> [(("b","z","<eos>"), log 0.36), (("a","<eos>"), log 0.24)]
 
+  A second model, where the short answer wins on the raw score:
+    ()          -> {"<eos>": 0.5, "a": 0.5}
+    ("a",)      -> {"b": 0.6, "<eos>": 0.4}
+    ("a", "b")  -> {"<eos>": 1.0}
+
+  beam_width=2, max_len=5, length_penalty=0.0:
+    -> [(("<eos>",), log 0.5), (("a","b","<eos>"), log 0.3),
+        (("a","<eos>"), log 0.2)]                  ≈ [-0.6931, -1.2040, -1.6094]
+  beam_width=2, max_len=5, length_penalty=1.0 (the same search, new ranking):
+    -> [(("a","b","<eos>"), log 0.3 / 3), (("<eos>",), log 0.5 / 1),
+        (("a","<eos>"), log 0.2 / 2)]              ≈ [-0.4013, -0.6931, -0.8047]
+
+  Uniform model {"a": 0.5, "b": 0.5} at every prefix, beam_width=2, max_len=3:
+    every candidate ties on score, so the token tuples break every tie
+    -> [(("a","a","a"), 3·log 0.5), (("a","a","b"), 3·log 0.5)], both ≈ -2.0794
+    (no eos is ever produced: both are returned unfinished at max_len)
+
+  Model {(): {"<eos>": 0.7, "q": 0.3}}, beam_width=1, max_len=10:
+    the single kept candidate ends in eos, so nothing is live and step 2
+    never runs
+    -> [(("<eos>",), log 0.7)]                     ≈ [-0.3567]
+
 EDGE CASES
   - max_len reached with no eos: those hypotheses are returned unfinished.
   - Equal scores are common (uniform models); the tie rule decides the order.

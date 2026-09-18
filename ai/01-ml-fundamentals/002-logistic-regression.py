@@ -53,6 +53,24 @@ EXAMPLES
     (p = [0.5, 0.5], err = [-0.5, 0.5], dw = ½·[1.0, 1.0], db = 0)
 
   bce_loss(X, y, zeros(2), 0.0)  ->  log(2) ≈ 0.693147
+  and huge logits stay finite: with X = [[1],[1]], y = [1,0], w = [1000.0],
+  b = 0.0 the logits are z = [1000, 1000], so row 0 is confidently right and
+  costs ≈ 0 while row 1 is confidently wrong and costs ≈ 1000
+  bce_loss(X, y, [1000.0], 0.0)  ->  500.0   (no overflow, no nan)
+
+  Smallest possible input, n = 1 and d = 1. X = [[2]], y = [1]
+    p = sigmoid(0) = 0.5, err = -0.5, dw = (1/1)·2·(-0.5) = -1, db = -0.5
+  fit(X, y, lr=0.5, epochs=1)   ->  w = [0.5], b = 0.25
+  fit(X, y, lr=0.5, epochs=0)   ->  w = [0.0], b = 0.0
+
+  Thresholding at exactly 0.5. X = [[0],[1],[-1]], w = [3.0], b = 0.0
+  predict_proba(X, w, 0.0)  ->  [0.5, 0.952574, 0.047426]
+  predict(X, w, 0.0)        ->  [1, 1, 0]   (integer dtype; 0.5 is class 1)
+
+  Perfectly separable data. X = [[-1],[1]], y = [0,1]
+  fit(X, y, lr=0.5, epochs=100)   ->  w ≈ [3.870], b ≈ 0.0
+  fit(X, y, lr=0.5, epochs=1000)  ->  w ≈ [6.207], b ≈ 0.0
+    (the weight keeps growing; predict is [0,1] either way)
 
 EDGE CASES
   - epochs = 0 returns the initial zeros.

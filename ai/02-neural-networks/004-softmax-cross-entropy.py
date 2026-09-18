@@ -44,6 +44,12 @@ EXAMPLES
   cross_entropy_grad([[0, 0], [0, 0]], [0, 1])
                                      ->  [[-0.25, 0.25], [0.25, -0.25]]
 
+  Confident and correct, logits [[10, 0]] with label 0:
+  softmax([[10, 0]])                  ->  ≈ [[0.999955, 0.000045]]
+  cross_entropy([[10, 0]], [0])       ->  ≈ 0.0000454
+  cross_entropy_grad([[10, 0]], [0])  ->  ≈ [[-0.0000454, 0.0000454]]
+    (loss ≈ 0, gradient ≈ 0, and the row still sums to exactly 0)
+
 EDGE CASES
   - Adding the same constant to a whole row changes nothing.
   - A confident, correct prediction gives loss ≈ 0 and gradient ≈ 0.

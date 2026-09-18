@@ -82,6 +82,57 @@ EXAMPLES
   The second llm call saw 4 messages: system, question, the assistant's action,
   and {"role": "user", "content": "Observation: 5"}.
 
+  The smallest run: one step, and the model answers straight away.
+  llm replies, in order:
+    'Final Answer: Paris'
+  run_react(llm, {"add": lambda a, b: a + b}, "Capital of France?")
+    -> {"answer": "Paris", "finished": True, "trace": [
+          {"step": 1, "reply": "Final Answer: Paris", "type": "final", "tool": None,
+           "args": None, "observation": None}]}
+  That single llm call saw exactly 2 messages:
+    {"role": "system", "content": "Tools: add"}
+    {"role": "user", "content": "Question: Capital of France?"}
+
+  Observation formats, a tool that raises, and a tool that does not exist.
+  tools = {"div": lambda a, b: a / b, "listy": lambda: [1, 2]}
+  llm replies, in order:
+    'Action: div[{"a": 1, "b": 0}]'
+    'Action: listy[{}]'
+    'Action: nope[{}]'
+    'Final Answer: done'
+  run_react(llm, tools, "q", max_steps=5)
+    -> answer "done", finished True, 4 trace entries whose observations are
+         "Observation: error: ZeroDivisionError: division by zero"
+         "Observation: [1, 2]"
+         "Observation: error: unknown tool nope"
+         None                      (a final step appends no message)
+  The third entry still records tool "nope" and args {}, and the system
+  message is {"role": "system", "content": "Tools: div, listy"} (sorted names).
+
+  Off-format replies are corrected, not fatal.
+  llm replies, in order:
+    'I think it is 4'          (no "Action:" or "Final Answer:" line at all)
+    'Action: add[{"a": 1]'     (an Action line whose JSON does not parse)
+    'Final Answer: 4'
+  run_react(llm, {"add": lambda a, b: a + b}, "q")
+    -> answer "4", finished True, trace types ["invalid", "invalid", "final"]
+  Each invalid step has tool None, args None, observation CORRECTION, and
+  appends {"role": "user", "content": CORRECTION}; it still uses up a step.
+
+  The step budget runs out.
+  llm always replies 'Action: echo[{"text": "again"}]'
+  run_react(llm, {"echo": lambda text: text}, "loop forever", max_steps=2)
+    -> {"answer": None, "finished": False, "trace": [ 2 entries, steps 1 and 2 ]}
+  Exactly 2 llm calls are made, both entries have observation
+  "Observation: again", and llm is not called a third time.
+
+  A multi-line and an empty final answer, with no tools at all.
+  llm replies 'Thought: done\\n  Final Answer: line one\\nline two\\n'
+  run_react(llm, {}, "q")["answer"]   ->  "line one\\nline two"
+  llm replies 'Final Answer:'
+  run_react(llm, {}, "q")             ->  answer "", finished True
+  With no tools the system content is "Tools: ".
+
 EDGE CASES
   - The observation for a tool returning 5 is "Observation: 5" (json.dumps(5)),
     for "5" it is also "Observation: 5", for [1, 2] it is "Observation: [1, 2]".

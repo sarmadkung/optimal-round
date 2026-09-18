@@ -68,19 +68,47 @@ CONSTRAINTS
 
 EXAMPLES
   A one-move game: root "R" (player "A") has moves ["L", "Rt"]; "L" leads to a
-  terminal state worth 1.0 to A, "Rt" to one worth 0.0.
+  terminal state worth 1.0 to A, "Rt" to one worth 0.0. Both children are
+  already terminal, so no rollout ever calls rng and the counts below are the
+  same for every seed.
     mcts(game, "R", 10, rng)
       -> ("L", [("L", 8, 8.0), ("Rt", 2, 0.0)])
     Iteration 1 expands L, iteration 2 expands Rt, then UCT picks L on every
     iteration until Rt's exploration bonus wins once, at iteration 7:
       UCT(L) = 1 + √2·sqrt(ln 6 / 5) ≈ 1.847  <  UCT(Rt) = 0 + √2·sqrt(ln 6 / 1) ≈ 1.893
     With c = 0 the search is pure greedy: ("L", [("L", 9, 9.0), ("Rt", 1, 0.0)]).
+    With c = 100 exploration swamps the values and the visits split evenly:
+      ("L", [("L", 5, 5.0), ("Rt", 5, 0.0)]).
+
+  The smallest run on the same game expands only the first move, and a
+  terminal root is rejected outright:
+    mcts(game, "R", 1, rng)    -> ("L", [("L", 1, 1.0), ("Rt", 0, 0.0)])
+    mcts(game, "win", 5, rng)  -> ValueError   ("win" is a terminal state)
+
+  A single-player game, Coins: choose "h" or "t" three times, reward 1.0 if at
+  least two are heads. Rollouts are random here, so the seed is part of the
+  example.
+    mcts(Coins(), "", 6, np.random.default_rng(7))
+      -> ("h", [("h", 4, 2.0), ("t", 2, 0.0)])
+    mcts(Coins(), "", 300, np.random.default_rng(7))
+      -> ("h", [("h", 206, 199.0), ("t", 94, 80.0)])
+    Whatever the seed, the root visits sum to iterations: 4 + 2 = 6,
+    206 + 94 = 300.
+
+  Two players. From root "R" (player A), move "a" lets B reply "y" and win,
+  while "b" forces a draw worth 0.5 to each.
+    mcts(two_player_game, "R", 200, np.random.default_rng(0))
+      -> ("b", [("a", 27, 3.0), ("b", 173, 86.5)])
+    W is summed from the mover's own point of view, so B's node under "a"
+    prefers "y" and A's search abandons "a": minimax in the limit.
 
   Tic-tac-toe, X to move on
       X X .
       O O .
       . . .
-  with 1000 iterations returns the winning square (index 2).
+  with 1000 iterations returns the winning square (index 2). From "XX.O....."
+  (X threatening the top row) 2000 iterations pick index 2 to block, for seeds
+  0, 1 and 2 alike.
 
 EDGE CASES
   - iterations smaller than the number of root moves: later moves report 0

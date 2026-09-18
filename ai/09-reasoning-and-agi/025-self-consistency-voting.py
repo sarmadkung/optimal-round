@@ -60,8 +60,32 @@ EXAMPLES
   (reply 2's first line does not START with "Answer:", so only "Answer: 42.0"
    counts there)
 
+  One sample is the whole vote, and it always agrees with itself:
+  self_consistency(FakeLLM(replies=["Answer: 42"]), "What is 6*7?", 1)
+    -> {"answer": "42", "votes": {"42": 1}, "agreement": 1.0}
+
+  Unanimous after normalisation — "42", "42.0" and " 42 ." are one key:
+  self_consistency(FakeLLM(replies=["Answer: 42", "Answer: 42.0",
+                                    "Answer:  42 ."]), "q", 3)
+    -> {"answer": "42", "votes": {"42": 3}, "agreement": 1.0}
+
+  An exact 2-2 tie goes to the answer seen first, "yes" from reply 1:
+  self_consistency(FakeLLM(replies=["Answer: yes", "Answer: no",
+                                    "Answer: no", "Answer: yes"]), "q", 4)
+    -> {"answer": "yes", "votes": {"yes": 2, "no": 2}, "agreement": 0.5}
+
+  Answerless completions never reach the denominator. With replies
+  ["I am not sure", "Answer: 7", "Answer:", "Answer: 8", "Answer: 7."] and n=5
+  only 3 completions vote, so agreement is 2/3, not 2/5:
+    -> {"answer": "7", "votes": {"7": 2, "8": 1}, "agreement": 0.6666...}
+
+  A completion whose lines are  "Answer: 1" / "hmm, wait" / "  Answer: 2.  "
+  keeps only the last answer line:
+  extract_answer(that completion)        ->  "2"
+
   extract_answer("  Answer:  Paris.  ")  ->  "paris"
   normalize_answer("007")                ->  "7"
+  normalize_answer("3.50")               ->  "3.5"
 
 EDGE CASES
   - "Answer:" with nothing after it gives None.

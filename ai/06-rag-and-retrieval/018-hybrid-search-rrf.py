@@ -60,6 +60,22 @@ EXAMPLES
 
   rrf([["x", "y"], ["y", "x"]])  -> x and y tie; "x" < "y", so x first.
 
+  The two rankers disagree on the winner but agree "b" is decent:
+  rrf([["a", "b"], ["c", "b"]])
+    b: 1/62 + 1/62   a: 1/61   c: 1/61
+    -> [("b", ≈0.03226), ("a", ≈0.01639), ("c", ≈0.01639)]
+       (neither ranker put b first, yet b wins; a and c tie, "a" < "c")
+
+  cosine([1.0, 0.0], [1.0, 1.0])  -> ≈0.7071
+  cosine([0.0, 0.0], [1.0, 1.0])  -> 0.0        (zero vector, no ZeroDivision)
+
+  One chunk, and a keyword search that returned nothing:
+  embed maps "q" -> [1.0, 0.0] and "alpha" -> [0.0, 1.0]
+  dense_rank("q", [{"id": "c1", "text": "alpha"}], embed)  -> ["c1"]
+    (every chunk id is returned, even at cosine 0.0)
+  hybrid_search("q", [{"id": "c1", "text": "alpha"}], embed, [], top_n=5)
+    -> [("c1", ≈0.01639)]      1/(60 + 1), from the dense ranking only
+
   ground_citations("Paris [1] is big [3][1]. See [0].", ["c7", "c2"])
     -> {"cited": ["c7"], "invalid": [3, 0]}
 

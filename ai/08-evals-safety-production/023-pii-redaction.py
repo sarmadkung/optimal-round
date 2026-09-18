@@ -72,8 +72,25 @@ EXAMPLES
     -> ("card [CARD_1], order 4111-1111-1111-1112, host [IPV4_1].",
         {"[CARD_1]": "4111-1111-1111-1111", "[IPV4_1]": "10.0.0.1"})
 
+  redact("+1 212-555-0199 rings, id 5551234567 does not.")
+    -> ("[PHONE_1] rings, id 5551234567 does not.",
+        {"[PHONE_1]": "+1 212-555-0199"})
+    (the "+1 " prefix is part of the match; a bare run of 10 digits is not a
+     phone at all)
+
+  redact("ref 4111 1111 1117 stays, so does 4111 1111 1111 1111 1111 1111.")
+    -> (the text unchanged, {})
+    (12 digits is too short even though it is Luhn-valid, and a 24-digit run is
+     not a card, nor is any 16-digit piece of it)
+
+  redact("Version 3.2 shipped on 2024-01-05 to 12 users @ noon.")
+    -> (the text unchanged, {})        # no PII, so the mapping is empty
+  redact("") -> ("", {})
+
   luhn_valid("79927398713") -> True
   luhn_valid("79927398710") -> False
+  luhn_valid("4111-1111") -> False     # non-digit characters
+  luhn_valid("") -> False
 
 EDGE CASES
   - A sentence-ending "." after an IP or email is not part of the match.

@@ -49,9 +49,33 @@ EXAMPLES
         {"text": "d e f g", "start": 3, "end": 7},
         {"text": "g h i j", "start": 6, "end": 10}]
 
+  chunk_words("a b c d e", 2, 0)
+    -> [{"text": "a b", "start": 0, "end": 2},
+        {"text": "c d", "start": 2, "end": 4},
+        {"text": "e", "start": 4, "end": 5}]          (overlap 0: back to back)
+
+  chunk_words("a b c d", 3, 2)
+    -> [{"text": "a b c", "start": 0, "end": 3},
+        {"text": "b c d", "start": 1, "end": 4}]
+       (stop as soon as end == n, so no chunk sits inside the previous one)
+
+  chunk_words("a b c", 3, 3)   -> ValueError   (overlap >= max_words)
+  chunk_words("   ", 5, 1)     -> []           (no words)
+  chunk_words("  hello   big  world ", 10, 3)
+    -> [{"text": "hello big world", "start": 0, "end": 3}]
+       (fewer words than max_words: one chunk, extra whitespace collapsed)
+
   chunk_sentences("One two. Three four five. Six!", 5)
     -> [{"text": "One two. Three four five.", "start": 0, "end": 5},
         {"text": "Six!", "start": 5, "end": 6}]
+
+  chunk_sentences("Hi. one two three four five six seven. Bye now.", 3)
+    -> [{"text": "Hi.", "start": 0, "end": 1},
+        {"text": "one two three", "start": 1, "end": 4},
+        {"text": "four five six", "start": 4, "end": 7},
+        {"text": "seven.", "start": 7, "end": 8},
+        {"text": "Bye now.", "start": 8, "end": 10}]
+       (the over-long sentence is cut into pieces; "Bye now." starts fresh)
 
 EDGE CASES
   - Fewer words than max_words: one chunk covering everything.

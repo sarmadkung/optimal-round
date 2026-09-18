@@ -52,6 +52,26 @@ EXAMPLES
 
   encode("aaab", [("a","a"), ("a","b"), ("aa","ab")])  ->  ["aaab"]
   decode(["aaab", "d"])                                 ->  "aaabd"
+  encode("cab",  [("a","a"), ("a","b"), ("aa","ab")])  ->  ["c", "ab"]
+      ("c" was never merged during training and still encodes fine)
+
+  train("banana", 2)
+    step 1: ("a","n")=2 and ("n","a")=2 tie; ("a","n") is smaller -> merge it
+            tokens: b an an a
+    step 2: every remaining pair occurs once; ("an","a") is the smallest
+            tokens: b an ana
+    -> [("a","n"), ("an","a")]
+    encode("banana", that)  ->  ["b", "an", "ana"]
+
+  every pair occurs once, so the tuple order alone decides:
+    train("abcd", 2)  ->  [("a","b"), ("ab","c")]
+    train("abcd", 3)  ->  [("a","b"), ("ab","c"), ("abc","d")]
+  train("ab", 5)      ->  [("a","b")]   (stops early: one token is left)
+
+  overlapping occurrences merge left to right and never overlap:
+    train("aaa", 1)              ->  [("a","a")]
+    encode("aaa",  [("a","a")])  ->  ["aa", "a"]
+    encode("aaaa", [("a","a")])  ->  ["aa", "aa"]
 
 EDGE CASES
   - num_merges = 0, or text = "" / a single character, returns [].

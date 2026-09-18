@@ -56,10 +56,36 @@ EXAMPLES
   idx.add(["a", "b", "c"], [[1, 0], [0, 2], [3, 3]])
   idx.search([1, 0], k=2)   ->  [("a", 1.0), ("c", 0.7071...)]
   idx.search([0, 5], k=5)   ->  [("b", 1.0), ("c", 0.7071...), ("a", 0.0)]
+  idx.search([1, 0], k=1)   ->  [("a", 1.0)]
+  idx.search([1, 0], k=0)   ->  []
   idx.add(["a"], [[0, -1]])            # replaces "a"; len(idx) is still 3
   idx.search([1, 0], k=3, filter=lambda i: i != "c")
                             ->  [("a", 0.0), ("b", 0.0)]    (tie -> id order)
   idx.delete("b") -> True;  idx.delete("zzz") -> False;  len(idx) -> 2
+
+  Only direction counts, because both sides are normalised:
+  n = VectorIndex(2);  n.add(["v"], [[3, 4]])
+  n.search([6, 8], k=1)     ->  [("v", 1.0)]
+
+  The tie-break decides the last slot, not just the order. Five ids share the
+  vector [1, 1]:
+  t = VectorIndex(2)
+  t.add(["e", "b", "d", "a", "c"], [[1, 1]] * 5)
+  t.add(["top"], [[1, 0.9]]);  t.add(["low"], [[0, 1]])
+  t.search([1, 0.9], k=3)   ->  [("top", ≈1.0), ("a", 0.9986...), ("b", 0.9986...)]
+                                (a and b win the tie on id order; c, d, e are cut)
+  ids from t.search([1, 0.9], k=7)
+                            ->  ["top", "a", "b", "c", "d", "e", "low"]
+
+  Nothing stored, or nothing survives the filter:
+  VectorIndex(3).search([1, 0, 0], k=3)            ->  []
+  idx.search([1, 0], k=3, filter=lambda i: False)  ->  []
+
+  A rejected add leaves the index exactly as it was:
+  z = VectorIndex(3);  z.add(["a"], [[1, 2, 3]])
+  z.add(["b", "c"], [[1, 0, 0], [0, 0, 0]])  ->  ValueError, len(z) still 1
+  z.search([0, 0, 0], k=1)                   ->  ValueError  (zero-norm query)
+  z.search([1, 0], k=1)                      ->  ValueError  (wrong shape)
 
 EDGE CASES
   - Empty index, or a filter that rejects everything: [].

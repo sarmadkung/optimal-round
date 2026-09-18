@@ -39,12 +39,34 @@ EXAMPLES
   B=1, T=2, d_k=1
     Q = [[[1],[1]]], K = [[[0],[ln 3]]], V = [[[10],[20]]]
     scores = [[0, ln 3], [0, ln 3]]
-    non-causal: weights = [[1/4, 3/4], [1/4, 3/4]], out = [[17.5], [17.5]]
-    causal:     weights = [[1, 0], [1/4, 3/4]],     out = [[10],   [17.5]]
+    attention(Q, K, V)               ->  weights [[1/4, 3/4], [1/4, 3/4]]
+                                         out     [[17.5], [17.5]]
+    attention(Q, K, V, causal=True)  ->  weights [[1, 0], [1/4, 3/4]]
+                                         out     [[10], [17.5]]
 
-  causal_mask(3) = [[0, -inf, -inf],
-                    [0,    0, -inf],
-                    [0,    0,    0]]
+  causal_mask(3)  ->  [[0, -inf, -inf],
+                       [0,    0, -inf],
+                       [0,    0,    0]]
+  causal_mask(1)  ->  [[0]]           (the smallest mask; nothing is hidden)
+
+  softmax([0, ln 3])           ->  [0.25, 0.75]
+  softmax([1000, 1000, -inf])  ->  [0.5, 0.5, 0.0]
+      (the max is subtracted first, so no overflow; -inf gives exactly 0.0)
+
+  the smallest attention: B=1, T=1, d_k=2, d_v=2
+    Q = K = [[[2, 1]]], V = [[[5, -5]]]
+    attention(Q, K, V, causal=True)  ->  weights [[1.0]], out [[5, -5]] = V
+
+  the 1/sqrt(d_k) scaling: B=1, T_q=1, T_k=2, d_k=4, d_v=1
+    Q = [[[1,1,1,1]]], K = [[[1,1,1,1],[0,0,0,0]]], V = [[[1],[0]]]
+    scores = [[4 / sqrt(4), 0]] = [[2, 0]]
+    attention(Q, K, V)  ->  weights ≈ [[0.8808, 0.1192]], out ≈ [[0.8808]]
+      (without the scaling the score would be 4 and the weight 0.9820)
+
+  cross-attention, T_q != T_k, B=1, T_q=2, T_k=3, d_k=4, d_v=5
+    Q = zeros((1,2,4)), K = zeros((1,3,4)), V any (1,3,5) array
+    attention(Q, K, V)  ->  weights shape (1,2,3), every row [1/3, 1/3, 1/3]
+                            out shape (1,2,5), each row the mean of V's rows
 
 EDGE CASES
   - T = 1: the only weight is 1.0 and out equals V.
