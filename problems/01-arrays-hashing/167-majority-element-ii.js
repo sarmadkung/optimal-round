@@ -38,6 +38,7 @@
  */
 
 function majorityElement(nums) {
+  // Using Improved Boore - Moore Voting algorighthm by using 2 candidates and 2 counts
   let candidate1 = null;
   let count1 = 0;
   let candidate2 = null;
@@ -54,17 +55,18 @@ function majorityElement(nums) {
       candidate2 = currentNum
     }
 
-    // increment in case either found similar
+    // initalize candidate
     if(!candidate1){
       candidate1= currentNum
     } else if(candidate1 !== currentNum && !candidate2) {
       candidate2 = currentNum;
     }
-
+    // increment count
     if(candidate1 === currentNum) {
       count1++;
     } else if(candidate2 === currentNum) {
       count2++;
+      // decrease count
     } else {
       count1--
       count2--
