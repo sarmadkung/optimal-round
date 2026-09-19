@@ -38,7 +38,55 @@
  */
 
 function majorityElement(nums) {
-  // TODO: your solution here
+  let candidate1 = null;
+  let count1 = 0;
+  let candidate2 = null;
+  let count2 = 0;
+
+  for(let i = 0; i < nums.length; i++) {
+
+    let currentNum = nums[i];
+
+    // switch to another candidate when we have candidate intialized and count 0
+    if(candidate1 && count1===0){
+      candidate1 =  currentNum
+    } else if(candidate2 && count2 === 0){
+      candidate2 = currentNum
+    }
+
+    // increment in case either found similar
+    if(!candidate1){
+      candidate1= currentNum
+    } else if(candidate1 !== currentNum && !candidate2) {
+      candidate2 = currentNum;
+    }
+
+    if(candidate1 === currentNum) {
+      count1++;
+    } else if(candidate2 === currentNum) {
+      count2++;
+    } else {
+      count1--
+      count2--
+    }
+  }
+
+  let actualCount1 = 0
+  let actualCount2 = 0
+
+  for (let num of nums){
+    if(num===candidate1) actualCount1++
+    if(num===candidate2) actualCount2++
+  }
+
+  let majority = [];
+  if(actualCount1 > nums.length/3){
+    majority.push(candidate1)
+  } 
+  if(actualCount2 > nums.length/3){
+    majority.push(candidate2)
+  }
+  return majority
 }
 
 module.exports = { majorityElement };
