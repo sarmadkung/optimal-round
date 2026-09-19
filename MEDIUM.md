@@ -1,6 +1,6 @@
 # Medium Problems
 
-8 of 112 solved.
+9 of 112 solved.
 
 The bulk of technical interviews live here. Each one asks you to RECOGNISE a
 pattern (sliding window, binary search on the answer, DP over subproblems,
@@ -115,7 +115,7 @@ topological sort) rather than invent something new.
 | ⬜ | 162 | [Count Primes](problems/22-number-theory/162-count-primes.js) | Number Theory |
 | ⬜ | 163 | [Ugly Number II](problems/22-number-theory/163-ugly-number-ii.js) | Number Theory |
 | ✅ | 167 | [Majority Element II](problems/01-arrays-hashing/167-majority-element-ii.js) | Arrays & Hashing |
-| ⬜ | 168 | [Find All Duplicates in an Array](problems/01-arrays-hashing/168-find-all-duplicates-in-an-array.js) | Arrays & Hashing |
+| ✅ | 168 | [Find All Duplicates in an Array](problems/01-arrays-hashing/168-find-all-duplicates-in-an-array.js) | Arrays & Hashing |
 | ⬜ | 175 | [3Sum Closest](problems/02-two-pointers/175-three-sum-closest.js) | Two Pointers |
 | ⬜ | 176 | [4Sum](problems/02-two-pointers/176-four-sum.js) | Two Pointers |
 | ⬜ | 177 | [Boats to Save People](problems/02-two-pointers/177-boats-to-save-people.js) | Two Pointers |

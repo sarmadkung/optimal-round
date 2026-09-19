@@ -1,11 +1,11 @@
 # All Problems
 
-23 of 178 solved. ✅ means the stub has been replaced.
+24 of 178 solved. ✅ means the stub has been replaced.
 
 By difficulty: [Easy](EASY.md) · [Medium](MEDIUM.md) · [Hard](HARD.md)
 
 
-## Arrays & Hashing  <sub>16/19</sub>
+## Arrays & Hashing  <sub>17/19</sub>
 
 | | # | Problem | Difficulty |
 |---|---|---------|------------|
@@ -25,7 +25,7 @@ By difficulty: [Easy](EASY.md) · [Medium](MEDIUM.md) · [Hard](HARD.md)
 | ✅ | 165 | [Isomorphic Strings](problems/01-arrays-hashing/165-isomorphic-strings.js) | Easy |
 | ✅ | 166 | [Find All Numbers Disappeared in an Array](problems/01-arrays-hashing/166-find-all-numbers-disappeared-in-an-array.js) | Easy |
 | ✅ | 167 | [Majority Element II](problems/01-arrays-hashing/167-majority-element-ii.js) | Medium |
-| ⬜ | 168 | [Find All Duplicates in an Array](problems/01-arrays-hashing/168-find-all-duplicates-in-an-array.js) | Medium |
+| ✅ | 168 | [Find All Duplicates in an Array](problems/01-arrays-hashing/168-find-all-duplicates-in-an-array.js) | Medium |
 | ⬜ | 169 | [First Missing Positive](problems/01-arrays-hashing/169-first-missing-positive.js) | Hard |
 | ✅ | 170 | [Longest Palindrome](problems/01-arrays-hashing/170-longest-palindrome.js) | Easy |
 

@@ -38,7 +38,35 @@
  */
 
 function findDuplicates(nums) {
-  // TODO: your solution here
+  // Normally we cna solve using hashmap but here we will solve using
+  // Sign Marking or Negative Marking.
+
+  // It can often called as as well :
+  // Index Marking
+  // In-place Marking
+  // Array-as-Hash / Array-as-a-Hash-Map
+  // Negative marking technique
+
+  // Working
+  // we have 2 moving
+  // 1st loop movement: normal i of loop
+  // marking movement: calculated by the current value ad it will decide wether it's duplicate or not
+  let duplicate = new Set();
+
+  for(let i=0;i<nums.length;i++){
+    let currentNum = Math.abs(nums[i]);
+  
+    let indexToMark = currentNum - 1;
+
+    let valueToMark = nums[indexToMark];
+
+    if(valueToMark>0){
+      nums[indexToMark] = - valueToMark
+    } else {
+      duplicate.add(currentNum);
+    }
+  }
+  return [...duplicate]
 }
 
 module.exports = { findDuplicates };
