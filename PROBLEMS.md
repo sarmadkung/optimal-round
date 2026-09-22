@@ -1,6 +1,6 @@
 # All Problems
 
-24 of 178 solved. ✅ means the stub has been replaced.
+25 of 178 solved. ✅ means the stub has been replaced.
 
 By difficulty: [Easy](EASY.md) · [Medium](MEDIUM.md) · [Hard](HARD.md)
 
@@ -29,13 +29,13 @@ By difficulty: [Easy](EASY.md) · [Medium](MEDIUM.md) · [Hard](HARD.md)
 | ⬜ | 169 | [First Missing Positive](problems/01-arrays-hashing/169-first-missing-positive.js) | Hard |
 | ✅ | 170 | [Longest Palindrome](problems/01-arrays-hashing/170-longest-palindrome.js) | Easy |
 
-## Two Pointers  <sub>7/15</sub>
+## Two Pointers  <sub>8/15</sub>
 
 | | # | Problem | Difficulty |
 |---|---|---------|------------|
 | ✅ | 007 | [Valid Palindrome](problems/02-two-pointers/007-valid-palindrome.js) | Easy |
 | ⬜ | 008 | [3Sum](problems/02-two-pointers/008-three-sum.js) | Medium |
-| ⬜ | 009 | [Container With Most Water](problems/02-two-pointers/009-container-with-most-water.js) | Medium |
+| ✅ | 009 | [Container With Most Water](problems/02-two-pointers/009-container-with-most-water.js) | Medium |
 | ⬜ | 010 | [Trapping Rain Water](problems/02-two-pointers/010-trapping-rain-water.js) | Hard |
 | ✅ | 054 | [Remove Duplicates from Sorted Array](problems/02-two-pointers/054-remove-duplicates-from-sorted-array.js) | Easy |
 | ✅ | 055 | [Two Sum II - Input Array Is Sorted](problems/02-two-pointers/055-two-sum-ii-input-array-is-sorted.js) | Medium |

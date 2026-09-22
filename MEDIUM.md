@@ -1,6 +1,6 @@
 # Medium Problems
 
-9 of 112 solved.
+10 of 112 solved.
 
 The bulk of technical interviews live here. Each one asks you to RECOGNISE a
 pattern (sliding window, binary search on the answer, DP over subproblems,
@@ -13,7 +13,7 @@ topological sort) rather than invent something new.
 | ✅ | 005 | [Group Anagrams](problems/01-arrays-hashing/005-group-anagrams.js) | Arrays & Hashing |
 | ✅ | 006 | [Top K Frequent Elements](problems/01-arrays-hashing/006-top-k-frequent-elements.js) | Arrays & Hashing |
 | ⬜ | 008 | [3Sum](problems/02-two-pointers/008-three-sum.js) | Two Pointers |
-| ⬜ | 009 | [Container With Most Water](problems/02-two-pointers/009-container-with-most-water.js) | Two Pointers |
+| ✅ | 009 | [Container With Most Water](problems/02-two-pointers/009-container-with-most-water.js) | Two Pointers |
 | ⬜ | 012 | [Longest Substring Without Repeating Characters](problems/03-sliding-window/012-longest-substring-without-repeating-characters.js) | Sliding Window |
 | ⬜ | 015 | [Min Stack](problems/04-stack/015-min-stack.js) | Stack |
 | ⬜ | 018 | [Search in Rotated Sorted Array](problems/05-binary-search/018-search-in-rotated-sorted-array.js) | Binary Search |

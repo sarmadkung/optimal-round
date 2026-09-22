@@ -34,7 +34,29 @@
  */
 
 function maxArea(height) {
-  // TODO: your solution here
+  
+  let right = height.length-1;
+  let areaMax = 0;
+  let left = 0
+
+  while(left<right) {
+    let width = right - left;
+    let leftH = height[left];
+    let rightH = height[right]
+
+    let h = Math.min(leftH,rightH);
+    let area = width * h;
+
+    if(areaMax < area) {
+      areaMax = area;
+    }
+    if(leftH<rightH){
+      left++
+    } else {
+      right--
+    }
+  }
+  return areaMax;
 }
 
 module.exports = { maxArea };
