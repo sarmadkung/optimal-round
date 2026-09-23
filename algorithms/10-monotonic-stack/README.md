@@ -171,6 +171,17 @@ It is O(n) despite the nesting: each index is popped at most once over the whole
 - **Using `if` instead of `while`** when popping. One new value may settle many old ones.
 - **Off-by-one widths** in the histogram. The rectangle lies strictly **between** the two walls.
 
+## Where it is used in the real world
+
+- **Trading indicators.** The stock span — how many consecutive days the price stayed below
+  today's — is computed for every day in one pass with a decreasing stack.
+- **Streaming maxima.** The deque form answers "peak bandwidth in the last N seconds" continuously,
+  which is how bursty-traffic alarms are evaluated without rescanning the window.
+- **Document layout analysis.** The largest-rectangle-in-a-histogram trick finds the biggest clear
+  block on a scanned page, used by OCR to separate columns from figures.
+- **Terrain rendering.** Deciding which peaks are visible from a viewpoint is a next-greater query
+  along the line of sight.
+
 ## Practice
 
 1. **[062 Daily Temperatures](../../problems/04-stack/062-daily-temperatures.js)** (Medium): the

@@ -133,6 +133,18 @@ which one the problem allows.
   one starts a different subarray.
 - **Reaching for a sliding window** when the array has negatives.
 
+## Where it is used in the real world
+
+- **Face detection.** The integral image (a 2D prefix sum) lets Viola-Jones evaluate a rectangular
+  brightness filter anywhere in the picture with four lookups, which is what made it fast enough
+  for cameras.
+- **Weighted random choice.** Building a prefix sum of weights and binary searching a random number
+  into it is how load balancers pick a backend and how A/B tests assign buckets by percentage.
+- **Databases.** Running totals in SQL window functions, and the cumulative histograms a query
+  planner uses to estimate how many rows a range predicate will match.
+- **GPUs.** Parallel prefix scan is one of the handful of primitives everything else is built from
+  — stream compaction, sorting and sparse matrix work all reduce to it.
+
 ## Practice
 
 1. **[156 Find Pivot Index](../../problems/21-prefix-sum/156-find-pivot-index.js)** (Easy): the

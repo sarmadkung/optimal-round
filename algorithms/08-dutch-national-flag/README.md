@@ -138,6 +138,16 @@ only the write pointer waits, so it is a `for` over the read pointer.
 - **Counting and overwriting** when the problem asks for one pass. It is correct, but it is the
   two-pass version.
 
+## Where it is used in the real world
+
+- **Sorting libraries.** Three-way partitioning is what keeps quicksort from degrading on arrays
+  full of duplicates; production sorts such as Java's dual-pivot quicksort and Rust's pdqsort
+  depend on it.
+- **Graphics.** Building a BSP tree splits polygons into in-front, on, and behind a plane — the
+  same three-way pass, done per node.
+- **One-pass triage.** Bucketing records into pass / warn / fail, or messages into drop / retry /
+  deliver, in a single scan with no extra buffers.
+
 ## Practice
 
 1. **[056 Sort Colors](../../problems/02-two-pointers/056-sort-colors.js)** (Medium): the

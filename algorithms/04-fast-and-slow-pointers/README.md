@@ -154,6 +154,19 @@ or the pointers meet, and you cannot know in advance how many steps that takes.
   defines the cycle.
 - **In phase 2, still moving one pointer two steps.** Both move one step at a time.
 
+## Where it is used in the real world
+
+- **Circular reference detection.** Serializers hit this constantly — `JSON.stringify` has to
+  notice an object that points back at itself instead of recursing forever.
+- **Filesystems.** Resolving a path has to detect symlink loops, and the kernel must do it without
+  allocating memory proportional to the chain.
+- **Cryptanalysis.** Pollard's rho factorisation finds a repeat in a pseudo-random sequence using
+  Floyd's cycle detection; it is how small RSA factors fall.
+- **Random number generators.** Measuring a generator's period means finding where its state
+  sequence starts repeating, with no room to store the states.
+- **Dependency and state machines.** Catching an infinite loop in a resolver or workflow engine
+  where the state is cheap to advance but expensive to record.
+
 ## Practice
 
 1. **[022 Linked List Cycle](../../problems/06-linked-list/022-linked-list-cycle.js)** (Easy):

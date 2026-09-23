@@ -12,7 +12,7 @@ Every explainer opens with **In 60 seconds** — the idea, the rule, when to rea
 traps — so you can refresh a technique without rereading the whole page. Below that, the same
 sections every time: the problem it solves, the core idea, step-by-step rules, a worked trace,
 why it is correct, which loop to use (`for` or `while`), how to recognise it, common mistakes,
-and practice.
+where it is used in the real world, and practice.
 
 ## Arrays & sequences
 

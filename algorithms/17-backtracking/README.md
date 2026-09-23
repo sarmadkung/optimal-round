@@ -198,6 +198,18 @@ elements the current `for` has already moved past, and you get duplicates.
 - **Recording only at the leaves for subsets.** Every node of the subset tree is an answer,
   including the empty one at the root.
 
+## Where it is used in the real world
+
+- **Regular expressions.** JavaScript's and PCRE's engines backtrack over alternatives, which is
+  both why they support backreferences and why a bad pattern can hang a server — catastrophic
+  backtracking is this algorithm without enough pruning.
+- **SAT solvers.** DPLL, the base of every modern solver, is backtracking plus propagation. It sits
+  under hardware verification, package dependency resolution and program analysis.
+- **Scheduling.** Timetabling, shift rosters and seating plans assign one slot at a time and undo
+  the choice when a constraint breaks.
+- **Query planners.** Exploring join orders is a search over permutations, pruned by cost bounds.
+- **Game AI.** Chess and puzzle search explores a move, recurses, and takes the move back.
+
 ## Practice
 
 1. **[040 Subsets](../../problems/10-backtracking/040-subsets.js)** (Medium): every node of the

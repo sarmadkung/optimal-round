@@ -139,6 +139,17 @@ need one target, `break` when it pops.
 - **Leaving unreachable nodes at infinity** and returning infinity instead of the problem's
   "not reachable" value.
 
+## Where it is used in the real world
+
+- **Internet routing.** OSPF and IS-IS are link-state protocols: every router learns the whole
+  topology and runs Dijkstra to build its forwarding table.
+- **Maps and navigation.** Turn-by-turn routing is Dijkstra at heart, with precomputation
+  (contraction hierarchies) and A* heuristics layered on to make continental-scale queries instant.
+- **Telecoms.** Least-cost call and traffic routing, where the edge weight is price or latency
+  rather than distance.
+- **Robotics and games.** Path planning over a cost map, where mud, stairs or enemy fire make some
+  tiles more expensive than others rather than impassable.
+
 ## Practice
 
 1. **[148 Network Delay Time](../../problems/19-advanced-graphs/148-network-delay-time.js)**

@@ -144,6 +144,17 @@ one value home for good. Pick one form and don't mix them.
 - **Using sign marking when zeros or negatives are allowed.** A 0 can't be flipped and an existing
   negative looks "seen". Clean or ignore those values first, or use placement instead.
 
+## Where it is used in the real world
+
+- **Reliable transport.** A receiver holding packets numbered 1..n has to report which sequence
+  numbers never arrived; the numbers double as slots.
+- **Data integrity checks.** Finding gaps or duplicates in a database's sequence-generated ids,
+  where the id range is known and the table is too large to hash.
+- **Embedded systems.** Validating that every expected sensor or device id in a fixed range
+  reported in, on hardware with no room for a hash map.
+- **Hash table design.** "Put each item in its home slot, evict whoever is there" is the same move
+  Robin Hood hashing makes on insert.
+
 ## Practice
 
 1. **[166 Find All Numbers Disappeared in an Array](../../problems/01-arrays-hashing/166-find-all-numbers-disappeared-in-an-array.js)**

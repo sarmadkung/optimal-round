@@ -194,6 +194,17 @@ step count comes out wrong. Save the size first.
 - **Counting one level too many.** The last level may add nothing new; don't count it as a step.
 - **Recursion depth.** A 300 × 300 all-land grid is a 90,000-deep DFS in the worst case.
 
+## Where it is used in the real world
+
+- **Web crawlers.** A crawler's frontier is a BFS queue, so pages near the seed get fetched before
+  the long tail.
+- **Social graphs.** "2nd-degree connection" and "mutual friends" are bounded BFS, usually run to
+  depth two and no further because the frontier explodes.
+- **Computer vision.** Connected-component labelling groups touching pixels into objects; the paint
+  bucket in an image editor is the same flood fill.
+- **Garbage collection.** The mark phase is a DFS from the root set; anything unreached is garbage.
+- **Build and package tools.** Detecting a circular dependency is a DFS that finds a back edge.
+
 ## Practice
 
 1. **[029 Number of Islands](../../problems/08-graphs/029-number-of-islands.js)** (Medium): count

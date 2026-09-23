@@ -150,6 +150,17 @@ To stop early, keep a `changed` flag and `break` from the outer loop when a roun
 - **Using Dijkstra on a stop-limited problem.** It keeps only the cheapest cost per node and can
   throw away a pricier route with fewer stops that was the only legal one.
 
+## Where it is used in the real world
+
+- **Distance-vector routing.** RIP is Bellman-Ford run across routers, each telling its neighbours
+  its current best distances; the "count to infinity" problem is this algorithm's failure mode.
+- **Currency arbitrage.** Take `-log(rate)` as the edge weight and a negative cycle is a loop of
+  trades that returns more than it costs. Trading systems scan for exactly this.
+- **Constrained travel search.** "Cheapest flight with at most k stops" needs the limited-relaxation
+  form, because the cheapest route overall may use too many hops.
+- **Planning with penalties.** Any shortest-path problem where some moves pay you back, which
+  Dijkstra cannot handle at all.
+
 ## Practice
 
 1. **[150 Cheapest Flights Within K Stops](../../problems/19-advanced-graphs/150-cheapest-flights-within-k-stops.js)**

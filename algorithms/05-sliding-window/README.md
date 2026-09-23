@@ -149,6 +149,19 @@ whole run the inner `while` does at most n steps in total.
   the rule stops being monotone. That needs prefix sums instead.
 - **Off by one on length.** An inclusive window `l..r` has `r − l + 1` elements.
 
+## Where it is used in the real world
+
+- **Rate limiting.** "100 requests per minute" in an API gateway is a window over a request
+  timeline, with old entries expiring off the left edge as new ones arrive.
+- **TCP flow control.** The sender's window of unacknowledged bytes grows and shrinks by exactly
+  this rule, which is where the name comes from.
+- **Real-time metrics.** "Errors in the last 5 minutes" in a monitoring system keeps a running
+  aggregate instead of rescanning the whole series on every tick.
+- **Signal smoothing.** A moving average over sensor readings adds the new sample and subtracts
+  the one falling out, keeping the cost per sample constant.
+- **Intrusion detection.** Scanning a packet stream for a burst pattern within a time window,
+  where the stream is far too large to keep.
+
 ## Practice
 
 1. **[012 Longest Substring Without Repeating Characters](../../problems/03-sliding-window/012-longest-substring-without-repeating-characters.js)**

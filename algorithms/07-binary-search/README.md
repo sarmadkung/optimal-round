@@ -179,6 +179,18 @@ re-read the problem.
 - **Rounding the wrong way** in the check, for example using plain division where you need to round up.
 - **`(lo + hi) / 2` overflowing** in fixed-width languages. Use `lo + (hi − lo) / 2`.
 
+## Where it is used in the real world
+
+- **Database indexes.** Finding a key inside a B-tree page is a binary search, run on every index
+  lookup in every relational database.
+- **`git bisect`.** Finding the commit that broke a build is binary search over history, with
+  "does it still work?" as the predicate.
+- **Capacity planning.** Binary search on the answer finds the smallest instance count, thread
+  pool or ship size that still meets a deadline, when testing a candidate is easy but solving
+  directly is not.
+- **Network tuning.** Path MTU discovery narrows in on the largest packet that survives the route.
+- **Numerical work.** Bisection for roots, and for inverting a function that has no closed form.
+
 ## Practice
 
 1. **[017 Binary Search](../../problems/05-binary-search/017-binary-search.js)** (Easy): the classic

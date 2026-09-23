@@ -177,6 +177,18 @@ paths, use BFS/DFS or topological sort instead.
 - **Off-by-one labels.** If nodes are 1-indexed, size the arrays `n + 1` or subtract 1.
 - **Skipping both optimisations.** Chains can then grow to length n, and every find becomes O(n).
 
+## Where it is used in the real world
+
+- **Identity resolution.** Merging duplicate customer or account records into one entity, where
+  each new "these two are the same person" signal unions two groups.
+- **Network monitoring.** Tracking which machines are still mutually reachable as links fail, and
+  answering "are these two in the same partition?" cheaply.
+- **Type inference.** Hindley-Milner unification merges type variables with union-find; this is how
+  a compiler concludes two unnamed types must be the same.
+- **Image segmentation.** Growing regions of similar pixels by unioning neighbours.
+- **Physics simulation.** Percolation models ask whether the top and bottom of a grid are connected
+  as sites open up one at a time.
+
 ## Practice
 
 1. **[143 Number of Connected Components in an Undirected Graph](../../problems/18-union-find/143-number-of-connected-components-in-an-undirected-graph.js)**

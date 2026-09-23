@@ -140,6 +140,17 @@ is bigger than `[1, 5, 4, 2]`. ✓
 - **In next permutation, sorting the tail** (O(n log n)) when a reversal already suffices, or
   swapping with the **first** larger value instead of the rightmost one when duplicates exist.
 
+## Where it is used in the real world
+
+- **Text editors.** Moving a block of text past another — cut-and-paste without allocating a copy —
+  is the three-reversal rotation, a classic trick from the earliest editors.
+- **Standard libraries.** C++'s `std::rotate` uses it for forward iterators, where no scratch
+  buffer is available.
+- **Ring buffers.** Realigning a circular buffer's contents to the start of its storage, in place,
+  after the read and write heads have drifted apart.
+- **Combinatorics.** Next-permutation ends with a reversal of the tail, and is how you enumerate
+  every ordering of a set in lexicographic order without recursion.
+
 ## Practice
 
 1. **[103 Rotate Array](../../problems/01-arrays-hashing/103-rotate-array.js)** (Medium): the

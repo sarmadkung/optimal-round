@@ -156,6 +156,17 @@ Start at 1 because `cur = best = nums[0]` has already used the first value. Star
   values before either update.
 - **Product variant: tracking only the max.** Two negatives make a positive.
 
+## Where it is used in the real world
+
+- **Trading and risk.** Maximum drawdown is Kadane run over negative daily returns: the worst
+  contiguous stretch of losses. The best-window variant finds the strongest run.
+- **Genomics.** Scoring a DNA strand +1/-1 per base and taking the maximum-sum segment locates
+  unusually GC-rich regions; this is the core of maximal-scoring-segment analysis.
+- **Image processing.** 2D Kadane — Kadane over every pair of rows — finds the brightest rectangle
+  in a heat map, used for cheap region-of-interest cropping.
+- **Monitoring.** Finding the worst continuous period of latency or error-rate deviation in a
+  metric series, to put a time range on an incident.
+
 ## Practice
 
 1. **[004 Maximum Subarray](../../problems/01-arrays-hashing/004-maximum-subarray.js)** (Medium):

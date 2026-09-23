@@ -140,6 +140,18 @@ data. Counting the primes at the end is one more `for`.
   covered by its prime factors.
 - **Counting 0 and 1 as prime** because they were never crossed out.
 
+## Where it is used in the real world
+
+- **Key generation.** Before an expensive primality test, RSA key generators sieve out candidates
+  divisible by small primes — most random odd numbers die here, cheaply.
+- **Hash table sizing.** Implementations that use prime-sized tables keep a precomputed prime list
+  to pick the next capacity on growth.
+- **Multiplicative precomputation.** The same "walk the multiples of each prime" pass computes
+  Euler's totient or smallest-prime-factor for every number up to n, which cryptographic and
+  number-theory libraries keep as tables.
+- **The pattern itself.** Marking multiples is how you precompute any property that propagates from
+  a number to its multiples, in one sweep instead of n separate checks.
+
 ## Practice
 
 1. **[162 Count Primes](../../problems/22-number-theory/162-count-primes.js)** (Medium): the bound

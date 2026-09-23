@@ -141,6 +141,18 @@ candidate. Keep the two passes apart: the candidates are not final until the fir
   slots. Always test "matches candidate A / B" before "slot A / B is empty".
 - **Using `>=` instead of `>`.** "More than n/3" is strict.
 
+## Where it is used in the real world
+
+- **Router traffic monitoring.** A backbone router cannot keep a counter per flow at line rate, so
+  it keeps a fixed handful of candidate slots and votes. The generalised form (Misra-Gries) is how
+  "heavy hitters" — the flows eating more than 1/k of the link — are found in fixed memory.
+- **Fault-tolerant hardware.** Flight control and spacecraft computers run the same computation on
+  three units and ship the value the majority agrees on, so one failed sensor cannot steer.
+- **Quorum reads in replicated databases.** A client reads the same key from several replicas and
+  takes the value a majority returned, without sorting or storing all the replies.
+- **Streaming analytics.** "Top trending item" dashboards over firehose data keep bounded counters
+  rather than a map of every item seen.
+
 ## Practice
 
 1. **[101 Majority Element](../../problems/01-arrays-hashing/101-majority-element.js)** (Easy):

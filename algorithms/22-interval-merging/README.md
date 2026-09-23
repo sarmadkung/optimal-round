@@ -144,6 +144,18 @@ Result: `[[1,2], [3,9], [12,14]]`. ✓ One pass, O(n).
 - **Mutating the input intervals** by pushing references and then stretching them.
 - **In insert, forgetting the empty list** or a new interval that lands before all or after all.
 
+## Where it is used in the real world
+
+- **Calendars.** "Find a time" merges everyone's busy blocks into one list, then reads the gaps as
+  free slots. Room booking is the overlap-count variant.
+- **Genomics.** Merging overlapping read alignments or gene annotations is a daily operation, and
+  tools such as BEDTools exist largely to do it fast.
+- **Incident and billing.** Collapsing overlapping outage windows so downtime is not counted twice,
+  and merging usage periods before invoicing.
+- **Memory allocators.** `free` coalesces a released block with adjacent free blocks so the heap
+  does not fragment into unusable slivers.
+- **Video editing.** Merging clips and effect ranges on a timeline as they are dragged together.
+
 ## Practice
 
 1. **[043 Merge Intervals](../../problems/11-intervals-greedy/043-merge-intervals.js)** (Medium):

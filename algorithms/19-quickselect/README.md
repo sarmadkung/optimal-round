@@ -156,6 +156,17 @@ on `lo..split` or `split+1..hi`. Lomuto is easier to get right; Hoare is faster 
 - **Always choosing the first or last value** as pivot. Sorted input then hits O(n²).
 - **Treating "kth distinct".** Duplicates count as separate positions.
 
+## Where it is used in the real world
+
+- **Standard libraries.** C++'s `std::nth_element` is quickselect. It is the supported way to ask
+  for a median without paying for a full sort.
+- **Latency percentiles.** Computing p50/p95/p99 from a captured batch of request timings. Live
+  streaming systems switch to sketches such as t-digest, because they cannot hold every sample.
+- **Image denoising.** A median filter takes the middle value of each pixel neighbourhood, one
+  selection per pixel, so the constant factor matters.
+- **Machine learning.** Keeping the top-k features by score, or finding the k-th nearest neighbour
+  distance to set a radius.
+
 ## Practice
 
 1. **[092 Kth Largest Element in an Array](../../problems/13-heap-priority-queue/092-kth-largest-element-in-an-array.js)**

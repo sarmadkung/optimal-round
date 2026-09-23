@@ -131,6 +131,18 @@ many there are. That makes it a `while`.
   times" needs per-bit counting instead.
 - **Worrying about negatives.** XOR works on the bit pattern, so negative numbers cancel fine.
 
+## Where it is used in the real world
+
+- **RAID 5.** The parity drive stores the XOR of the others. Lose any one disk and its contents are
+  recomputed by XOR-ing what remains — the missing-number trick at storage scale.
+- **Cryptography.** The one-time pad is XOR, stream ciphers XOR a keystream into the plaintext, and
+  AES mixes round keys in with XOR. Self-inverse means encrypt and decrypt are the same code.
+- **Error detection.** Parity bits on memory and serial links are a one-bit XOR of the payload.
+- **Bitmask state.** Toggling a flag, and combining hashes, where you want order-independent mixing
+  that cancels on repeat.
+- **Memory-tight structures.** The XOR linked list stores `prev ^ next` in one field, traded for
+  being impossible to traverse from the middle.
+
 ## Practice
 
 1. **[046 Single Number](../../problems/12-math-bits/046-single-number.js)** (Easy): the direct

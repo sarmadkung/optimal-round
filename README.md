@@ -57,7 +57,7 @@ for any push to `main` that skipped the hook.
 |---|---|
 | **Solved** | 25 of 178 (14%) |
 | **Remaining** | 153 |
-| **Verified passing** | 25 |
+| **Verified passing** | 23 (2 failing) |
 | **Progress** | `████░░░░░░░░░░░░░░░░░░░░░░░░` |
 
 ### By difficulty

@@ -179,6 +179,18 @@ recursive search.
 - **Treating a self-loop `[a, a]` specially.** It needs no special case: it gives `a` an in-degree
   that never reaches 0.
 
+## Where it is used in the real world
+
+- **Build systems.** `make`, Bazel and webpack all order work by dependency, and report a cycle
+  rather than looping forever.
+- **Package managers.** npm and apt decide install order so that nothing is configured before what
+  it needs is present.
+- **Spreadsheets.** Recalculating after an edit follows formula dependencies; a circular reference
+  is a detected cycle, which is why the error has its own message.
+- **Workflow schedulers.** Airflow DAGs and CI pipeline stages are topological orders, with
+  independent nodes run in parallel by processing a whole level at once.
+- **Compilers.** Instruction scheduling orders operations so each runs after the values it reads.
+
 ## Practice
 
 1. **[030 Course Schedule](../../problems/08-graphs/030-course-schedule.js)** (Medium): the yes/no

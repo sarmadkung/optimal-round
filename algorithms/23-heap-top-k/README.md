@@ -127,6 +127,18 @@ Python has `heapq` and Java has `PriorityQueue`; JavaScript has neither. In an i
 - **Counting and selecting in one go** for frequency problems. Count everything first, then run
   the heap over the distinct values.
 
+## Where it is used in the real world
+
+- **Search engines.** Lucene scans posting lists and keeps only the best k documents in a bounded
+  priority queue; the rest are scored and discarded without ever being sorted.
+- **Vector search.** Approximate nearest-neighbour indexes such as HNSW carry a heap of the best
+  candidates found so far, and use its worst entry to decide when to stop exploring.
+- **Leaderboards and trends.** Top k hashtags, best-selling products, slowest queries — computed
+  over a stream far larger than the answer.
+- **Schedulers and simulations.** The same structure is the ready queue in a priority scheduler and
+  the event queue in a discrete-event simulator.
+- **Other algorithms.** Dijkstra, Prim's and A* are all built on this priority queue.
+
 ## Practice
 
 1. **[006 Top K Frequent Elements](../../problems/01-arrays-hashing/006-top-k-frequent-elements.js)**

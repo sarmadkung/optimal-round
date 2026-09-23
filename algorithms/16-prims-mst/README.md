@@ -142,6 +142,17 @@ wasted, loop with `while` on the progress itself.**
 - **Adding a node twice** in the heap version. Skip pops for nodes already in the tree.
 - **Stopping at V edges** instead of `V − 1`, or forgetting that a single node costs 0.
 
+## Where it is used in the real world
+
+- **Physical network design.** Laying the least fibre, cable or pipe that still connects every
+  building is the original motivation, and the problem is still solved this way.
+- **Clustering.** Single-linkage clustering is an MST with the longest edges cut; the tree tells
+  you where the natural gaps between groups are.
+- **Image segmentation.** Building an MST over pixel similarity and cutting weak edges separates
+  objects from background.
+- **Procedural generation.** Maze and dungeon generators build a spanning tree so every room is
+  reachable and no loops appear unless deliberately added back.
+
 ## Practice
 
 1. **[149 Min Cost to Connect All Points](../../problems/19-advanced-graphs/149-min-cost-to-connect-all-points.js)**

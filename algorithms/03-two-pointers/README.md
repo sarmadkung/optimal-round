@@ -186,6 +186,17 @@ Ask one question: **does one pointer move on every single iteration, no matter w
 - **Forgetting the output format.** Some problems want 1-based indices, not 0-based.
 - **Using it on unsorted data** for a sum. The "too big, so drop the right one" argument needs order.
 
+## Where it is used in the real world
+
+- **Search engines.** Answering `cats AND dogs` means intersecting two sorted lists of document
+  ids. Two pointers walk both lists once instead of hashing either one.
+- **Databases.** A merge join over two sorted inputs is exactly this walk, and it is why the
+  planner cares whether an index already provides sorted order.
+- **Diff tools.** `git diff` and friends advance a pointer in each file while the lines match, and
+  only fall back to expensive work where they diverge.
+- **In-place compaction.** The read/write variant is how a garbage collector slides live objects
+  down over dead ones, and how a column store drops deleted rows without a second buffer.
+
 ## Practice
 
 1. **[055 Two Sum II - Input Array Is Sorted](../../problems/02-two-pointers/055-two-sum-ii-input-array-is-sorted.js)**
